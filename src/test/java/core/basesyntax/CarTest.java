@@ -65,7 +65,7 @@ public class CarTest {
         Assert.assertNotSame(expected, actual);
     }
 
-    @Test()
+    @Test
     public void checkEngineForNull() {
         Car car = new Car(0, "red", Collections.emptyList(), null);
         Engine engine = car.getEngine();
