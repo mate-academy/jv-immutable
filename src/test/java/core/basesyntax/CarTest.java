@@ -65,9 +65,11 @@ public class CarTest {
         Assert.assertNotSame(expected, actual);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test()
     public void checkEngineForNull() {
         Car car = new Car(0, "red", Collections.emptyList(), null);
+        Engine engine = car.getEngine();
+        Assert.assertSame(engine, null);
     }
 
     @Test(expected = NullPointerException.class)

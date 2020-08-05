@@ -13,7 +13,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.engine = engine.clone();
+        this.engine = getCopyOfEngine(engine);
         this.wheels = getCopyOfWheels(wheels);
     }
 
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return getCopyOfEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -51,6 +51,10 @@ public final class Car {
         return wheels.stream()
                 .map(Wheel::clone)
                 .collect(Collectors.toList());
+    }
+
+    private Engine getCopyOfEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     @Override
