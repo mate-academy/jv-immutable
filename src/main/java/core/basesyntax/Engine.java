@@ -34,11 +34,15 @@ public class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Engine)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Engine)) {
+            return false;
+        }
         Engine engine = (Engine) o;
-        return getHorsePower() == engine.getHorsePower() &&
-                Objects.equals(getMaker(), engine.getMaker());
+        return getHorsePower() == engine.getHorsePower()
+                && Objects.equals(getMaker(), engine.getMaker());
     }
 
     @Override
