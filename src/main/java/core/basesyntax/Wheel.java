@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Wheel implements Cloneable{
+public class Wheel implements Cloneable {
     private int radius;
 
     public Wheel(int radius) {
@@ -22,8 +22,12 @@ public class Wheel implements Cloneable{
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
 
         Wheel wheel = (Wheel) other;
         return radius == wheel.radius;

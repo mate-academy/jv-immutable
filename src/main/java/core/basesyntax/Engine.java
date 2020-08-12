@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Engine implements Cloneable{
+public class Engine implements Cloneable {
     private int horsePower;
     private String maker;
 
@@ -32,12 +32,16 @@ public class Engine implements Cloneable{
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
 
         Engine engine = (Engine) other;
-        if (horsePower != engine.horsePower) return false;
-        return maker != null ? maker.equals(engine.maker) : engine.maker == null;
+        return (horsePower == engine.horsePower && (maker == engine.maker
+                        || (maker != null && maker.equals(engine.maker))));
     }
 
     @Override

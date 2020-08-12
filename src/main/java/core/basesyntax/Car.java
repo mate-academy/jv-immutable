@@ -20,7 +20,8 @@ public final class Car implements Cloneable {
             newWheels.add(oneWheel.clone());
         }
         this.wheels = newWheels;
-        this.engine = (engine == null) ? null : new Engine(engine.getHorsePower(), engine.getMaker());
+        this.engine = (engine == null) ? null : new Engine(engine.getHorsePower(),
+                                                                engine.getMaker());
     }
 
     public int getYear() {
@@ -28,7 +29,8 @@ public final class Car implements Cloneable {
     }
 
     public Car changeYear(int year) {
-        return new Car(year, color, new ArrayList<>(wheels), new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(year, color, new ArrayList<>(wheels),
+                            new Engine(engine.getHorsePower(), engine.getMaker()));
     }
 
     public String getColor() {
@@ -36,7 +38,8 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, new ArrayList<>(wheels), new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(year, color, new ArrayList<>(wheels),
+                        new Engine(engine.getHorsePower(), engine.getMaker()));
     }
 
     public List<Wheel> getWheels() {
@@ -46,7 +49,8 @@ public final class Car implements Cloneable {
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(wheel);
-        return new Car(year, color, newWheels, new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(year, color, newWheels, new Engine(engine.getHorsePower(),
+                                                            engine.getMaker()));
     }
 
     public Engine getEngine() {
@@ -65,14 +69,18 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (other == null || getClass() != other.getClass()) return false;
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
 
         Car car = (Car) other;
-        if (year != car.year) return false;
-        if (color != null ? !color.equals(car.color) : car.color != null) return false;
-        if (wheels != null ? !wheels.equals(car.wheels) : car.wheels != null) return false;
-        return engine != null ? engine.equals(car.engine) : car.engine == null;
+        return ((engine == car.engine || (engine != null && engine.equals(car.engine)))
+                && (wheels == car.wheels || (wheels != null && wheels.equals(car.wheels)))
+                && (color == car.color || (color != null && color.equals(car.color)))
+                && year == car.year);
     }
 
     @Override
