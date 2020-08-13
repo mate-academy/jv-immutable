@@ -13,13 +13,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(new Wheel(wheel.getRadius()));
+            newWheels.add(wheel.clone());
         }
         this.wheels = newWheels(wheels);
-        this.engine = engine == null ? null : new Engine(engine.getHorsePower(), engine.getMaker());
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public int getYear() {
@@ -33,13 +32,13 @@ public final class Car {
     public List<Wheel> getWheels() {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(new Wheel(wheel.getRadius()));
+            newWheels.add(wheel.clone());
         }
         return newWheels;
     }
 
     public Engine getEngine() {
-        return engine == null ? null : new Engine(engine.getHorsePower(), engine.getMaker());
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeColor(String color) {
@@ -48,7 +47,7 @@ public final class Car {
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(new Wheel(wheel.getRadius()));
+        newWheels.add(wheel.clone());
         return new Car(getYear(), getColor(), newWheels, getEngine());
     }
 
@@ -79,7 +78,7 @@ public final class Car {
     private List<Wheel> newWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(new Wheel(wheel.getRadius()));
+            newWheels.add(wheel.clone());
         }
         return newWheels;
     }
