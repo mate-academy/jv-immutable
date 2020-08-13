@@ -33,11 +33,11 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        return new ArrayList<>(wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeColor(String color) {
