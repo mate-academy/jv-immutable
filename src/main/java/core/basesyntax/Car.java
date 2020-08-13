@@ -17,19 +17,12 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            this.wheels.add(new Wheel(wheel.getRadius()));
-        }
-        if (engine != null) {
-            this.engine = new Engine(engine.getHorsePower(), engine.getMaker());
-        } else {
-            this.engine = null;
-        }
+        fillList(wheels);
+        this.engine = initEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(getYear(), getColor(), getWheels(),
-                new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(getYear(), getColor(), getWheels(), engine.clone());
     }
 
     public Car changeColor(String newColor) {
@@ -40,7 +33,7 @@ public final class Car {
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheelsList = getWheels();
         newWheelsList.add(newWheel);
-        return new Car(getYear(), getColor(), new ArrayList<>(newWheelsList), getEngine());
+        return new Car(getYear(), getColor(), newWheelsList, getEngine());
     }
 
     public int getYear() {
@@ -56,10 +49,21 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine != null) {
-            return engine.clone();
+        return engine == null ? null : engine.clone();
+    }
+
+    private void fillList(List<Wheel> wheels) {
+        for (Wheel wheel : wheels) {
+            this.wheels.add(new Wheel(wheel.getRadius()));
         }
-        return null;
+    }
+
+    private Engine initEngine(Engine engine) {
+        if (engine != null) {
+            return new Engine(engine.getHorsePower(), engine.getMaker());
+        } else {
+            return null;
+        }
     }
 
     @Override
