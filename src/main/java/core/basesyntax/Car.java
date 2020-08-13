@@ -17,7 +17,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>();
-        fillList(wheels);
+        initWheels(wheels);
         this.engine = initEngine(engine);
     }
 
@@ -52,7 +52,7 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
-    private void fillList(List<Wheel> wheels) {
+    private void initWheels(List<Wheel> wheels) {
         for (Wheel wheel : wheels) {
             this.wheels.add(new Wheel(wheel.getRadius()));
         }
