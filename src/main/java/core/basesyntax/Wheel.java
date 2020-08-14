@@ -10,7 +10,7 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    public Wheel clone(){
+    public Wheel clone() {
         return new Wheel(radius);
     }
 
