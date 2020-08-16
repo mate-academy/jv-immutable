@@ -32,12 +32,17 @@ public class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
         if (o.getClass() == getClass()) {
             Engine engine = (Engine) o;
             return horsePower == engine.getHorsePower()
-                    && maker == engine.getMaker() || maker != null && maker.equals(engine.getMaker());
+                    && maker == engine.getMaker()
+                    || maker != null && maker.equals(engine.getMaker());
         }
         return false;
     }
