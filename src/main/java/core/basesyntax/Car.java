@@ -32,7 +32,7 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, color, wheels, engine.clone());
     }
 
     public List<Wheel> getWheels() {
@@ -50,12 +50,12 @@ public final class Car implements Cloneable {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, new ArrayList<>(wheels), engine);
+        return new Car(year, color, wheels, engine);
     }
 
     @Override
     public Car clone() {
-        return new Car(year, color, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, color, wheelsPackage(wheels), engine.clone());
     }
 
     @Override
