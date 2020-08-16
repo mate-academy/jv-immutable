@@ -15,13 +15,8 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        List<Wheel> newWheels = new ArrayList<>();
-        for (Wheel oneWheel : wheels) {
-            newWheels.add(oneWheel.clone());
-        }
-        this.wheels = newWheels;
-        this.engine = (engine == null) ? null : new Engine(engine.getHorsePower(),
-                                                                engine.getMaker());
+        this.wheels = wheelsPackage(wheels);
+        this.engine = installEngine(engine);
     }
 
     public int getYear() {
@@ -29,8 +24,7 @@ public final class Car implements Cloneable {
     }
 
     public Car changeYear(int year) {
-        return new Car(year, color, new ArrayList<>(wheels),
-                            new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(year, color, wheels, engine.clone());
     }
 
     public String getColor() {
@@ -38,28 +32,25 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, new ArrayList<>(wheels),
-                        new Engine(engine.getHorsePower(), engine.getMaker()));
+        return new Car(year, color, new ArrayList<>(wheels), engine.clone());
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return wheels;
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(wheel);
-        return new Car(year, color, newWheels, new Engine(engine.getHorsePower(),
-                                                            engine.getMaker()));
+        return new Car(year, color, newWheels, engine.clone());
     }
 
     public Engine getEngine() {
-        return (engine == null) ? null : new Engine(engine.getHorsePower(), engine.getMaker());
+        return installEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        Engine newEngine = engine;
-        return new Car(year, color, new ArrayList<>(wheels), newEngine);
+        return new Car(year, color, new ArrayList<>(wheels), engine);
     }
 
     @Override
@@ -91,5 +82,17 @@ public final class Car implements Cloneable {
         result = prime * result + (wheels != null ? wheels.hashCode() : 0);
         result = prime * result + (engine != null ? engine.hashCode() : 0);
         return result;
+    }
+
+    private List<Wheel> wheelsPackage(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel oneWheel : wheels) {
+            newWheels.add(oneWheel.clone());
+        }
+        return newWheels;
+    }
+
+    private Engine installEngine(Engine engine) {
+        return (engine == null) ? null : engine.clone();
     }
 }
