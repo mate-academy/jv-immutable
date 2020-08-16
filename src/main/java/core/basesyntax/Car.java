@@ -36,7 +36,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        return wheelsPackage(wheels);
     }
 
     public Car addWheel(Wheel wheel) {
