@@ -40,9 +40,9 @@ public class Engine implements Cloneable {
         }
         if (o.getClass() == getClass()) {
             Engine engine = (Engine) o;
-            return horsePower == engine.getHorsePower()
-                    && maker == engine.getMaker()
-                    || maker != null && maker.equals(engine.getMaker());
+            return horsePower == engine.horsePower
+                    && maker == engine.maker
+                    || maker != null && maker.equals(engine.maker);
         }
         return false;
     }

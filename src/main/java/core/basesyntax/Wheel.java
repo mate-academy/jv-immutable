@@ -30,7 +30,7 @@ public class Wheel implements Cloneable {
         }
         if (o.getClass() == getClass()) {
             Wheel wheel = (Wheel) o;
-            return radius == wheel.getRadius();
+            return radius == wheel.radius;
         }
         return false;
     }

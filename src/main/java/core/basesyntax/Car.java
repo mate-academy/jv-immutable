@@ -16,8 +16,8 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels.stream().map(Wheel::clone).collect(Collectors.toList());
-        this.engine = engine != null ? new Engine(engine.getHorsePower(), engine.getMaker()) : null;
+        this.wheels = getWheelListCopy(wheels);
+        this.engine = getEngineCopy(engine);
     }
 
     public int getYear() {
@@ -38,24 +38,24 @@ public final class Car implements Cloneable {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newList = new ArrayList<>();
-        for (Wheel www : wheels) {
-            newList.add(www.clone());
+        for (Wheel wheel : wheels) {
+            newList.add(wheel.clone());
         }
         newList.add(newWheel);
-        return new Car(year, color, newList, engine.clone());
+        return new Car(year, color, newList, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, newColor, new ArrayList<>(wheels), engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     @Override
     protected Car clone() {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     @Override
@@ -68,11 +68,11 @@ public final class Car implements Cloneable {
         }
         if (o.getClass() == getClass()) {
             Car car = (Car) o;
-            return year == car.getYear() && color == car.getColor()
-                    || color != null && color.equals(car.getColor())
-                    && wheels == car.getWheels() || checkListEqual(car.getWheels())
-                    && engine == car.getEngine() || engine != null
-                    && engine.equals(car.getEngine());
+            return year == car.year && color == car.color
+                    || color != null && color.equals(car.color)
+                    && wheels == car.wheels || checkListEqual(car.wheels)
+                    && engine == car.engine || engine != null
+                    && engine.equals(car.engine);
         }
         return false;
     }
@@ -105,5 +105,13 @@ public final class Car implements Cloneable {
             hash += (wheel != null ? wheel.hashCode() : 0);
         }
         return hash;
+    }
+
+    private List<Wheel> getWheelListCopy(List<Wheel> wheels) {
+        return wheels.stream().map(Wheel::clone).collect(Collectors.toList());
+    }
+
+    private Engine getEngineCopy(Engine engine) {
+        return engine != null ? engine.clone() : null;
     }
 }
