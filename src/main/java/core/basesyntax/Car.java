@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,24 +28,21 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return getWheelListCopy(wheels);
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return getEngineCopy(engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newList = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            newList.add(wheel.clone());
-        }
+        List<Wheel> newList = getWheelListCopy(wheels);
         newList.add(newWheel);
         return new Car(year, color, newList, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, new ArrayList<>(wheels), engine);
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -68,11 +64,11 @@ public final class Car implements Cloneable {
         }
         if (o.getClass() == getClass()) {
             Car car = (Car) o;
-            return year == car.year && color == car.color
-                    || color != null && color.equals(car.color)
-                    && wheels == car.wheels || checkListEqual(car.wheels)
-                    && engine == car.engine || engine != null
-                    && engine.equals(car.engine);
+            return (year == car.year) && ((color == car.color)
+                    || (color != null && color.equals(car.color)))
+                    && ((wheels == car.wheels) || (checkListEqual(car.wheels)))
+                    && ((engine == car.engine) || (engine != null
+                    && engine.equals(car.engine)));
         }
         return false;
     }
