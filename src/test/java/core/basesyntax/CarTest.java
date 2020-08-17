@@ -243,7 +243,7 @@ public class CarTest {
     }
 
     @Test
-    public void getEngine_checkCloneIsReturned() {
+    public void checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         car.getEngine().setHorsePower(0);
@@ -252,7 +252,7 @@ public class CarTest {
     }
 
     @Test
-    public void getWheels_checkCloneIsReturned() {
+    public void checkCloneIsReturnedInGetWheels() {
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         car.getWheels().add(new Wheel(50));
         Assert.assertEquals("You shouldn't be able to change car's wheels with getWheel method",
