@@ -15,8 +15,8 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheelsPackage(wheels);
-        this.engine = installEngine(engine);
+        this.wheels = copyWheels(wheels);
+        this.engine = copyEngine(engine);
     }
 
     public int getYear() {
@@ -24,7 +24,7 @@ public final class Car implements Cloneable {
     }
 
     public Car changeYear(int year) {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     public String getColor() {
@@ -32,21 +32,21 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     public List<Wheel> getWheels() {
-        return wheelsPackage(wheels);
+        return copyWheels(wheels);
     }
 
     public Car addWheel(Wheel wheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
+        List<Wheel> newWheels = copyWheels(wheels);
         newWheels.add(wheel);
-        return new Car(year, color, newWheels, engine.clone());
+        return new Car(year, color, newWheels, engine);
     }
 
     public Engine getEngine() {
-        return installEngine(engine);
+        return copyEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -55,7 +55,7 @@ public final class Car implements Cloneable {
 
     @Override
     public Car clone() {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class Car implements Cloneable {
         return result;
     }
 
-    private List<Wheel> wheelsPackage(List<Wheel> wheels) {
+    private List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel oneWheel : wheels) {
             newWheels.add(oneWheel.clone());
@@ -92,7 +92,7 @@ public final class Car implements Cloneable {
         return newWheels;
     }
 
-    private Engine installEngine(Engine engine) {
+    private Engine copyEngine(Engine engine) {
         return (engine == null) ? null : engine.clone();
     }
 }
