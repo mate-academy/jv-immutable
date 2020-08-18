@@ -52,20 +52,6 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
-    private void initWheels(List<Wheel> wheels) {
-        for (Wheel wheel : wheels) {
-            this.wheels.add(new Wheel(wheel.getRadius()));
-        }
-    }
-
-    private Engine initEngine(Engine engine) {
-        if (engine != null) {
-            return new Engine(engine.getHorsePower(), engine.getMaker());
-        } else {
-            return null;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -84,5 +70,15 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(getYear(), getColor(), getWheels(), getEngine());
+    }
+
+    private void initWheels(List<Wheel> wheels) {
+        for (Wheel wheel : wheels) {
+            this.wheels.add(new Wheel(wheel.getRadius()));
+        }
+    }
+
+    private Engine initEngine(Engine engine) {
+        return engine != null ? engine.clone() : null;
     }
 }
