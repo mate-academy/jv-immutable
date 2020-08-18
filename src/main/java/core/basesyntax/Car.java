@@ -64,8 +64,8 @@ public final class Car implements Cloneable {
         }
         if (o.getClass() == getClass()) {
             Car car = (Car) o;
-            return (year == car.year) && ((color == car.color)
-                    || (color != null && color.equals(car.color)))
+            return (year == car.year)
+                    && ((color == car.color) || (color != null && color.equals(car.color)))
                     && ((wheels == car.wheels) || (checkListEqual(car.wheels)))
                     && ((engine == car.engine) || (engine != null
                     && engine.equals(car.engine)));
