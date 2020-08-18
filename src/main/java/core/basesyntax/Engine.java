@@ -21,7 +21,7 @@ public class Engine implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || o.getClass().equals(Engine.class)) {
+        if (o == null || !o.getClass().equals(Engine.class)) {
             return false;
         }
         Engine engine = (Engine) o;

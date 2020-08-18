@@ -19,7 +19,7 @@ public class Wheel implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || o.getClass().equals(Wheel.class)) {
+        if (o == null || !o.getClass().equals(Wheel.class)) {
             return false;
         }
         Wheel wheel = (Wheel) o;
