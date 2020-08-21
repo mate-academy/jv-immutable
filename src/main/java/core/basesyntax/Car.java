@@ -52,19 +52,19 @@ public final class Car {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Car)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Car car = (Car) o;
-        return getYear() == car.getYear()
-                && Objects.equals(getColor(), car.getColor())
-                && Objects.equals(getWheels(), car.getWheels())
-                && Objects.equals(getEngine(), car.getEngine());
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getYear(), getColor(), getWheels(), getEngine());
+        return Objects.hash(year, color, wheels, engine);
     }
 
     private List<Wheel> getCopyOfWheels(List<Wheel> wheels) {

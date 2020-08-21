@@ -27,15 +27,15 @@ public class Wheel implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Wheel)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Wheel wheel = (Wheel) o;
-        return getRadius() == wheel.getRadius();
+        return radius == wheel.radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRadius());
+        return Objects.hash(radius);
     }
 }
