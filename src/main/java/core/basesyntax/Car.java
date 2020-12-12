@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -38,10 +38,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
