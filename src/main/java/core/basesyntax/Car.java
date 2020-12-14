@@ -17,7 +17,7 @@ public final class Car {
         for (Wheel wheel : wheels) {
             localList.add(wheel.clone());
         }
-        this.wheels = new ArrayList<>(localList);
+        this.wheels = localList;
         this.engine = engine == null ? null : engine.clone();
     }
 
