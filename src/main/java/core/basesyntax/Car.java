@@ -23,7 +23,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
+        return new Car(year, color, wheels, engine.clone());
     }
 
     public Car changeColor(String newColor) {
@@ -31,8 +31,8 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> list = new ArrayList<>(wheels);
-        list.add(newWheel);
+        List<Wheel> list = getWheels();
+        list.add(newWheel.clone());
         return new Car(year, color, list, engine);
     }
 
@@ -45,7 +45,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels == null ? null : new ArrayList<>(wheels);
+        List<Wheel> list = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            list.add(wheel.clone());
+        }
+        return list;
     }
 
     public Engine getEngine() {
@@ -73,46 +77,5 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    static class Builder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public Builder(int year, String color, List<Wheel> wheels, Engine engine) {
-            this.year = year;
-            this.color = color;
-            this.wheels = wheels;
-            this.engine = engine;
-        }
-
-        public Builder setYear(int year) {
-            this.year = year;
-            return this;
-        }
-
-        public Builder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public Builder setWheels(List<Wheel> wheels) {
-            if (wheels == null) {
-                throw new RuntimeException();
-            }
-            this.wheels = wheels;
-            return this;
-        }
-
-        public Builder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(year, color, wheels, engine);
-        }
     }
 }
