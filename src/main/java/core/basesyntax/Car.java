@@ -1,8 +1,10 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Make this class immutable. See requirements in the README file
@@ -71,5 +73,46 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    static class Builder {
+        private int year;
+        private String color;
+        private List<Wheel> wheels;
+        private Engine engine;
+
+        public Builder(int year, String color, List<Wheel> wheels, Engine engine) {
+            this.year = year;
+            this.color = color;
+            this.wheels = wheels;
+            this.engine = engine;
+        }
+
+        public Builder setYear(int year) {
+            this.year = year;
+            return this;
+        }
+
+        public Builder setColor(String color) {
+            this.color = color;
+            return this;
+        }
+
+        public Builder setWheels(List<Wheel> wheels) {
+            if (wheels == null) {
+                throw new RuntimeException();
+            }
+            this.wheels = wheels;
+            return this;
+        }
+
+        public Builder setEngine(Engine engine) {
+            this.engine = engine;
+            return this;
+        }
+
+        public Car build() {
+            return new Car(year, color, wheels, engine);
+        }
     }
 }
