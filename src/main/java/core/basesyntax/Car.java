@@ -1,10 +1,8 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Make this class immutable. See requirements in the README file
@@ -18,7 +16,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels == null ? null : new ArrayList<>(wheels);
+        this.wheels = addWheels(wheels);
         this.engine = engine == null ? null : engine.clone();
     }
 
@@ -68,14 +66,22 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    private List<Wheel> addWheels(List<Wheel> list) {
+        List<Wheel> assignWheels = new ArrayList<>();
+        for (Wheel wheel : list) {
+            assignWheels.add(wheel.clone());
+        }
+        return assignWheels;
     }
 }
