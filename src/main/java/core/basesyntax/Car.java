@@ -46,11 +46,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> newWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
-        }
-        return newWheels;
+        return new ArrayList<>(wheels);
     }
 
     public Engine getEngine() {
