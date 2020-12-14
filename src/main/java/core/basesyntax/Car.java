@@ -21,15 +21,17 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return null;
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return null;
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        return null;
+        List<Wheel> list = new ArrayList<>(wheels);
+        list.add(newWheel);
+        return new Car(year, color, list, engine);
     }
 
     public int getYear() {
