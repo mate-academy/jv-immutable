@@ -18,6 +18,18 @@ public class Car {
         this.engine = engine;
     }
 
+    public Car changeEngine(Engine engine) {
+        return null;
+    }
+
+    public Car changeColor(String newColor) {
+        return null;
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        return null;
+    }
+
     public int getYear() {
         return year;
     }
