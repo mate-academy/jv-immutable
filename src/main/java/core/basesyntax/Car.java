@@ -43,7 +43,7 @@ public final class Car {
 
     public Car changeEngine(Engine engine) {
 
-        return new Car(year, color, getWheels(), getEngine());
+        return new Car(year, color, getWheels(), engine == null ? null : engine.clone());
     }
 
     public Car changeColor(String newColor) {
