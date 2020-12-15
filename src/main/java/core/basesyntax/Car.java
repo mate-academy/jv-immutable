@@ -23,17 +23,17 @@ public final class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, getWheels(), newEngine.clone());
+        return new Car(year, color, getWheels(), (newEngine == null ? null : newEngine.clone()));
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getWheels(), engine.clone());
+        return new Car(year, newColor, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
-       List<Wheel> wheelsCopy = getWheels();
+        List<Wheel> wheelsCopy = getWheels();
         wheelsCopy.add(newWheel.clone());
-        return new Car(year, color, wheelsCopy, engine.clone());
+        return new Car(year, color, wheelsCopy, getEngine());
     }
 
     public int getYear() {
