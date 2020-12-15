@@ -24,17 +24,17 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, new ArrayList<>(wheels), engine);
+        return new Car(year, color, getWheels(), engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, newColor, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>();
-        newWheels.add(newWheel);
-        return new Car(year, color, newWheels, engine.clone());
+        List<Wheel> list = getWheels();
+        list.add(newWheel.clone());
+        return new Car(year, color, list, getEngine());
     }
 
     public int getYear() {
@@ -46,7 +46,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
     }
 
     public Engine getEngine() {
