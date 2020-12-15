@@ -36,7 +36,6 @@ public final class Car {
         }
         return localList;
     }
-
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
     }
@@ -52,7 +51,7 @@ public final class Car {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> listOfWheel = getWheels();
-        listOfWheel.add(newWheel);
+        listOfWheel.add(newWheel.clone());
         return new Car(year, color, listOfWheel, getEngine());
     }
 
