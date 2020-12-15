@@ -26,7 +26,7 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getWheels(), engine.clone());
+        return new Car(year, newColor, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
