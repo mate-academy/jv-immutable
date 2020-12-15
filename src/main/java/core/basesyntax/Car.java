@@ -20,14 +20,14 @@ public final class Car {
         for (Wheel wheel : wheels) {
             this.wheels.add(wheel != null ? wheel.clone() : null);
         }
-        this.engine = checkForNull(engine);
+        this.engine = cloneEngine(engine);
     }
 
     public Engine getEngine() {
-        return checkForNull(engine);
+        return cloneEngine(engine);
     }
 
-    private Engine checkForNull(Engine engine) {
+    private Engine cloneEngine(Engine engine) {
         return engine != null ? engine.clone() : null;
     }
 
@@ -40,20 +40,22 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, cloneListOfWheels(wheels), checkForNull(engine).clone());
+        return new Car(year, color, cloneListOfWheels(wheels), cloneEngine(engine));
     }
 
     public Car addWheel(Wheel wheel) {
-        return new Car(year, color, List.of(wheel.clone()), checkForNull(engine).clone());
+        List<Wheel> clonedWheels = cloneListOfWheels(wheels);
+        clonedWheels.add(wheel.clone());
+        return new Car(year, color, clonedWheels, cloneEngine(engine));
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, cloneListOfWheels(wheels), checkForNull(engine).clone());
+        return new Car(year, color, cloneListOfWheels(wheels), cloneEngine(engine));
     }
 
     private List<Wheel> cloneListOfWheels(List<Wheel> oldListOfWheels) {
         List<Wheel> cloneWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
+        for (Wheel wheel : oldListOfWheels) {
             cloneWheels.add(wheel.clone());
         }
         return cloneWheels;
