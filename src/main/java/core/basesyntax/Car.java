@@ -28,13 +28,13 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getWheels(), getEngine());
+        return new Car(year, newColor, getWheels(), engine);
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> list = getWheels();
         list.add(newWheel.clone());
-        return new Car(year, color, list, getEngine());
+        return new Car(year, color, list, engine);
     }
 
     public int getYear() {
