@@ -43,17 +43,17 @@ public final class Car {
 
     public Car changeEngine(Engine engine) {
 
-        return new Car(year, color, new ArrayList<>(getWheels()), engine);
+        return new Car(year, color, getWheels(), getEngine());
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, new ArrayList<>(getWheels()), engine.clone());
+        return new Car(year, newColor, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> listOfWheel = new ArrayList<>(getWheels());
+        List<Wheel> listOfWheel = getWheels();
         listOfWheel.add(newWheel);
-        return new Car(year, color, listOfWheel, engine.clone());
+        return new Car(year, color, listOfWheel, getEngine());
     }
 
     @Override
