@@ -33,7 +33,7 @@ public final class Car {
     public Car addWheel(Wheel newWheel) {
        List<Wheel> wheelsCopy = getWheels();
         wheelsCopy.add(newWheel.clone());
-        return new Car(year, color, wheelsCopy, engine);
+        return new Car(year, color, wheelsCopy, engine.clone());
     }
 
     public int getYear() {
