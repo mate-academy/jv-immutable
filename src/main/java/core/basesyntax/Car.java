@@ -21,14 +21,14 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object thatCame) {
+        if (this == thatCame) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (thatCame == null || getClass() != thatCame.getClass()) {
             return false;
         }
-        Car car = (Car) o;
+        Car car = (Car) thatCame;
         return year == car.year && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
@@ -70,8 +70,8 @@ public final class Car {
 
     private List<Wheel> cloneWheel(List<Wheel> wheel) {
         List<Wheel> wheelList = new ArrayList<>();
-        for (Wheel w : wheel) {
-            wheelList.add(w.clone());
+        for (Wheel currentWheel : wheel) {
+            wheelList.add(currentWheel.clone());
         }
         return wheelList;
     }

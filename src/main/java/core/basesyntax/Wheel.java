@@ -18,14 +18,14 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object thatCame) {
+        if (this == thatCame) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (thatCame == null || getClass() != thatCame.getClass()) {
             return false;
         }
-        Wheel wheel = (Wheel) o;
+        Wheel wheel = (Wheel) thatCame;
         return radius == wheel.radius;
     }
 
