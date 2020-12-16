@@ -22,15 +22,15 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object wheel) {
+        if (this == wheel) {
             return true;
         }
-        if (!(o instanceof Wheel)) {
+        if (wheel == null || Wheel.class != wheel.getClass()) {
             return false;
         }
-        Wheel wheel = (Wheel) o;
-        return radius == wheel.radius;
+        Wheel otherWheel = (Wheel) wheel;
+        return radius == otherWheel.radius;
     }
 
     @Override

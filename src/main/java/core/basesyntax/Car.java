@@ -20,13 +20,6 @@ public final class Car {
         this.engine = cloneEngine(engine);
     }
 
-    private Car(CarBuilder builder) {
-        this.year = builder.year;
-        this.color = builder.color;
-        this.wheels = cloneWheels(builder.wheels);
-        this.engine = cloneEngine(builder.engine);
-    }
-
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
@@ -36,10 +29,7 @@ public final class Car {
     }
 
     private Engine cloneEngine(Engine engine) {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
@@ -73,53 +63,22 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object car) {
+        if (this == car) {
             return true;
         }
-        if (!(o instanceof Car)) {
+        if (car == null || Car.class != car.getClass()) {
             return false;
         }
-        Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        Car otherCar = (Car) car;
+        return year == otherCar.year
+                && Objects.equals(color, otherCar.color)
+                && Objects.equals(wheels, otherCar.wheels)
+                && Objects.equals(engine, otherCar.engine);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    public static class CarBuilder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public CarBuilder setYear(int year) {
-            this.year = year;
-            return this;
-        }
-
-        public CarBuilder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public CarBuilder setWheels(List<Wheel> wheels) {
-            this.wheels = wheels;
-            return this;
-        }
-
-        public CarBuilder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(this);
-        }
     }
 }
