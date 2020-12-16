@@ -53,8 +53,9 @@ public final class Car {
         tempList.add(newWheel.clone());
         return new Car(year, color, tempList, engine);
     }
-    private Engine cloneEngine(Engine engine){
-        return engine == null? null : engine.clone();
+
+    private Engine cloneEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     @Override
