@@ -13,7 +13,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneList(wheels);
-        this.engine = engine == null ? null : engine.clone();
+        this.engine = cloneEngine(engine);
     }
 
     private List<Wheel> cloneList(List<Wheel> wheels) {
@@ -37,21 +37,24 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return cloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine == null ? null : engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, cloneList(wheels), engine.clone());
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> tempList = cloneList(wheels);
         tempList.add(newWheel.clone());
         return new Car(year, color, tempList, engine);
+    }
+    private Engine cloneEngine(Engine engine){
+        return engine == null? null : engine.clone();
     }
 
     @Override
