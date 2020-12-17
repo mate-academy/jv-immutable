@@ -26,8 +26,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        wheels.add(newWheel.clone());
-        return new Car(year, color, wheels, getEngine());
+        List<Wheel> wheelsCopy = getWheels();
+        wheelsCopy.add(newWheel);
+        return new Car(year, color, wheelsCopy, getEngine());
     }
 
     public int getYear() {
