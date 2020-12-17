@@ -16,10 +16,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            this.wheels.add(wheel != null ? wheel.clone() : null);
-        }
+        this.wheels = cloneListOfWheels(wheels);
         this.engine = cloneEngine(engine);
     }
 
