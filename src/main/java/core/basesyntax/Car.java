@@ -21,9 +21,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheels = new ArrayList<>();
-        wheels.add(newWheel);
-        return new Car(year, color, wheels, engine);
+        Car car = new Car(year, color, wheels, engine);
+        car.wheels.add(newWheel.clone());
+        return car;
     }
 
     public Car changeEngine(Engine engine) {
