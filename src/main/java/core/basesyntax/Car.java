@@ -17,7 +17,7 @@ public final class Car implements Cloneable {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = engine == null ? null : engine.clone();
+        this.engine = cloneEngine(engine);
     }
 
     public int getYear() {
@@ -29,14 +29,11 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return new ArrayList<>(cloneWheels(wheels));
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return cloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -48,7 +45,7 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
+        List<Wheel> newWheels = new ArrayList<>(cloneWheels(wheels));
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
@@ -69,6 +66,10 @@ public final class Car implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    private Engine cloneEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheel) {
