@@ -41,9 +41,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = getWheels();
-        newWheels.add(newWheel);
-        return new Car(year, color, newWheels, engine);
+        Car car = new Car(year, color, wheels, engine);
+        car.wheels.add(newWheel.clone());
+        return car;
     }
 
     public int getYear() {

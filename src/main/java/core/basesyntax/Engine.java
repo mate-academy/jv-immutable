@@ -11,10 +11,6 @@ public class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
-    public Engine(Engine engine) {
-        this(engine.horsePower, engine.manufacturer);
-    }
-
     public int getHorsePower() {
         return horsePower;
     }
@@ -33,7 +29,7 @@ public class Engine implements Cloneable {
 
     @Override
     protected Engine clone() {
-        return new Engine(this);
+        return new Engine(horsePower, manufacturer);
     }
 
     @Override
