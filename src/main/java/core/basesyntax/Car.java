@@ -48,11 +48,8 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
-        }
-        newWheels.add(newWheel.clone());
+        List<Wheel> newWheels = new ArrayList<>(wheels);
+        newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
 
