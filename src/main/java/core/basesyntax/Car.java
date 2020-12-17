@@ -10,4 +10,8 @@ public class Car {
     private String color;
     private List<Wheel> wheels;
     private Engine engine;
+
+    private final void changeEngine(Engine engine) {
+
+    }
 }
