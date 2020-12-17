@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Car {
-
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -15,25 +14,20 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.engine = (engine == null ? null : engine.clone());
-        List<Wheel> wheelsCopy = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            wheelsCopy.add(wheel.clone());
-        }
-        this.wheels = wheelsCopy;
+        this.wheels = cloneWheels(wheels);
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, getWheels(), (newEngine == null ? null : newEngine.clone()));
+        return new Car(year, color, getWheels(), newEngine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getWheels(), getEngine());
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsCopy = getWheels();
-        wheelsCopy.add(newWheel.clone());
-        return new Car(year, color, wheelsCopy, getEngine());
+        wheels.add(newWheel.clone());
+        return new Car(year, color, wheels, getEngine());
     }
 
     public int getYear() {
@@ -45,6 +39,10 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
+        return cloneWheels(wheels);
+    }
+
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> wheelsCopy = new ArrayList<>();
         for (Wheel wheel : wheels) {
             wheelsCopy.add(wheel.clone());
