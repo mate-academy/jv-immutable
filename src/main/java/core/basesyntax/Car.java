@@ -49,9 +49,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> tempList = cloneList(wheels);
-        tempList.add(newWheel.clone());
-        return new Car(year, color, tempList, engine);
+        Car newCar = new Car(year, color, wheels, engine);
+        newCar.wheels.add(newWheel.clone());
+        return newCar;
     }
 
     private Engine cloneEngine(Engine engine) {
