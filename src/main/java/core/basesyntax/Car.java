@@ -18,7 +18,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, getWheels(), newEngine);
+        return new Car(year, color, wheels, newEngine);
     }
 
     public Car changeColor(String newColor) {
@@ -26,9 +26,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsCopy = getWheels();
-        wheelsCopy.add(newWheel);
-        return new Car(year, color, wheelsCopy, getEngine());
+        List<Wheel> newWheels = new ArrayList<>(wheels);
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
     }
 
     public int getYear() {
