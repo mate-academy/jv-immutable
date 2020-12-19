@@ -58,7 +58,7 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
-    public Car changeEngine (Engine newEngine) {
+    public Car changeEngine(Engine newEngine) {
         return new Car(getYear(), getColor(), wheels, newEngine);
     }
 
