@@ -22,10 +22,15 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color)
+        return year == car.year
+                && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
     }
@@ -34,7 +39,6 @@ public final class Car {
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
     }
-
 
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
