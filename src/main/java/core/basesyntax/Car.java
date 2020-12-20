@@ -29,7 +29,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(cloneWheels(wheels));
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
