@@ -16,19 +16,19 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = createClonedListOfWheels(wheels);
+        this.wheels = clonedListOfWheels(wheels);
         this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Car car = (Car) o;
+        Car car = (Car) object;
         return year == car.year
                 && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
@@ -40,16 +40,20 @@ public final class Car {
         return Objects.hash(year, color, wheels, engine);
     }
 
-    public Engine getEngine() {
-        return engine == null ? null : engine.clone();
-    }
-
-    public List<Wheel> getWheels() {
-        return createClonedListOfWheels(wheels);
+    public int getYear() {
+        return year;
     }
 
     public String getColor() {
         return color;
+    }
+
+    public List<Wheel> getWheels() {
+        return clonedListOfWheels(wheels);
+    }
+
+    public Engine getEngine() {
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -66,11 +70,7 @@ public final class Car {
         return new Car(year, newColor, wheels, engine);
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    private List<Wheel> createClonedListOfWheels(List<Wheel> wheels) {
+    private List<Wheel> clonedListOfWheels(List<Wheel> wheels) {
         List<Wheel> clonedList = new ArrayList<>();
         for (Wheel wheel : wheels) {
             clonedList.add(wheel.clone());
