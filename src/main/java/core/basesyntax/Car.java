@@ -22,7 +22,7 @@ public final class Car {
         this.year = carBuilder.year;
         this.color = carBuilder.color;
         this.engine = carBuilder.engine.clone();
-        this.wheels = new ArrayList<>(carBuilder.wheels);
+        this.wheels = cloneListOfWheels(carBuilder.wheels);
     }
 
     public int getYear() {
@@ -34,7 +34,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneListOfWheels(wheels);
     }
 
     public Engine getEngine() {
@@ -43,19 +43,19 @@ public final class Car {
 
     public Car changeEngine(Engine engine) {
         return new Car.CarBuilder()
-                .setEngine(engine)
+                .setEngine(engine.clone())
                 .setColor(this.color)
                 .setYear(this.year)
-                .setWheels(this.wheels)
+                .setWheels(cloneListOfWheels(this.wheels))
                 .build();
     }
 
     public Car changeColor(String newColor) {
         return new Car.CarBuilder()
-                .setEngine(this.engine)
+                .setEngine(this.engine.clone())
                 .setColor(newColor)
                 .setYear(this.year)
-                .setWheels(this.wheels)
+                .setWheels(cloneListOfWheels(this.wheels))
                 .build();
     }
 
@@ -63,7 +63,7 @@ public final class Car {
         List<Wheel> newList = new ArrayList<>(this.wheels);
         newList.add(newWheel);
         return new Car.CarBuilder()
-                .setEngine(this.engine)
+                .setEngine(this.engine.clone())
                 .setColor(this.color)
                 .setYear(this.year)
                 .setWheels(newList)
