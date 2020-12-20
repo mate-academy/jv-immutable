@@ -37,17 +37,17 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, this.wheels, engine);
+        return new Car(year, color, cloneWheels(wheels), engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(this.year, color, this.wheels, this.engine);
+        return new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> wheels = cloneWheels(this.wheels);
         wheels.add(wheel.clone());
-        return new Car(this.year, this.color, wheels, this.engine);
+        return new Car(year, color, wheels, cloneEngine(engine));
     }
 
     private ArrayList<Wheel> cloneWheels(List<Wheel> wheels) {
