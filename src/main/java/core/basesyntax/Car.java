@@ -21,18 +21,18 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
+    public boolean equals(Object car) {
+        if (this == car) {
             return true;
         }
-        if (object == null || getClass() != object.getClass()) {
+        if (car == null || getClass() != car.getClass()) {
             return false;
         }
-        Car car = (Car) object;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        Car newCar = (Car) car;
+        return year == newCar.year
+                && Objects.equals(color, newCar.color)
+                && Objects.equals(wheels, newCar.wheels)
+                && Objects.equals(engine, newCar.engine);
     }
 
     @Override
