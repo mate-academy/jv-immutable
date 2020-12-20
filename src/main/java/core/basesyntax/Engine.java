@@ -13,7 +13,11 @@ public class Engine implements Cloneable {
 
     @Override
     public Engine clone() {
-        return new Engine(horsePower, manufacturer);
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't clone this Engine object", e);
+        }
     }
 
     public int getHorsePower() {
