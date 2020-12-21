@@ -13,8 +13,8 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = clonedWheels(wheels);
-        this.engine = engine != null ? engine.clone() : null;
+        this.wheels = getClonedWheels(wheels);
+        this.engine = checkIfEngineNull(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -26,7 +26,7 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> clonedWheels = clonedWheels(wheels);
+        List<Wheel> clonedWheels = getClonedWheels(wheels);
         clonedWheels.add(newWheel);
         return new Car(year, color, clonedWheels, engine);
     }
@@ -39,20 +39,27 @@ public final class Car implements Cloneable {
         return color;
     }
 
-    private List<Wheel> clonedWheels(List<Wheel> wheels) {
+    private List<Wheel> getClonedWheels(List<Wheel> wheels) {
         List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
+            if (wheel == null) {
+                clonedWheels.add(wheel);
+            }
             clonedWheels.add(wheel.clone());
         }
         return clonedWheels;
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return new ArrayList<>(getClonedWheels(wheels));
+    }
+
+    private Engine checkIfEngineNull(Engine engine) {
+        return engine != null ? engine.clone() : null;
     }
 
     public Engine getEngine() {
-        return engine != null ? engine.clone() : null;
+        return checkIfEngineNull(engine);
     }
 
     @Override
@@ -77,10 +84,6 @@ public final class Car implements Cloneable {
 
     @Override
     protected Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can not clone car", e);
-        }
+        return new Car(year, color, getClonedWheels(wheels), engine.clone());
     }
 }
