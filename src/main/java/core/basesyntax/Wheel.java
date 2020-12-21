@@ -26,12 +26,12 @@ public class Wheel implements Cloneable {
             return false;
         }
         Wheel wheel = (Wheel) o;
-        return getRadius() == wheel.getRadius();
+        return radius == wheel.radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRadius());
+        return Objects.hash(radius);
     }
 
     @Override

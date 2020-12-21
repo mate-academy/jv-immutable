@@ -36,13 +36,13 @@ public class Engine implements Cloneable {
             return false;
         }
         Engine engine = (Engine) o;
-        return getHorsePower() == engine.getHorsePower()
-                && Objects.equals(getManufacturer(), engine.getManufacturer());
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getHorsePower(), getManufacturer());
+        return Objects.hash(horsePower, manufacturer);
     }
 
     @Override

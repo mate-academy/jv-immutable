@@ -33,21 +33,21 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return cloneEngine(this.engine);
+        return cloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, cloneWheels(wheels), engine);
+        return new Car(year, color, getWheels(), engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
+        return new Car(year, color, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel wheel) {
-        List<Wheel> wheels = cloneWheels(this.wheels);
-        wheels.add(wheel.clone());
-        return new Car(year, color, wheels, cloneEngine(engine));
+        List<Wheel> localWheels = cloneWheels(wheels);
+        localWheels.add(wheel.clone());
+        return new Car(year, color, localWheels, getEngine());
     }
 
     private ArrayList<Wheel> cloneWheels(List<Wheel> wheels) {
@@ -59,11 +59,7 @@ public final class Car {
     }
 
     private Engine cloneEngine(Engine engine) {
-        if (engine != null) {
-            return engine.clone();
-        } else {
-            return null;
-        }
+        return engine != null ? engine.clone() : null;
     }
 
     @Override
@@ -76,13 +72,13 @@ public final class Car {
         }
         Car car = (Car) o;
         return getYear() == car.getYear()
-                && Objects.equals(getColor(), car.getColor())
-                && Objects.equals(getWheels(), car.getWheels())
-                && Objects.equals(getEngine(), car.getEngine());
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getYear(), getColor(), getWheels(), getEngine());
+        return Objects.hash(year, color, wheels, engine);
     }
 }
