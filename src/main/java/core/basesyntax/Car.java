@@ -67,7 +67,7 @@ public final class Car {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Car)) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
         Car car = (Car) o;

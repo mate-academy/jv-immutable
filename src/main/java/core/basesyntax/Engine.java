@@ -32,7 +32,7 @@ public class Engine implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Engine)) {
+        if (o == null || o.getClass() != getClass()) {
             return false;
         }
         Engine engine = (Engine) o;
