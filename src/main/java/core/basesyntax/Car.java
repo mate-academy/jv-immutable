@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in the README file
@@ -16,7 +17,11 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = engine == null ? null : engine.clone();
+        this.engine = engineClone(engine);
+    }
+
+    private Engine engineClone(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
@@ -59,12 +64,7 @@ public final class Car {
 
     @Override
     public int hashCode() {
-        int result = 21;
-        result = 9 * result + year;
-        result = 7 * result + (color == null ? 0 : color.hashCode());
-        result = 5 * result + (wheels == null ? 0 : wheels.hashCode());
-        result = 3 * result + (engine == null ? 0 : engine.hashCode());
-        return result;
+        return Objects.hash(year, color, wheels, engine);
     }
 
     @Override
@@ -78,12 +78,9 @@ public final class Car {
         if (obj.getClass().equals(this.getClass())) {
             Car current = (Car) obj;
             return year == current.year
-                    && (color == null && current.color == null
-                    || color != null && color.equals(current.color))
-                    && (wheels == null && current.wheels == null
-                    || wheels != null && wheels.equals(current.wheels))
-                    && (engine == null && current.engine == null
-                    || engine != null && engine.equals(current.engine));
+                    && Objects.equals(color,current.color)
+                    && Objects.equals(wheels, current.wheels)
+                    && Objects.equals(engine, current.engine);
         }
         return false;
     }

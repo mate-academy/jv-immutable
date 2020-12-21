@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import java.util.Objects;
+
 public class Wheel implements Cloneable {
     private int radius;
 
@@ -26,8 +28,7 @@ public class Wheel implements Cloneable {
 
     @Override
     public int hashCode() {
-        int prime = 11;
-        return prime * radius;
+        return Objects.hash(radius);
     }
 
     @Override
