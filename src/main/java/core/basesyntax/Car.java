@@ -10,7 +10,7 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(int year, String color,List<Wheel> wheels,Engine engine) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = cloneList(wheels);
@@ -41,15 +41,15 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year,color,wheels,engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year,newColor,wheels,engine);
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        Car newCar = new Car(year,color,wheels,engine);
+        Car newCar = new Car(year, color, wheels, engine);
         newCar.wheels.add(newWheel.clone());
         return newCar;
     }
@@ -69,9 +69,9 @@ public final class Car {
         }
         Car objCar = (Car) obj;
         return year == objCar.year
-                && Objects.equals(color,objCar.color)
-                && Objects.equals(wheels,objCar.wheels)
-                && Objects.equals(engine,objCar.engine);
+                && Objects.equals(color, objCar.color)
+                && Objects.equals(wheels, objCar.wheels)
+                && Objects.equals(engine, objCar.engine);
     }
 
     public List<Wheel> cloneList(List<Wheel> wheels) {
