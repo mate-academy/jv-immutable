@@ -26,7 +26,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return copyWheelsList(wheels);
+        return new ArrayList<>(wheels);
     }
 
     public Engine getEngine() {
