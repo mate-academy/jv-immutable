@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
@@ -61,14 +61,14 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (!(o instanceof Car)) {
+        if (!(object instanceof Car)) {
             return false;
         }
-        Car car = (Car) o;
+        Car car = (Car) object;
         return year == car.year
                 && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
