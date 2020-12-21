@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,13 +14,13 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneListOfWheels(wheels);
-        this.engine = engine == null ? null : engine.clone();
+        this.engine = getEngine(engine);
     }
 
     public Car(CarBuilder carBuilder) {
         this.year = carBuilder.year;
         this.color = carBuilder.color;
-        this.engine = carBuilder.engine.clone();
+        this.engine = getEngine(carBuilder.engine);
         this.wheels = cloneListOfWheels(carBuilder.wheels);
     }
 
@@ -38,34 +37,38 @@ public final class Car {
     }
 
     public Engine getEngine() {
+        return getEngine(engine);
+    }
+
+    private Engine getEngine(Engine engine) {
         return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
         return new Car.CarBuilder()
-                .setEngine(engine.clone())
-                .setColor(this.color)
-                .setYear(this.year)
-                .setWheels(cloneListOfWheels(this.wheels))
+                .setEngine(engine)
+                .setColor(color)
+                .setYear(year)
+                .setWheels(wheels)
                 .build();
     }
 
     public Car changeColor(String newColor) {
         return new Car.CarBuilder()
-                .setEngine(this.engine.clone())
+                .setEngine(engine)
                 .setColor(newColor)
-                .setYear(this.year)
-                .setWheels(cloneListOfWheels(this.wheels))
+                .setYear(year)
+                .setWheels(wheels)
                 .build();
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newList = new ArrayList<>(this.wheels);
+        List<Wheel> newList = new ArrayList<>(wheels);
         newList.add(newWheel);
         return new Car.CarBuilder()
-                .setEngine(this.engine.clone())
-                .setColor(this.color)
-                .setYear(this.year)
+                .setEngine(engine)
+                .setColor(color)
+                .setYear(year)
                 .setWheels(newList)
                 .build();
     }
@@ -90,28 +93,17 @@ public final class Car {
         }
 
         public CarBuilder setWheels(List<Wheel> wheels) {
-            this.wheels = new ArrayList<>(wheels);
+            this.wheels = wheels;
             return this;
         }
 
         public CarBuilder setEngine(Engine engine) {
-            this.engine = engine.clone();
+            this.engine = engine;
             return this;
         }
 
         public Car build() {
             return new Car(this);
-        }
-    }
-
-    @Override
-    protected Car clone() {
-        try {
-            Car clonedCar = (Car) super.clone();
-            clonedCar.engine.clone();
-            return clonedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone car", e);
         }
     }
 
@@ -125,9 +117,9 @@ public final class Car {
         }
         Car car = (Car) o;
         return year == car.year
-                && color.equals(car.color)
-                && wheels.equals(car.wheels)
-                && engine.equals(car.engine);
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -136,9 +128,9 @@ public final class Car {
     }
 
     private List<Wheel> cloneListOfWheels(List<Wheel> wheels) {
-        List<Wheel> clonedWheels = wheels.isEmpty() ? Collections.emptyList() : new ArrayList<>();
+        List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            clonedWheels.add(wheel.clone());
+            clonedWheels.add(wheel == null ? null : wheel.clone());
         }
         return clonedWheels;
     }

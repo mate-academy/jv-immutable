@@ -22,7 +22,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't cone wheel", e);
+            throw new RuntimeException("Can't clone wheel", e);
         }
     }
 
