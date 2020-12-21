@@ -50,7 +50,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone ", e);
+            throw new RuntimeException("Can't create Engine clone ", e);
         }
     }
 }

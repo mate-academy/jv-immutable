@@ -20,10 +20,6 @@ public final class Car {
         this.engine = engineClone(engine);
     }
 
-    private Engine engineClone(Engine engine) {
-        return engine == null ? null : engine.clone();
-    }
-
     public int getYear() {
         return year;
     }
@@ -38,6 +34,10 @@ public final class Car {
 
     public Engine getEngine() {
         return engineClone(engine);
+    }
+
+    private Engine engineClone(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     @Override
