@@ -60,7 +60,7 @@ public final class Car {
             if (wheel != null) {
                 wheelClone.add(wheel.clone());
             } else {
-                return null;
+                wheelClone.add(null);
             }
         }
         return wheelClone;
