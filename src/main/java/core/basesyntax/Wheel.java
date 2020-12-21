@@ -14,9 +14,9 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    protected Object clone() {
+    protected Wheel clone() {
         try {
-            return super.clone();
+            return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Clone not Supported", e);
         }
