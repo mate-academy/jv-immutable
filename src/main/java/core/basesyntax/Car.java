@@ -29,11 +29,10 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return wheelsDeepCopy(wheels);
     }
 
     public Engine getEngine() {
-
         return (engine == null) ? null : engine.clone();
     }
 
@@ -45,10 +44,10 @@ public final class Car {
         return new Car(year, newColor, wheels, engine);
     }
 
-    public Car addWheel(Wheel newWheel) {
-        List<Wheel> temp = new ArrayList<>(wheels);
-        temp.add(newWheel.clone());
-        return new Car(year, color, temp, engine);
+    public Car addWheel(Wheel wheel) {
+        Car car = new Car(year, color, wheels, engine);
+        car.wheels.add(wheel.clone());
+        return car;
     }
 
     @Override
