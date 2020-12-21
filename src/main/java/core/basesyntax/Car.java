@@ -38,7 +38,7 @@ public final class Car {
 
     public Car changeEngine(Engine engine) {
         Car newCar = new Car(year, color, wheels, engine);
-        newCar.engine.setHorsePower(300);
+        newCar.engine.setHorsePower(350);
         newCar.engine.setManufacturer("Ferrari");
         return newCar;
     }
