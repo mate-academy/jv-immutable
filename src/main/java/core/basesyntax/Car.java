@@ -14,10 +14,10 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = copyWheelsList(wheels);
-        if (engine != null) {
-            this.engine = engine.clone();
-        } else {
+        if (engine == null) {
             this.engine = null;
+        } else {
+            this.engine = engine.clone();
         }
     }
 
