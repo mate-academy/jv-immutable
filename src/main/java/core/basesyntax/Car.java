@@ -17,14 +17,14 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = deepCopyOfWheels(wheels);
-        this.engine = engine != null ? engine.clone() : null;
+        this.engine = nullPassedEngine(engine);
     }
 
     private Car(Builder builder) {
         this.year = builder.year;
         this.color = builder.color;
         this.wheels = deepCopyOfWheels(builder.wheels);
-        this.engine = builder != null ? builder.engine.clone() : null;
+        this.engine = nullPassedEngine(builder.engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -69,7 +69,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine != null ? engine.clone() : null;
+        return nullPassedEngine(engine);
     }
 
     private List<Wheel> deepCopyOfWheels(List<Wheel> wheels) {
@@ -78,6 +78,10 @@ public final class Car {
             newWheels.add(wheel.clone());
         }
         return newWheels;
+    }
+
+    private Engine nullPassedEngine(Engine engine) {
+        return engine != null ? engine.clone() : null;
     }
 
     private static class Builder {
@@ -109,7 +113,6 @@ public final class Car {
         public Car build() {
             return new Car(this);
         }
-
     }
 
     @Override
