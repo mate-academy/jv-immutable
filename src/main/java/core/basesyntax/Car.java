@@ -1,14 +1,13 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in the README file
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -18,7 +17,7 @@ public final class Car implements Cloneable {
         this.year = year;
         this.color = color;
         this.wheels = wheelList(wheels);
-        this.engine = engine != null ? engine.clone() : null;
+        this.engine = getClone(engine);
     }
 
     public int getYear() {
@@ -34,53 +33,48 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return engine != null ? engine.clone() : null;
+        return getClone(engine);
     }
 
     public Car changeColor(String newColor) {
-        Car carColor = new Car(year, newColor, wheels, engine);
-        return carColor;
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        Car carNewWheel = new Car(year, color, Collections.singletonList(newWheel), engine);
-        return carNewWheel;
+        List<Wheel> addWheels = wheelList(wheels);
+        addWheels.add(newWheel);
+        return new Car(year, color, addWheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
-        Car carEngine = new Car(year, color, wheels, engine);
-        return carEngine;
+        return new Car(year, color, wheels, engine);
     }
 
-    public List<Wheel> wheelList(List<Wheel> wheels) {
+    private List<Wheel> wheelList(List<Wheel> wheels) {
         List<Wheel> list = new ArrayList<>();
         for (Wheel oneWheel : wheels) {
-            list.add(oneWheel.clone());
+            list.add(oneWheel != null ? oneWheel.clone() : null);
         }
         return list;
     }
 
+    private Engine getClone(Engine engine) {
+        return engine != null ? engine.clone() : null;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-
-        Car car = (Car) o;
-
-        if (year != car.year) {
-            return false;
-        }
-        if (!Objects.equals(color, car.color)) {
-            return false;
-        }
-        if (!Objects.equals(wheels, car.wheels)) {
-            return false;
-        }
-        return Objects.equals(engine, car.engine);
+        Car car = (Car) object;
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override

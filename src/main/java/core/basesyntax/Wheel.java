@@ -23,9 +23,7 @@ public class Wheel implements Cloneable {
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-
         Wheel wheel = (Wheel) object;
-
         return radius == wheel.radius;
     }
 
