@@ -57,7 +57,11 @@ public final class Car {
     private List<Wheel> getWheelsClone(List<Wheel> wheels) {
         List<Wheel> wheelClone = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            wheelClone.add(wheel.clone());
+            if (wheel != null) {
+                wheelClone.add(wheel.clone());
+            } else {
+                return null;
+            }
         }
         return wheelClone;
     }
