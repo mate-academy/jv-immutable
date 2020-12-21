@@ -33,7 +33,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return cloneList(this.wheels);
+        return cloneList(wheels);
     }
 
     public Engine getEngine() {
@@ -76,8 +76,8 @@ public final class Car {
 
     public List<Wheel> cloneList(List<Wheel> wheels) {
         List<Wheel> clonedList = new ArrayList<>();
-        for (Wheel each:wheels) {
-            clonedList.add(each.clone());
+        for (Wheel wheel:wheels) {
+            clonedList.add(wheel.clone());
         }
         return clonedList;
     }
