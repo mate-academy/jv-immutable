@@ -47,10 +47,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsList = getWheels();
-        wheelsList.add(newWheel);
-        return new Car(year, color, wheelsList, engine);
-
+        Car car = new Car(year, color, wheels, engine);
+        car.wheels.add(newWheel);
+        return car;
     }
 
     private Engine engineClone(Engine item) {
