@@ -38,18 +38,18 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, getWheels(), engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getWheels(), getEngine());
+        return new Car(year, newColor, wheels, engine);
 
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> wheelsList = getWheels();
         wheelsList.add(newWheel);
-        return new Car(year, color, wheelsList, getEngine());
+        return new Car(year, color, wheelsList, engine);
 
     }
 
@@ -75,9 +75,9 @@ public final class Car {
         }
         Car car = (Car) anotherCar;
         return year == car.year
-                && color.equals(car.color)
-                && wheels.equals(car.wheels)
-                && engine.equals(car.engine);
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
