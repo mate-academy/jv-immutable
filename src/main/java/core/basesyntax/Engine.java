@@ -50,7 +50,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("HOUSTON WE HAVE A BUG!", e);
+            throw new RuntimeException("HOUSTON WE HAVE A BUG WHEN CLONING ENGINE!", e);
         }
     }
 }
