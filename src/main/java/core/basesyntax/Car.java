@@ -71,7 +71,7 @@ public final class Car {
     }
 
     @Override
-    protected Car clone()  {
+    protected Car clone() {
         try {
             return (Car) super.clone();
         } catch (CloneNotSupportedException e) {
