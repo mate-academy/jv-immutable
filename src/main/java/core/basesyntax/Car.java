@@ -71,8 +71,12 @@ public final class Car {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return (Car) super.clone();
+    protected Car clone()  {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't be cloned", e);
+        }
     }
 
     private List<Wheel> copyWheelsList(List<Wheel> wheels) {
