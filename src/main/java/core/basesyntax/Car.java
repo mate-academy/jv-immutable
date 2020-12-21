@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return generateCloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -50,6 +50,10 @@ public final class Car {
     private List<Wheel> generateCloneWheels(List<Wheel> wheels) {
         List<Wheel> copyWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
+            if (wheel == null) {
+                copyWheels.add(null);
+                break;
+            }
             copyWheels.add(wheel.clone());
         }
         return copyWheels;
