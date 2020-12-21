@@ -17,10 +17,10 @@ public final class Car {
         this.engine = engine == null ? null : engine.clone();
     }
 
-    public Car(CarBuilder carBuilder) {
+    private Car(CarBuilder carBuilder) {
         this.year = carBuilder.year;
         this.color = carBuilder.color;
-        this.wheels = new ArrayList<>(carBuilder.wheels);
+        this.wheels = cloneList(carBuilder.wheels);
         this.engine = carBuilder.engine.clone();
     }
 
