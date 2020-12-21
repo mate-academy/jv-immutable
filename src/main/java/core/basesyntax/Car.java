@@ -31,7 +31,7 @@ public final class Car implements Cloneable {
             newWheels.add(wheel.clone());
         }
         newWheels.add(newWheel);
-        return new Car(year, color, newWheels, engine);
+        return new Car(year, color, newWheels, engine.clone());
     }
 
     public int getYear() {
