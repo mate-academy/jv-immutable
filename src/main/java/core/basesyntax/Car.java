@@ -20,7 +20,7 @@ public final class Car {
         this.engine = engine != null ? engine.clone() : null;
     }
 
-    public Car(Builder builder) {
+    private Car(Builder builder) {
         this.year = builder.year;
         this.color = builder.color;
         this.wheels = deepCopyOfWheels(builder.wheels);
