@@ -45,9 +45,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelList = new ArrayList<>(wheels);
-        wheelList.add(newWheel);
-        return new Car(year, color, wheelList, engine);
+        Car newCar = new Car(year,color,wheels,engine);
+        newCar.wheels.add(newWheel.clone());
+        return newCar;
     }
 
     @Override
