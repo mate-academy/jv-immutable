@@ -43,10 +43,6 @@ public final class Car {
         return cloneWheels(wheels);
     }
 
-    private Engine cloneEngine(Engine engine) {
-        return engine == null ? null : engine.clone();
-    }
-
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> wheelsCopy = new ArrayList<>();
         for (Wheel wheel : wheels) {
@@ -57,6 +53,10 @@ public final class Car {
 
     public Engine getEngine() {
         return cloneEngine(engine);
+    }
+
+    private Engine cloneEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     @Override
