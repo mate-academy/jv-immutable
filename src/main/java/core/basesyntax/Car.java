@@ -52,7 +52,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return getEngineClone(engine);
     }
 
     public Car changeEngine(Engine engine) {
