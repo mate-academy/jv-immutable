@@ -78,7 +78,8 @@ public final class Car {
         }
         return newList;
     }
-    private Engine getEngineClone (Engine engine) {
+
+    private Engine getEngineClone(Engine engine) {
         return engine == null ? null : engine.clone();
     }
 }
