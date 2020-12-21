@@ -74,6 +74,8 @@ public final class Car {
         for (Wheel wheel: wheelListOriginal) {
             if (wheel != null) {
                 newList.add(wheel.clone());
+            } else {
+                newList.add(null);
             }
         }
         return newList;
