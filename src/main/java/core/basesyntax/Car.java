@@ -17,11 +17,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = getWheelListClone(wheels);
-        if (engine == null) {
-            this.engine = null;
-        } else {
-            this.engine = engine.clone();
-        }
+        this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
@@ -56,10 +52,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return engine == null ?  null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
