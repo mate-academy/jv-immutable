@@ -14,7 +14,8 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = copyWheelsList(wheels);
-        this.engine = engine == null ? null : engine.clone();
+        this.engine = engine == null
+                ? null : engine.clone();
     }
 
     public int getYear() {
