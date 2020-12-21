@@ -37,11 +37,11 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, new ArrayList<>(wheels), engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(this.year, newColor, new ArrayList<>(wheels), this.engine);
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
