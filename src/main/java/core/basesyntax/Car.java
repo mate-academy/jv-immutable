@@ -70,7 +70,7 @@ public final class Car {
         List<Wheel> copyWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             if (wheel != null) {
-            copyWheels.add(wheel.clone());
+                copyWheels.add(wheel.clone());
             } else {
                 copyWheels.add(wheel);
             }
