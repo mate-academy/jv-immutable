@@ -58,7 +58,7 @@ public final class Car {
         return list;
     }
 
-    private Engine getClone(Engine engine) {
+    private Engine cloneEngine(Engine engine) {
         return engine != null ? engine.clone() : null;
     }
 
