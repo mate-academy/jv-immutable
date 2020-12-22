@@ -37,7 +37,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone", e);
+            throw new RuntimeException("Can't clone Wheel", e);
         }
     }
 }
