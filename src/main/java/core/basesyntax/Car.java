@@ -34,15 +34,15 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, getWheels(), engine);
+        return new Car(year, color, cloneWheels(wheels), engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, getWheels(), getEngine());
+        return new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
     }
 
     public Car addWheel(Wheel wheel) {
-        Car car = new Car(year, color, getWheels(), getEngine());
+        Car car = new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
         car.wheels.add(wheel.clone());
         return car;
     }
