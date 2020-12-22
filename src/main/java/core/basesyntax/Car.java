@@ -10,11 +10,17 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
+    private final ArrayList<Wheel> localWheels;
+    private final Engine localEngine;
+
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
         this.engine = cloneEngine(engine);
+
+        localWheels = cloneWheels(wheels);
+        localEngine = cloneEngine(engine);
     }
 
     public int getYear() {
@@ -34,15 +40,15 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, cloneWheels(wheels), engine);
+        return new Car(year, color, localWheels, engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
+        return new Car(year, color, localWheels, localEngine);
     }
 
     public Car addWheel(Wheel wheel) {
-        Car car = new Car(year, color, cloneWheels(wheels), cloneEngine(engine));
+        Car car = new Car(year, color, localWheels, localEngine);
         car.wheels.add(wheel.clone());
         return car;
     }
