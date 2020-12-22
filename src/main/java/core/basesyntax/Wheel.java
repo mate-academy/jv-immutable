@@ -22,7 +22,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone", e);
+            throw new RuntimeException("Can't create clone of the Wheel", e);
         }
     }
 
@@ -31,7 +31,7 @@ public class Wheel implements Cloneable {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Wheel)) {
+        if (object == null || !getClass().equals(object.getClass())) {
             return false;
         }
         Wheel wheel = (Wheel) object;

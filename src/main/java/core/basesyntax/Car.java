@@ -14,11 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = checkEngine(engine);
-    }
-
-    private Engine checkEngine(Engine engine) {
-        return engine == null ? null : engine.clone();
+        this.engine = cloneEngine(engine);
     }
 
     public int getYear() {
@@ -34,7 +30,11 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return checkEngine(engine);
+        return cloneEngine(engine);
+    }
+
+    private Engine cloneEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
@@ -55,7 +55,11 @@ public final class Car {
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> list = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            list.add(wheel.clone());
+            if (wheel != null) {
+                list.add(wheel.clone());
+            } else {
+                list.add(null);
+            }
         }
         return list;
     }
@@ -65,7 +69,7 @@ public final class Car {
         if (this == object) {
             return true;
         }
-        if (!(object instanceof Car)) {
+        if (object == null || !getClass().equals(object.getClass())) {
             return false;
         }
         Car car = (Car) object;
@@ -80,4 +84,3 @@ public final class Car {
         return Objects.hash(year, color, wheels, engine);
     }
 }
-
