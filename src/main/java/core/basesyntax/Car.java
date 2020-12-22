@@ -42,10 +42,6 @@ public final class Car {
         return year;
     }
 
-    public Engine cloneEngine(Engine engine) {
-        return (engine == null) ? null : engine.clone();
-    }
-
     public List<Wheel> getWheels() {
         return wheelsCopy(wheels);
     }
@@ -54,10 +50,18 @@ public final class Car {
         return cloneEngine(engine);
     }
 
+    private Engine cloneEngine(Engine engine) {
+        return (engine == null) ? null : engine.clone();
+    }
+
     private List<Wheel> wheelsCopy(List<Wheel> wheels) {
         List<Wheel> newWheelsList = new ArrayList<>();
         for (Wheel wheel: wheels) {
-            newWheelsList.add(wheel.clone());
+            if (wheel != null) {
+                newWheelsList.add(wheel.clone());
+            } else {
+                newWheelsList.add(null);
+            }
         }
         return newWheelsList;
     }
