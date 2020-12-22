@@ -20,18 +20,6 @@ public final class Car {
         this.engine = engineClone(engine);
     }
 
-    private Engine engineClone(Engine engine) {
-        return engine == null ? null : engine.clone();
-    }
-
-    private List<Wheel> cloneWheels(List<Wheel> wheels) {
-        List<Wheel> newWell = new ArrayList<>();
-        for (int i = 0; i < wheels.size(); i++) {
-            newWell.add(wheels.get(i).clone());
-        }
-        return newWell;
-    }
-
     public int getYear() {
         return year;
     }
@@ -45,7 +33,19 @@ public final class Car {
     }
 
     public Engine getEngine() {
+        return engineClone(engine);
+    }
+
+    private Engine engineClone(Engine engine) {
         return engine == null ? null : engine.clone();
+    }
+
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
+        List<Wheel> newWheel = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            newWheel.add(wheel == null ? null : wheel.clone());
+        }
+        return newWheel;
     }
 
     public Car changeEngine(Engine engine) {
@@ -57,9 +57,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        Car newCountersWheels = new Car(year, color, wheels, engine);
-        newCountersWheels.wheels.add(newWheel);
-        return newCountersWheels;
+        Car newCar = new Car(year, color, wheels, engine);
+        newCar.wheels.add(newWheel);
+        return newCar;
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class Car {
         if (obj.getClass().equals(this.getClass())) {
             Car current = (Car) obj;
             return year == current.year
-                    && Objects.equals(color,current.color)
+                    && Objects.equals(color, current.color)
                     && Objects.equals(wheels, current.wheels)
                     && Objects.equals(engine, current.engine);
         }
