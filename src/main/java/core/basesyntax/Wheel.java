@@ -5,10 +5,6 @@ import java.util.Objects;
 public final class Wheel implements Cloneable {
     private int radius;
 
-    public Wheel() {
-
-    }
-
     public Wheel(int radius) {
         this.radius = radius;
     }

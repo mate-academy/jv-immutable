@@ -67,14 +67,13 @@ public final class Car {
     }
 
     private List<Wheel> copyWheelsList(List<Wheel> wheels) {
-        List<Wheel> copyWheels;
-        if(wheels != null) {
-            copyWheels = new ArrayList<>(wheels);
-        } else {
-            copyWheels = new ArrayList<>();
-        }
+        List<Wheel> copyWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
+            if (wheel != null) {
             copyWheels.add(wheel.clone());
+            } else {
+                copyWheels.add(wheel);
+            }
         }
         return copyWheels;
     }
