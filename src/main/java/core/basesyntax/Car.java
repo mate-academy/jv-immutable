@@ -52,9 +52,9 @@ public final class Car {
         for (Wheel wheel : wheels) {
             if (wheel == null) {
                 copyWheels.add(null);
-                break;
+            } else {
+                copyWheels.add(wheel.clone());
             }
-            copyWheels.add(wheel.clone());
         }
         return copyWheels;
     }
