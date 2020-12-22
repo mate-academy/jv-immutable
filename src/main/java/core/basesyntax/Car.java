@@ -26,7 +26,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return copyWheelsList(wheels);
     }
 
     public Engine getEngine() {
@@ -39,7 +39,7 @@ public final class Car {
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> wheels = new ArrayList<>();
-        wheels.add(wheel.clone());
+        wheels.add(wheel);
         return new Car(year, color, wheels, engine);
     }
 
