@@ -5,7 +5,11 @@ import java.util.Objects;
 public final class Wheel implements Cloneable {
     private int radius;
 
-    Wheel(int radius) {
+    public Wheel() {
+
+    }
+
+    public Wheel(int radius) {
         this.radius = radius;
     }
 
@@ -22,7 +26,7 @@ public final class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't be cloned", e);
+            throw new RuntimeException("Wheel can't be cloned", e);
         }
     }
 

@@ -38,7 +38,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        List<Wheel> wheels = new ArrayList<>();
+        List<Wheel> wheels = copyWheelsList(this.wheels);
         wheels.add(wheel);
         return new Car(year, color, wheels, engine);
     }
@@ -68,8 +68,8 @@ public final class Car {
 
     private List<Wheel> copyWheelsList(List<Wheel> wheels) {
         List<Wheel> copyWheels;
-        if(this.wheels != null) {
-            copyWheels = new ArrayList<>(this.wheels);
+        if(wheels != null) {
+            copyWheels = new ArrayList<>(wheels);
         } else {
             copyWheels = new ArrayList<>();
         }
