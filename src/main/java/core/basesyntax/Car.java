@@ -66,17 +66,13 @@ public final class Car {
         return Objects.hash(year, color, wheels, engine);
     }
 
-    @Override
-    protected Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't be cloned", e);
-        }
-    }
-
     private List<Wheel> copyWheelsList(List<Wheel> wheels) {
-        List<Wheel> copyWheels = new ArrayList<>();
+        List<Wheel> copyWheels;
+        if(this.wheels != null) {
+            copyWheels = new ArrayList<>(this.wheels);
+        } else {
+            copyWheels = new ArrayList<>();
+        }
         for (Wheel wheel : wheels) {
             copyWheels.add(wheel.clone());
         }
