@@ -10,7 +10,7 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    private final ArrayList<Wheel> localWheels;
+    private final List<Wheel> localWheels;
     private final Engine localEngine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
@@ -53,8 +53,8 @@ public final class Car {
         return car;
     }
 
-    private ArrayList<Wheel> cloneWheels(List<Wheel> wheels) {
-        ArrayList<Wheel> result = new ArrayList<>();
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
+        List<Wheel> result = new ArrayList<>();
         for (Wheel wheel : wheels) {
             result.add(wheel.clone());
         }
