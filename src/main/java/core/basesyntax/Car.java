@@ -16,16 +16,8 @@ public final class Car {
     private Car(Builder builder) {
         this.year = builder.year;
         this.color = builder.color;
-        if (builder.wheels != null) {
-            this.wheels = new ArrayList<>(builder.wheels);
-        } else {
-            this.wheels = null;
-        }
-        if (builder.engine != null) {
-            this.engine = builder.engine.clone();
-        } else {
-            this.engine = null;
-        }
+        this.wheels = builder.wheels != null ? new ArrayList<>(builder.wheels) : null;
+        this.engine = builder.engine != null ? builder.engine.clone() : null;
     }
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
@@ -34,14 +26,10 @@ public final class Car {
         List<Wheel> wheelList = new ArrayList<>();
         this.wheels = wheelList;
         for (Wheel item: wheels) {
-            Wheel cloneItem = item.clone();
-            wheelList.add(cloneItem);
+            Wheel clonedItem = item.clone();
+            wheelList.add(clonedItem);
         }
-        if (engine != null) {
-            this.engine = engine.clone();
-        } else {
-            this.engine = null;
-        }
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public int getYear() {
