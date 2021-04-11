@@ -10,4 +10,14 @@ public class Car {
     private String color;
     private List<Wheel> wheels;
     private Engine engine;
+
+    @Override
+    public String toString() {
+        return "Car{"
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
+    }
 }
