@@ -34,11 +34,11 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, color, wheels, engine.clone());
     }
 
     public final Car changeColor(String newColor) {
-        return new Car(year, newColor, new ArrayList<>(wheels), engine.clone());
+        return new Car(year, newColor, wheels, engine.clone());
     }
 
     public final Car addWheel(Wheel newWheel) {
@@ -68,7 +68,7 @@ public final class Car {
     }
 
     private List<Wheel> copyOfWheels(List<Wheel> wheelList) {
-        List<Wheel> clone = new ArrayList<>(wheelList.size());
+        List<Wheel> clone = new ArrayList<>();
         for (Wheel item : wheelList) {
             clone.add(item.clone());
         }
