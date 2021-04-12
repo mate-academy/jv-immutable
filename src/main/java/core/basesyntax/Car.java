@@ -7,6 +7,7 @@ import java.util.List;
  * Make this class immutable. See requirements in the README file
  */
 public final class Car {
+    private static final int PRIME_NUMBER = 31;
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -17,22 +18,6 @@ public final class Car {
         this.color = color;
         this.wheels = createDeepCopeOfWheelsList(wheels);
         this.engine = createClonedEngine(engine);
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public List<Wheel> getWheels() {
-        return createDeepCopeOfWheelsList(wheels);
-    }
-
-    public Engine getEngine() {
-        return createClonedEngine(engine);
     }
 
     @Override
@@ -53,25 +38,41 @@ public final class Car {
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + year;
-        result = 31 * result + color.hashCode();
-        result = 31 * result + wheels.hashCode();
-        result = 31 * result + engine.hashCode();
+        result = PRIME_NUMBER * result + year;
+        result = PRIME_NUMBER * result + color.hashCode();
+        result = PRIME_NUMBER * result + wheels.hashCode();
+        result = PRIME_NUMBER * result + engine.hashCode();
         return result;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public List<Wheel> getWheels() {
+        return createDeepCopeOfWheelsList(wheels);
+    }
+
+    public Engine getEngine() {
+        return createClonedEngine(engine);
+    }
+
     protected Car changeEngine(Engine engine) {
-        return new Car(getYear(), getColor(), getWheels(), getEngine());
+        return new Car(year, color, wheels, engine);
     }
 
     protected Car changeColor(String newColor) {
-        return new Car(getYear(), newColor, getWheels(), getEngine());
+        return new Car(year, newColor, wheels, engine);
     }
 
     protected Car addWheel(Wheel newWheel) {
         List<Wheel> deepCopyWheels = createDeepCopeOfWheelsList(wheels);
         deepCopyWheels.add(newWheel);
-        return new Car(getYear(), getColor(), deepCopyWheels, getEngine());
+        return new Car(year, color, deepCopyWheels, engine);
     }
 
     private Engine createClonedEngine(Engine engine) {

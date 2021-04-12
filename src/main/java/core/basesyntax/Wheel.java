@@ -1,17 +1,10 @@
 package core.basesyntax;
 
 public class Wheel implements Cloneable {
+    private static final int PRIME_NUMBER = 31;
     private int radius;
 
     public Wheel(int radius) {
-        this.radius = radius;
-    }
-
-    public int getRadius() {
-        return radius;
-    }
-
-    public void setRadius(int radius) {
         this.radius = radius;
     }
 
@@ -30,12 +23,20 @@ public class Wheel implements Cloneable {
     @Override
     public int hashCode() {
         int result = 17;
-        result = 31 * result + radius;
+        result = PRIME_NUMBER * result + radius;
         return result;
     }
 
     @Override
     public Wheel clone() {
         return new Wheel(this.radius);
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 }
