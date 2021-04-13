@@ -36,7 +36,8 @@ public class Engine implements Cloneable {
             return false;
         }
         Engine otherEngine = (Engine) object;
-        return horsePower == otherEngine.horsePower && Objects.equals(manufacturer, otherEngine.manufacturer);
+        return horsePower == otherEngine.horsePower
+                && Objects.equals(manufacturer, otherEngine.manufacturer);
     }
 
     @Override
