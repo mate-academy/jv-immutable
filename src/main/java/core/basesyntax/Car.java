@@ -13,16 +13,8 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        List<Wheel> newWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
-        }
-        this.wheels = newWheels;
-        if (engine == null) {
-            this.engine = null;
-            return;
-        }
-        this.engine = engine.clone();
+        this.wheels = wheelsClone(wheels);
+        this.engine = engineClone(engine);
     }
 
     public int getYear() {
@@ -34,14 +26,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return wheelsClone(wheels);
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return engineClone(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -53,7 +42,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
+        List<Wheel> newWheels = wheelsClone(wheels);
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
@@ -76,5 +65,17 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    private List<Wheel> wheelsClone(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
+    }
+
+    private Engine engineClone(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 }
