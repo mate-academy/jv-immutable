@@ -20,9 +20,9 @@ public final class Car {
         this.wheels = newWheels;
         if (engine == null) {
             this.engine = null;
-        } else {
-            this.engine = engine.clone();
+            return;
         }
+        this.engine = engine.clone();
     }
 
     public int getYear() {
