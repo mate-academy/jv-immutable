@@ -28,15 +28,15 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Engine engine = (Engine) o;
-        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+        Engine otherEngine = (Engine) object;
+        return horsePower == otherEngine.horsePower && Objects.equals(manufacturer, otherEngine.manufacturer);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException();
+            throw new RuntimeException("Can't create clone of Engine");
         }
     }
 }
