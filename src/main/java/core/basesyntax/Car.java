@@ -42,7 +42,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> clonedWheels = cloneWheelList(wheels);
+        List<Wheel> clonedWheels = new ArrayList<>(wheels);
         clonedWheels.add(newWheel);
         return new Car(year, color, clonedWheels, engine);
     }
