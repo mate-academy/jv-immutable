@@ -34,7 +34,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        List<Wheel> newWheels = getCopyOfWheels(wheels);
+        List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(wheel);
         return new Car(year, color, newWheels, engine);
     }
