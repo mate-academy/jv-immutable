@@ -26,7 +26,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels == null ? null : cloneWheelList(wheels);
+        return cloneWheelList(wheels);
     }
 
     public Engine getEngine() {
