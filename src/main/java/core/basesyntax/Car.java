@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -41,13 +40,13 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        Car newCar = new Car(this.year, this.color, this.wheels, engine);
+        Car newCar = new Car(year, color, wheels, engine);
         newCar.wheels.add(wheel);
         return newCar;
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return wheels.stream().map(Wheel::clone).collect(Collectors.toList());
     }
 
     public int getYear() {
@@ -63,7 +62,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(this.year, this.color, this.wheels, newEngine);
+        return new Car(year, color, wheels, newEngine);
     }
 
     public Car changeColor(String newColor) {

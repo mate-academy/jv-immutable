@@ -6,9 +6,6 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    public Engine() {
-    }
-
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
         this.manufacturer = manufacturer;
@@ -19,7 +16,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            return new Engine(this.horsePower, this.manufacturer);
+            throw new RuntimeException("Can't clone engine object");
         }
     }
 
