@@ -33,14 +33,6 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
-    private List<Wheel> getCopyOfWheels(List<Wheel> listOfWheels) {
-        List<Wheel> wheelsCopy = new ArrayList<>();
-        for (Wheel wheel : listOfWheels) {
-            wheelsCopy.add(wheel.clone());
-        }
-        return wheelsCopy;
-    }
-
     public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = getWheels();
         newWheels.add(wheel);
@@ -73,5 +65,13 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    private List<Wheel> getCopyOfWheels(List<Wheel> listOfWheels) {
+        List<Wheel> wheelsCopy = new ArrayList<>();
+        for (Wheel wheel : listOfWheels) {
+            wheelsCopy.add(wheel.clone());
+        }
+        return wheelsCopy;
     }
 }
