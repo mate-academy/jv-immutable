@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Engine implements Cloneable {
+    private static final String MESSAGE = "Couldn't clone";
     private int horsePower;
     private String manufacturer;
 
@@ -32,7 +33,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Couldn't clone", e);
+            throw new RuntimeException(MESSAGE, e);
         }
     }
 

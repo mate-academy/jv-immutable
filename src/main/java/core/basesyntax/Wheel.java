@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Wheel implements Cloneable {
+    private static final String MESSAGE = "Couldn't clone";
     private int radius;
 
     public Wheel(int radius) {
@@ -39,7 +40,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Couldn't clone", e);
+            throw new RuntimeException(MESSAGE, e);
         }
     }
 }
