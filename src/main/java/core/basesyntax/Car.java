@@ -67,12 +67,6 @@ public final class Car {
     }
 
     private List<Wheel> cloneWheelList(List<Wheel> wheels) {
-        if (wheels == null) {
-            throw new NullPointerException();
-        }
-        if (wheels.isEmpty()) {
-            return new ArrayList<>();
-        }
         List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             clonedWheels.add(wheel.clone());
