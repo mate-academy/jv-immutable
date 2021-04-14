@@ -20,7 +20,7 @@ public class Engine implements Cloneable {
         }
         Engine current = (Engine) engine;
         return horsePower == current.horsePower
-                && this.manufacturer.equals(current.manufacturer);
+                && manufacturer.equals(current.manufacturer);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Engine implements Cloneable {
 
     @Override
     protected Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
+        return new Engine(horsePower, manufacturer);
     }
 
     public int getHorsePower() {

@@ -16,7 +16,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = createDeepCopeOfWheelsList(wheels);
+        this.wheels = createDeepCopyOfWheelsList(wheels);
         this.engine = createClonedEngine(engine);
     }
 
@@ -29,10 +29,10 @@ public final class Car {
             return false;
         }
         Car current = (Car) car;
-        return this.year == current.year
-                && this.color.equals(current.color)
-                && this.wheels.equals(current.wheels)
-                && this.engine.equals(current.engine);
+        return year == current.year
+                && color.equals(current.color)
+                && wheels.equals(current.wheels)
+                && engine.equals(current.engine);
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return createDeepCopeOfWheelsList(wheels);
+        return createDeepCopyOfWheelsList(wheels);
     }
 
     public Engine getEngine() {
@@ -70,16 +70,16 @@ public final class Car {
     }
 
     protected Car addWheel(Wheel newWheel) {
-        List<Wheel> deepCopyWheels = createDeepCopeOfWheelsList(wheels);
-        deepCopyWheels.add(newWheel);
-        return new Car(year, color, deepCopyWheels, engine);
+        List<Wheel> wheelsCopy = new ArrayList<>(wheels);
+        wheelsCopy.add(newWheel);
+        return new Car(year, color, wheelsCopy, engine);
     }
 
     private Engine createClonedEngine(Engine engine) {
         return engine == null ? null : engine.clone();
     }
 
-    private List<Wheel> createDeepCopeOfWheelsList(List<Wheel> wheels) {
+    private List<Wheel> createDeepCopyOfWheelsList(List<Wheel> wheels) {
         List<Wheel> resultList = new ArrayList<>();
         for (Wheel wheel : wheels) {
             resultList.add(wheel.clone());

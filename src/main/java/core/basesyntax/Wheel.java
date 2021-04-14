@@ -29,7 +29,7 @@ public class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        return new Wheel(this.radius);
+        return new Wheel(radius);
     }
 
     public int getRadius() {
