@@ -30,11 +30,11 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return cloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, cloneWheels(wheels), engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
