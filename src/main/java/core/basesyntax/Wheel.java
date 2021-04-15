@@ -9,6 +9,23 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cannot be cloned", e);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -24,22 +41,5 @@ public class Wheel implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(radius);
-    }
-
-    @Override
-    public Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cannot be cloned");
-        }
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
-    public int getRadius() {
-        return radius;
     }
 }

@@ -35,7 +35,7 @@ public final class Car {
 
     public Car addWheel(Wheel wheel) {
         Car newCar = new Car(year, color, wheels, engine);
-        (newCar.wheels).add(wheel);
+        newCar.wheels.add(wheel.clone());
         return newCar;
     }
 

@@ -11,15 +11,6 @@ public class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
-    @Override
-    public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cannot be cloned");
-        }
-    }
-
     public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
     }
@@ -34,6 +25,15 @@ public class Engine implements Cloneable {
 
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cannot be cloned", e);
+        }
     }
 
     @Override
