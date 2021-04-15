@@ -32,7 +32,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create a clone for Car object", e);
+            throw new RuntimeException("Can't create a clone for Engine object", e);
         }
     }
 
