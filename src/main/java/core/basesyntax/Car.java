@@ -61,7 +61,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return copyWheelList(null);
+        return copyWheelList(wheels);
     }
 
     public Engine getEngine() {
@@ -73,19 +73,18 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(getYear(), newColor, getWheels(), getEngine());
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsCopy = copyWheelList(null);
+        List<Wheel> wheelsCopy = new ArrayList<>(wheels);
         wheelsCopy.add(newWheel.clone());
-        return new Car(getYear(), getColor(), wheelsCopy, getEngine());
+        return new Car(year, color, wheelsCopy, engine);
     }
 
     private List<Wheel> copyWheelList(List<Wheel> wheelsList) {
-        List<Wheel> initialList = wheelsList != null ? wheelsList : wheels;
         List<Wheel> copyList = new ArrayList<>();
-        for (Wheel item: initialList) {
+        for (Wheel item: wheelsList) {
             Wheel cloneItem = item.clone();
             copyList.add(cloneItem);
         }
