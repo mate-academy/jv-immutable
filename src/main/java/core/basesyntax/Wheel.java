@@ -13,9 +13,8 @@ public class Wheel implements Cloneable {
         return radius;
     }
 
-    public Wheel setRadius(int radius) {
+    public void setRadius(int radius) {
         this.radius = radius;
-        return this;
     }
 
     @Override
@@ -27,12 +26,12 @@ public class Wheel implements Cloneable {
             return false;
         }
         Wheel wheel = (Wheel) object;
-        return getRadius() == wheel.getRadius();
+        return radius == wheel.radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRadius());
+        return Objects.hash(radius);
     }
 
     @Override

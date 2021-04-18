@@ -15,18 +15,16 @@ public class Engine implements Cloneable {
         return horsePower;
     }
 
-    public Engine setHorsePower(int horsePower) {
+    public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
-        return this;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    public Engine setManufacturer(String manufacturer) {
+    public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
-        return this;
     }
 
     @Override
