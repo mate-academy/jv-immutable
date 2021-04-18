@@ -6,13 +6,6 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    public Engine() {
-    }
-
-    public Engine(String manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
         this.manufacturer = manufacturer;

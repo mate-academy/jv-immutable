@@ -14,12 +14,9 @@ public final class Car {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.wheels = new ArrayList<>();
         this.year = year;
         this.color = color;
-        for (Wheel wheel : wheels) {
-            this.wheels.add(wheel.clone());
-        }
+        this.wheels = fillCloneWheels(wheels);
         this.engine = engine != null ? engine.clone() : null;
     }
 
@@ -124,5 +121,13 @@ public final class Car {
                 .setWheels(newList)
                 .setYear(year)
                 .build();
+    }
+
+    private List<Wheel> fillCloneWheels(List<Wheel> wheels) {
+        List<Wheel> cloneWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            cloneWheels.add(wheel.clone());
+        }
+        return cloneWheels;
     }
 }
