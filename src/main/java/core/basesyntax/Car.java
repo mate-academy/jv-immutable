@@ -27,8 +27,8 @@ public final class Car {
         return new Car(year, color, wheels, engine);
     }
 
-    public Car changeColor(String blue) {
-        return new Car(year, blue, wheels, engine);
+    public Car changeColor(String color) {
+        return new Car(year, color, wheels, engine);
     }
 
     public int getYear() {
