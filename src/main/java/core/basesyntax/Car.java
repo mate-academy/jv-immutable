@@ -17,12 +17,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWeels(wheels);
-
-        if (engine != null) {
-            this.engine = engine.clone();
-        } else {
-            this.engine = null;
-        }
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public int getYear() {
