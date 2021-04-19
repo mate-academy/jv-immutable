@@ -81,12 +81,9 @@ public final class Car implements Cloneable {
 
     @Override
     public Car clone() {
-        Car clonedCar;
-
         try {
-            clonedCar = (Car) super.clone();
+            Car clonedCar = (Car) super.clone();
             return clonedCar.changeEngine(engine.clone());
-
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't clone" + e);
         }
