@@ -14,11 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = copyList(wheels);
-        if (engine != null) {
-            this.engine = engine.clone();
-        } else {
-            this.engine = null;
-        }
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public int getYear() {
@@ -34,10 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine != null) {
-            return engine.clone();
-        }
-        return null;
+        return engine != null ? engine.clone() : null;
     }
 
     public Car changeEngine(Engine engine) {
