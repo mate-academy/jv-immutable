@@ -26,29 +26,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -71,5 +53,23 @@ public final class Car {
             arrayList.add(wheel.clone());
         }
         return arrayList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
     }
 }
