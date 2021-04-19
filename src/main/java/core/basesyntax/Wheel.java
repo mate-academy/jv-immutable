@@ -1,8 +1,5 @@
 package core.basesyntax;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Wheel implements Cloneable {
     private int radius;
 
@@ -44,13 +41,5 @@ public class Wheel implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cannot create clone for Wheel object", e);
         }
-    }
-
-    public static List<Wheel> cloneWheel(List<Wheel> wheels) {
-        List<Wheel> newListOfWheels = new ArrayList<>();
-        for (Wheel each : wheels) {
-            newListOfWheels.add(each.clone());
-        }
-        return newListOfWheels;
     }
 }
