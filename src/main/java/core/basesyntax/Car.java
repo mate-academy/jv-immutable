@@ -10,11 +10,27 @@ public final class Car implements Cloneable {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    Car(int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = cloneDeepCopyOfList(wheels);
         this.engine = engine == null ? null : engine.clone();
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public List<Wheel> getWheels() {
+        return cloneDeepCopyOfList(wheels);
+    }
+
+    public Engine getEngine() {
+        return engine == null ? null : engine.clone();
     }
 
     @Override
@@ -47,22 +63,6 @@ public final class Car implements Cloneable {
     @Override
     public Car clone() {
         return new Car(year, color, wheels, engine);
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public List<Wheel> getWheels() {
-        return cloneDeepCopyOfList(wheels);
-    }
-
-    public Engine getEngine() {
-        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
