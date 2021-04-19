@@ -29,7 +29,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneWeels(wheels);
     }
 
     public Engine getEngine() {
@@ -37,11 +37,11 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, this.wheels, engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(this.year, newColor, this.wheels, engine.clone());
+        return new Car(year, newColor, wheels, engine.clone());
     }
 
     public Car addWheel(Wheel newWheel) {
