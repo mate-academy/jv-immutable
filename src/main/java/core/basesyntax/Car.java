@@ -33,10 +33,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
