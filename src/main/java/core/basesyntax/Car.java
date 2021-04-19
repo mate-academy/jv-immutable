@@ -14,20 +14,56 @@ public final class Car {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        if (wheels == null) {
-            throw new NullPointerException();
-        }
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>();
-        for (Wheel wheel: wheels) {
-            this.wheels.add(wheel.clone());
+        this.wheels = deepWheelCopy(wheels);
+        this.engine = engineClone(engine);
+    }
+
+    public Car changeEngine(Engine engine) {
+        return new Car(year, color, wheels, engine);
+    }
+
+    public Car addWheel(Wheel wheel) {
+        List<Wheel> newWheels = getWheels();
+        newWheels.add(wheel);
+        return new Car(year,color, newWheels, engine);
+    }
+
+    public Car changeColor(String color) {
+        return new Car(year, color, wheels, engine);
+    }
+
+    private List<Wheel> deepWheelCopy(List<Wheel> wheels) {
+        List<Wheel> copiedWheels = new ArrayList<Wheel>();
+        for (Wheel wheel : wheels) {
+            copiedWheels.add(wheel.clone());
         }
+        return copiedWheels;
+    }
+
+    private Engine engineClone(Engine engine) {
         if (engine != null) {
-            this.engine = engine.clone();
+            return engine.clone();
         } else {
-            this.engine = null;
+            return null;
         }
+    }
+
+    public Engine getEngine() {
+        return engine == null ? null : engine.clone();
+    }
+
+    public List<Wheel> getWheels() {
+        return deepWheelCopy(wheels);
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     @Override
@@ -48,38 +84,5 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
-    }
-
-    public Car addWheel(Wheel wheel) {
-        List<Wheel> newWheels = getWheels();
-        newWheels.add(wheel);
-        return new Car(year,color, newWheels, engine);
-    }
-
-    public Car changeColor(String color) {
-        return new Car(year, color, wheels, engine);
-    }
-
-    public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
-    }
-
-    public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public int getYear() {
-        return year;
     }
 }
