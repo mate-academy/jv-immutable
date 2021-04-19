@@ -26,7 +26,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return clonedWheels(wheels);
     }
 
     public Engine getEngine() {
@@ -47,16 +47,7 @@ public final class Car implements Cloneable {
         return new Car(year, newColor, wheels, engine);
     }
 
-    public Car clone() {
-        try {
-            Car clonedCar = (Car) super.clone();
-            clonedCar.changeEngine(engine.clone());
-            return clonedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create car clone", e);
-        }
-    }
-
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -71,12 +62,13 @@ public final class Car implements Cloneable {
                 && Objects.equals(engine, otherCar.engine);
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
     }
 
-    public List<Wheel> clonedWheels(List<Wheel> wheels) {
-        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
+    private List<Wheel> clonedWheels(List<Wheel> wheels) {
+        List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             clonedWheels.add(new Wheel(wheel.getRadius()));
         }

@@ -27,7 +27,8 @@ public class Engine implements Cloneable {
         return manufacturer;
     }
 
-    public Engine clone() {
+    @Override
+    protected Engine clone() {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
@@ -35,6 +36,7 @@ public class Engine implements Cloneable {
         }
     }
 
+    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -46,6 +48,7 @@ public class Engine implements Cloneable {
         return newEngine.manufacturer.equals(manufacturer) && newEngine.horsePower == horsePower;
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(manufacturer, horsePower);
     }
