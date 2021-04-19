@@ -42,7 +42,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheelList = deepCloneList(wheels);
+        List<Wheel> newWheelList = new ArrayList<>(wheels);
         newWheelList.add(newWheel);
         return new Car(year, color, newWheelList, engine);
     }
