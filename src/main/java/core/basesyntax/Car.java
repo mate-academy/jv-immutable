@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in the README file
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -40,11 +37,11 @@ public final class Car {
         return new Car(year, color, wheels, engine);
     }
 
-    public final Car changeColor(String newColor) {
+    public Car changeColor(String newColor) {
         return new Car(year, newColor, wheels, engine);
     }
 
-    public final Car addWheel(Wheel newWheel) {
+    public Car addWheel(Wheel newWheel) {
         Car car = new Car(year, color, wheels, engine);
         car.wheels.add(newWheel.clone());
         return car;
@@ -59,14 +56,14 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        Car car = (Car) obj;
+        Car car = (Car) object;
         return year == car.year
                 && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
