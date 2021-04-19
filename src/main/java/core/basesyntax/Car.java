@@ -18,17 +18,17 @@ public final class Car implements Cloneable {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, cloneList(wheels), engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, cloneList(wheels), engine.clone());
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> newList = cloneList(wheels);
         newList.add(wheel);
-        return new Car(year, color, newList, engine.clone());
+        return new Car(year, color, newList, engine);
     }
 
     public int getYear() {
