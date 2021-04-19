@@ -72,7 +72,7 @@ public final class Car {
         return result;
     }
 
-    public List<Wheel> cloneWheel(List<Wheel> wheels) {
+    private List<Wheel> cloneWheel(List<Wheel> wheels) {
         List<Wheel> newListOfWheels = new ArrayList<>();
         for (Wheel each : wheels) {
             newListOfWheels.add(each.clone());
