@@ -20,44 +20,6 @@ public final class Car {
         this.engine = engine != null ? engine.clone() : null;
     }
 
-    public Car(Builder builder) {
-        this.year = builder.year;
-        this.color = builder.color;
-        this.wheels = builder.wheels;
-        this.engine = builder.engine;
-    }
-
-    public static class Builder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public Builder setYear(int year) {
-            this.year = year;
-            return this;
-        }
-
-        public Builder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public Builder setWheels(List<Wheel> wheels) {
-            this.wheels = wheels;
-            return this;
-        }
-
-        public Builder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(this);
-        }
-    }
-
     public int getYear() {
         return year;
     }
@@ -67,11 +29,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return this.wheels != null ? new ArrayList<>(wheels) : null;
+        return fillCloneWheels(wheels);
     }
 
     public Engine getEngine() {
-        return this.engine != null ? engine.clone() : null;
+        return engine != null ? engine.clone() : null;
     }
 
     @Override
@@ -95,32 +57,17 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Builder()
-                .setEngine(engine)
-                .setColor(color)
-                .setWheels(wheels)
-                .setYear(year)
-                .build();
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Builder()
-                .setYear(year)
-                .setColor(newColor)
-                .setEngine(engine)
-                .setWheels(wheels)
-                .build();
+        return new Car(year, newColor, wheels, engine);
     }
 
-    public Car addWheel(Wheel newWheel) {
-        List<Wheel> newList = new ArrayList<>(wheels);
-        newList.add(newWheel);
-        return new Builder()
-                .setEngine(engine)
-                .setColor(color)
-                .setWheels(newList)
-                .setYear(year)
-                .build();
+    public final Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheelList = new ArrayList<>(wheels);
+        newWheelList.add(newWheel.clone());
+        return new Car(year, color, newWheelList, engine);
     }
 
     private List<Wheel> fillCloneWheels(List<Wheel> wheels) {
