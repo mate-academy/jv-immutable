@@ -15,12 +15,13 @@ public final class Car implements Cloneable {
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
-        this.color = color;
+        this.color = color; // нужна ли проверка на null?
         List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
             clonedWheels.add(new Wheel(wheel.getRadius()));
         }
-        this.wheels = clonedWheels; // в видео пример поверхностного копирование!
+        this.wheels = clonedWheels;
+//        this.wheels = new ArrayList<>(wheels); // взято из видео. в данном случае пример поверхностного копирования!
         if (engine != null) {
             this.engine = engine.clone();
         } else {
@@ -84,12 +85,10 @@ public final class Car implements Cloneable {
     public Car clone() {
         try {
             Car clonedCar = (Car) super.clone();
-            Engine engine = this.getEngine();
-            List<Wheel> wheels = clonedCar.getWheels();
             return new Builder().setYear(clonedCar.year)
                                 .setColor(clonedCar.color)
-                                .setWheels(wheels)
-                                .setEngine(engine)
+                                .setWheels(clonedCar.getWheels())
+                                .setEngine(clonedCar.getEngine())
                                 .build();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can`t create clone for Car object", e);
