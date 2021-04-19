@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in the README file
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -51,15 +51,6 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    public Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can`t create clone for Car object", e);
-        }
-    }
-
-    @Override
     public boolean equals(Object object) {
         if (this == object) {
             return true;
@@ -80,7 +71,7 @@ public final class Car implements Cloneable {
     }
 
     private List<Wheel> deepCloneOfList(List<Wheel> wheels) {
-        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
+        List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             clonedWheels.add(new Wheel(wheel.getRadius()));
         }
