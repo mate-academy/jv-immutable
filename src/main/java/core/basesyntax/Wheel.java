@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Wheel implements Cloneable {
-    private static final String EXCEPTION_MESSAGE = "Can`t create copy of Engine";
+    private static final String EXCEPTION_MESSAGE = "Can`t create copy of Wheel";
     private int radius;
 
     public Wheel(int radius) {
@@ -36,7 +36,7 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    protected Wheel clone() {
+    public Wheel clone() {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
