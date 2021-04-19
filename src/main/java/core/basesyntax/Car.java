@@ -60,7 +60,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheels = getWheels();
+        List<Wheel> wheels = new ArrayList<>(this.wheels);
         wheels.add(newWheel.clone());
         return new Car(year, color, wheels, engine);
     }
