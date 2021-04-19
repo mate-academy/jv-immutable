@@ -16,15 +16,6 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    public Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone Wheel object", e);
-        }
-    }
-
-    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + radius;
@@ -44,5 +35,14 @@ public class Wheel implements Cloneable {
             return radius == wheel.radius;
         }
         return false;
+    }
+
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create clone Wheel object", e);
+        }
     }
 }

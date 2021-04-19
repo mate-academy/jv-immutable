@@ -26,15 +26,6 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone Engine object", e);
-        }
-    }
-
-    @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + horsePower;
@@ -55,5 +46,14 @@ public class Engine implements Cloneable {
             return horsePower == engine.horsePower && manufacturer.equals(engine.manufacturer);
         }
         return false;
+    }
+
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create clone Engine object", e);
+        }
     }
 }
