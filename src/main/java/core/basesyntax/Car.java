@@ -43,15 +43,11 @@ public final class Car {
     }
 
     private Engine engineClone(Engine engine) {
-        if (engine != null) {
-            return engine.clone();
-        } else {
-            return null;
-        }
+        return engine == null ? null : engine.clone();
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return engineClone(engine);
     }
 
     public List<Wheel> getWheels() {
