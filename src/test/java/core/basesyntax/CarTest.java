@@ -1,6 +1,5 @@
 package core.basesyntax;
 
-import core.basesyntax.Car.CarBuilder;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -19,8 +18,7 @@ public class CarTest {
     public void setUp() {
         testWheels = List.of(new Wheel(10), new Wheel(15), new Wheel(20));
         testEngine = new Engine(100, "Some maker");
-        testCar = new CarBuilder().setYear(1999).setColor("red").setWheels(testWheels)
-                .setEngine(testEngine).createCar();
+        testCar = new Car(1999, "red", testWheels, testEngine);
     }
 
     @Test
@@ -42,8 +40,7 @@ public class CarTest {
     @Test
     public void checkWheelsAfterAddingToCar() {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
-        Car car = new CarBuilder().setYear(1999).setColor(null).setWheels(expected)
-                .setEngine(testEngine).createCar();
+        Car car = new Car(1999, null, expected, testEngine);
         List<Wheel> actual = car.getWheels();
         Assert.assertEquals(actual, expected);
         Assert.assertNotSame(actual, expected);
@@ -54,8 +51,7 @@ public class CarTest {
     public void isWheelsInCarChanged() {
         Wheel expected = new Wheel(12);
         List<Wheel> wheels = List.of(expected);
-        Car car = new CarBuilder().setYear(1999).setColor(null).setWheels(wheels)
-                .setEngine(testEngine).createCar();
+        Car car = new Car(1999, null, wheels, testEngine);
         expected.setRadius(14);
         Wheel actual = car.getWheels().get(0);
         Assert.assertNotEquals(expected, actual);
@@ -64,8 +60,7 @@ public class CarTest {
     @Test
     public void checkColorAfterAddingToCar() {
         String expected = "red";
-        Car car = new CarBuilder().setYear(1999).setColor(expected)
-                .setWheels(Collections.emptyList()).setEngine(testEngine).createCar();
+        Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
         String actual = car.getColor();
         Assert.assertEquals(expected, actual);
         expected = "blue";
@@ -74,16 +69,14 @@ public class CarTest {
 
     @Test
     public void checkEngineForNull() {
-        Car car = new CarBuilder().setYear(0).setColor("red").setWheels(Collections.emptyList())
-                .setEngine(null).createCar();
+        Car car = new Car(0, "red", Collections.emptyList(), null);
         Engine engine = car.getEngine();
         Assert.assertSame(engine, null);
     }
 
     @Test(expected = NullPointerException.class)
     public void checkWheelsForNull() {
-        Car car = new CarBuilder().setYear(0).setColor("red").setWheels(null)
-                .setEngine(testEngine).createCar();
+        Car car = new Car(0, "red", null, testEngine);
     }
 
     @Test
@@ -105,8 +98,7 @@ public class CarTest {
     @Test
     public void isEmptyWheelsList() {
         List<Wheel> wheels = Collections.emptyList();
-        Car car = new CarBuilder().setYear(1999).setColor("red").setWheels(wheels)
-                .setEngine(testEngine).createCar();
+        Car car = new Car(1999, "red", wheels, testEngine);
         Car changedCar = car.addWheel(new Wheel(90));
         Assert.assertEquals(1, changedCar.getWheels().size());
         Assert.assertEquals(0, wheels.size());
@@ -129,9 +121,7 @@ public class CarTest {
     @Test
     public void checkChangeColor() {
         String expected = "red";
-        Car car = new CarBuilder().setYear(1999).setColor(expected)
-                .setWheels(Collections.emptyList())
-                .setEngine(testEngine).createCar();
+        Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
         Car changedCar = car.changeColor("blue");
         Assert.assertNotEquals(expected, changedCar.getColor());
     }
@@ -147,9 +137,7 @@ public class CarTest {
     @Test
     public void getYear() {
         int expected = 80;
-        Car car = new CarBuilder().setYear(expected).setColor("red")
-                .setWheels(Collections.emptyList())
-                .setEngine(testEngine).createCar();
+        Car car = new Car(expected, "red", Collections.emptyList(), testEngine);
         int actual = car.getYear();
         Assert.assertEquals(expected, actual);
     }
@@ -228,10 +216,8 @@ public class CarTest {
     public void checkCarEqualsAndHashcode() {
         List<Wheel> wheels = List.of(new Wheel(10),
                 new Wheel(20), new Wheel(30));
-        Car expected = new CarBuilder().setYear(1999).setColor("red").setWheels(wheels)
-                .setEngine(testEngine).createCar();
-        Car actual = new CarBuilder().setYear(1999).setColor("red").setWheels(wheels)
-                .setEngine(testEngine).createCar();
+        Car expected = new Car(1999, "red", wheels, testEngine);
+        Car actual = new Car(1999, "red", wheels, testEngine);
         checkEqualsAndHashcode(expected, actual);
     }
 
@@ -264,8 +250,7 @@ public class CarTest {
     @Test
     public void checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine.clone();
-        Car car = new CarBuilder().setYear(1995).setColor("Blue")
-                .setWheels(List.of(new Wheel(90))).setEngine(testEngine).createCar();
+        Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         car.getEngine().setHorsePower(0);
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
                 originalEngine, car.getEngine());
@@ -273,8 +258,7 @@ public class CarTest {
 
     @Test
     public void checkCloneIsReturnedInGetWheels() {
-        Car car = new CarBuilder().setYear(1995).setColor("Blue")
-                .setWheels(List.of(new Wheel(90))).setEngine(testEngine).createCar();
+        Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         car.getWheels().add(new Wheel(50));
         Assert.assertEquals("You shouldn't be able to change car's wheels with getWheel method",
                 1, car.getWheels().size());

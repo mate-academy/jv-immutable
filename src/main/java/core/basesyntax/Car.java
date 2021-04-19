@@ -10,11 +10,11 @@ public final class Car implements Cloneable {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    private Car(CarBuilder carBuilder) {
-        year = carBuilder.year;
-        color = carBuilder.color;
-        wheels = cloneDeepCopyOfList(carBuilder.wheels);
-        engine = (carBuilder.engine == null) ? null : carBuilder.engine.clone();
+    Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = cloneDeepCopyOfList(wheels);
+        this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
@@ -46,11 +46,7 @@ public final class Car implements Cloneable {
 
     @Override
     public Car clone() {
-        return new CarBuilder().setYear(year)
-                .setColor(color)
-                .setEngine(engine.clone())
-                .setWheels(cloneDeepCopyOfList(wheels))
-                .createCar();
+        return new Car(year, color, wheels, engine);
     }
 
     public int getYear() {
@@ -66,67 +62,21 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return (engine == null) ? null : engine.clone();
-    }
-
-    public static class CarBuilder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public CarBuilder setYear(int year) {
-            this.year = year;
-            return this;
-        }
-
-        public CarBuilder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public CarBuilder setWheels(List<Wheel> wheels) {
-            this.wheels = wheels;
-            return this;
-        }
-
-        public CarBuilder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car createCar() {
-            return new Car(this);
-        }
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
-        return new CarBuilder()
-                .setYear(year)
-                .setColor(color)
-                .setEngine(engine.clone())
-                .setWheels(cloneDeepCopyOfList(wheels))
-                .createCar();
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new CarBuilder()
-                .setYear(year)
-                .setColor(newColor)
-                .setEngine(engine.clone())
-                .setWheels(cloneDeepCopyOfList(wheels))
-                .createCar();
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> list = cloneDeepCopyOfList(wheels);
+        List<Wheel> list = new ArrayList<>(wheels);
         list.add(newWheel);
-        return new CarBuilder()
-                .setYear(year)
-                .setColor(color)
-                .setEngine(engine.clone())
-                .setWheels(list)
-                .createCar();
+        return new Car(year, color, list, engine);
     }
 
     private List<Wheel> cloneDeepCopyOfList(List<Wheel> wheels) {
