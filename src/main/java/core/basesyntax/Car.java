@@ -38,7 +38,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = cloneWheels(wheels);
+        List<Wheel> newWheels = new ArrayList<>(this.wheels);
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
