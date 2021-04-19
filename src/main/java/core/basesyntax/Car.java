@@ -15,25 +15,9 @@ public final class Car implements Cloneable {
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
-        this.color = color; // нужна ли проверка на null?
-        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            clonedWheels.add(new Wheel(wheel.getRadius()));
-        }
-        this.wheels = clonedWheels;
-//        this.wheels = new ArrayList<>(wheels); // взято из видео. в данном случае пример поверхностного копирования!
-        if (engine != null) {
-            this.engine = engine.clone();
-        } else {
-            this.engine = null;
-        }
-    }
-
-    private Car(Builder builder) {
-        this.year = builder.year;
-        this.color = builder.color;
-        this.wheels = new ArrayList<>(builder.wheels);
-        this.engine = builder.engine.clone();
+        this.color = color;
+        this.wheels = deepCloneOfList(wheels);
+        this.engine = (engine != null) ? engine.clone() : null;
     }
 
     public int getYear() {
@@ -53,43 +37,23 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        Car carClone = this.clone();
-        List<Wheel> wheelsActual = carClone.getWheels();
+        List<Wheel> wheelsActual = deepCloneOfList(wheels);
         wheelsActual.add(newWheel);
-        return new Builder().setYear(carClone.year)
-                            .setColor(carClone.color)
-                            .setWheels(wheelsActual)
-                            .setEngine(carClone.engine)
-                            .build();
+        return new Car(year, color, wheelsActual, engine);
     }
 
     public Car changeColor(String newColor) {
-        Car carClone = this.clone();
-        return new Builder().setYear(carClone.year)
-                            .setColor(newColor)
-                            .setWheels(carClone.wheels)
-                            .setEngine(carClone.engine)
-                            .build();
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
-        Car carClone = this.clone();
-        return new Builder().setYear(carClone.year)
-                            .setColor(carClone.color)
-                            .setWheels(carClone.wheels)
-                            .setEngine(engine)
-                            .build();
+        return new Car(year, color, wheels, engine);
     }
 
     @Override
     public Car clone() {
         try {
-            Car clonedCar = (Car) super.clone();
-            return new Builder().setYear(clonedCar.year)
-                                .setColor(clonedCar.color)
-                                .setWheels(clonedCar.getWheels())
-                                .setEngine(clonedCar.getEngine())
-                                .build();
+            return (Car) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can`t create clone for Car object", e);
         }
@@ -115,34 +79,11 @@ public final class Car implements Cloneable {
         return Objects.hash(year, color, wheels, engine);
     }
 
-    private static class Builder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public Builder setYear(int year) {
-            this.year = year;
-            return this;
+    private List<Wheel> deepCloneOfList(List<Wheel> wheels) {
+        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(new Wheel(wheel.getRadius()));
         }
-
-        public Builder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public Builder setWheels(List<Wheel> wheels) {
-            this.wheels = wheels;
-            return this;
-        }
-
-        public Builder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(this);
-        }
+        return clonedWheels;
     }
 }
