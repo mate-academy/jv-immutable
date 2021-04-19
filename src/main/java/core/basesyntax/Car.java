@@ -14,7 +14,7 @@ public final class Car implements Cloneable {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = checkForNullEngine(engine);
+        this.engine = checkAndCloneEngine(engine);
     }
 
     public int getYear() {
@@ -30,7 +30,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return checkForNullEngine(engine);
+        return checkAndCloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -47,7 +47,7 @@ public final class Car implements Cloneable {
         return car;
     }
 
-    private Engine checkForNullEngine(Engine engine) {
+    private Engine checkAndCloneEngine(Engine engine) {
         return engine == null ? null : engine.clone();
     }
 
