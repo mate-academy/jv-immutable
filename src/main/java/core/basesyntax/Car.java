@@ -55,20 +55,20 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year,color,wheels,engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year,color,wheels,engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> list = new ArrayList<>(wheels);
         list.add(wheel);
-        return new Car(year,color,list,engine);
+        return new Car(year, color, list, engine);
     }
 
-    public List<Wheel> cloneWheelsList(List<Wheel> wheels) {
+    private List<Wheel> cloneWheelsList(List<Wheel> wheels) {
         List<Wheel> list = new ArrayList<>();
         for (Wheel wheel : wheels) {
             list.add(wheel.clone());
