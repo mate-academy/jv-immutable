@@ -64,16 +64,8 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        if (year != car.year) {
-            return false;
-        }
-        if (!Objects.equals(color, car.color)) {
-            return false;
-        }
-        if (!Objects.equals(wheels, car.wheels)) {
-            return false;
-        }
-        return Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
