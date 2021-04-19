@@ -20,36 +20,6 @@ public final class Car {
         this.engine = (engine != null) ? engine.clone() : null;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
-    }
-
-    public Engine getEngine() {
-        return engine != null ? engine.clone() : null;
-    }
-
-    public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsActual = deepCloneOfList(wheels);
-        wheelsActual.add(newWheel);
-        return new Car(year, color, wheelsActual, engine);
-    }
-
-    public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
-    }
-
-    public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
-    }
-
     @Override
     public boolean equals(Object object) {
         if (this == object) {
@@ -70,10 +40,40 @@ public final class Car {
         return Objects.hash(year, color, wheels, engine);
     }
 
+    public Car addWheel(Wheel newWheel) {
+        Car car = new Car(year, color, wheels, engine);
+        car.wheels.add(newWheel);
+        return car;
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
+    }
+
+    public Car changeEngine(Engine engine) {
+        return new Car(year, color, wheels, engine);
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public List<Wheel> getWheels() {
+        return deepCloneOfList(wheels);
+    }
+
+    public Engine getEngine() {
+        return engine != null ? engine.clone() : null;
+    }
+
     private List<Wheel> deepCloneOfList(List<Wheel> wheels) {
         List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            clonedWheels.add(new Wheel(wheel.getRadius()));
+            clonedWheels.add(wheel.clone());
         }
         return clonedWheels;
     }
