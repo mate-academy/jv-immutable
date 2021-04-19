@@ -11,16 +11,7 @@ public final class Car implements Cloneable {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        if (wheels == null) {
-            throw new NullPointerException();
-        }
-
-        if (engine == null) {
-            this.engine = null;
-        } else {
-            this.engine = engine.clone();
-        }
-
+        this.engine = engine == null ? null : engine.clone();
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
@@ -47,19 +38,11 @@ public final class Car implements Cloneable {
     }
 
     public Car changeEngine(Engine engine) {
-        if (engine == null) {
-            return null;
-        }
-
         return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
-        if (wheel == null) {
-            return null;
-        }
-
-        List<Wheel> wheels = cloneWheels(getWheels());
+        List<Wheel> wheels = cloneWheels(this.wheels);
         wheels.add(wheel);
 
         return new Car(year, color, wheels, engine);
@@ -83,6 +66,7 @@ public final class Car implements Cloneable {
     public Car clone() {
         try {
             Car clonedCar = (Car) super.clone();
+            clonedCar.cloneWheels(wheels);
             return clonedCar.changeEngine(engine.clone());
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't clone" + e);
