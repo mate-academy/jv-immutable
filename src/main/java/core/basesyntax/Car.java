@@ -13,13 +13,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-
-        List<Wheel> wheelList = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            wheelList.add(wheel.clone());
-        }
-        this.wheels = wheelList;
-
+        this.wheels = createWheelList(wheels);
         this.engine = engine == null ? null : engine.clone();
     }
 
@@ -46,7 +40,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return createWheelList(wheels);
     }
 
     public Engine getEngine() {
@@ -72,4 +66,13 @@ public final class Car {
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
     }
+
+    private List<Wheel> createWheelList(List<Wheel> wheels) {
+        List<Wheel> wheelList = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            wheelList.add(wheel.clone());
+        }
+        return wheelList;
+    }
 }
+
