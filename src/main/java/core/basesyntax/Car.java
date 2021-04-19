@@ -56,15 +56,6 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    public Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone for Car object" + e);
-        }
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
