@@ -29,9 +29,7 @@ public class Engine implements Cloneable {
 
     @Override
     public int hashCode() {
-        int hash = horsePower;
-        hash = 17 * hash + ((manufacturer != null ? manufacturer.hashCode() : 0));
-        return hash;
+        return Objects.hash(horsePower, manufacturer);
     }
 
     @Override
