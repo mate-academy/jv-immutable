@@ -48,7 +48,6 @@ public class Engine implements Cloneable {
         if (engine.getHorsePower() != horsePower) {
             return false;
         }
-
         return Objects.equals(manufacturer, engine.manufacturer);
     }
 
