@@ -17,8 +17,6 @@ public final class Car {
         this.engine = cloneEngine(engine);
     }
 
-    //get
-
     public int getYear() {
         return year;
     }
@@ -34,8 +32,6 @@ public final class Car {
     public Engine getEngine() {
         return cloneEngine(engine);
     }
-
-    //change
 
     public Car changeColor(String changedColor) {
         return new Car(year, changedColor, wheels, engine);
@@ -71,10 +67,8 @@ public final class Car {
         return Objects.hash(year, color, wheels, engine);
     }
 
-    //clone
-
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
-        List<Wheel> clonedWheels = new ArrayList<>();
+        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
             clonedWheels.add(wheel.clone());
         }
