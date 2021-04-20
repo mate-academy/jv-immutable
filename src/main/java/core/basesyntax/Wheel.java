@@ -1,7 +1,7 @@
 package core.basesyntax;
 
 public class Wheel implements Cloneable {
-    private static final String CLONE_NOT_SUPPORTED = "This should never show up";
+    private static final String CLONE_NOT_SUPPORTED = "Cloning is not supported.";
     private int radius;
 
     public Wheel(int radius) {
@@ -17,7 +17,7 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    protected Wheel clone() {
+    public Wheel clone() {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {

@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Engine implements Cloneable {
-    private static final String CLONE_NOT_SUPPORTED = "This should never show up";
+    private static final String CLONE_NOT_SUPPORTED = "Cloning is not supported.";
     private int horsePower;
     private String manufacturer;
 
@@ -29,7 +29,7 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    protected Engine clone() {
+    public Engine clone() {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
