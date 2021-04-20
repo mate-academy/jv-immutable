@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Wheel implements Cloneable {
-    private final static String EXCEPTION_MASSAGE  = "Comrade, I can't clone your wheels!";
+    private static final String EXCEPTION_MASSAGE = "Comrade, I can't clone your wheels!";
     private int radius;
 
     public Wheel(int radius) {

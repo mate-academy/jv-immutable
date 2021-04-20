@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Engine implements Cloneable {
-    private final static String EXCEPTION_MASSAGE  = "Comrade, I can't clone your engine!";
+    private static final String EXCEPTION_MASSAGE = "Comrade, I can't clone your engine!";
     private int horsePower;
     private String manufacturer;
 
