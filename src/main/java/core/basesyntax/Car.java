@@ -43,11 +43,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneListOfWheels(wheels);
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return cloneEngine(engine);
     }
 
     @Override
