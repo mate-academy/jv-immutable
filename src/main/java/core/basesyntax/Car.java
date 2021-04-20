@@ -14,32 +14,21 @@ public final class Car implements Cloneable {
         this.year = year;
         this.color = color;
         this.wheels = getWheelsListCopy(wheels);
-        if (engine != null) {
-            this.engine = new Engine(engine);
-        } else {
-            this.engine = null;
-        }
-    }
-
-    public Car(Car otherCar) {
-        this.year = otherCar.year;
-        this.color = otherCar.color;
-        this.wheels = otherCar.wheels;
-        this.engine = otherCar.engine;
+        this.engine = (engine != null) ? new Engine(engine) : null;
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.getYear(), this.getColor(), this.getWheels(), engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
         ArrayList<Wheel> newListOfWheels = new ArrayList<>(this.wheels);
         newListOfWheels.add(newWheel);
-        return new Car(this.getYear(), this.getColor(), newListOfWheels, this.getEngine());
+        return new Car(year, color, newListOfWheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(this.getYear(), newColor, this.getWheels(), this.getEngine());
+        return new Car(year, newColor, wheels, engine);
     }
 
     public int getYear() {
@@ -63,10 +52,8 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-        return engine.clone();
+        return (engine == null) ? null : engine.clone();
+
     }
 
     @Override
@@ -87,10 +74,5 @@ public final class Car implements Cloneable {
                 && Objects.equals(color, car.color)
                 && Objects.equals(engine, car.engine)
                 && Objects.equals(wheels, car.wheels);
-    }
-
-    @Override
-    protected Car clone() {
-        return new Car(this);
     }
 }
