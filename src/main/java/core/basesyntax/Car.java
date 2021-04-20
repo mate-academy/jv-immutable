@@ -4,19 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in the README file
- */
-public final class Car {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+public final class Car implements Cloneable {
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
+        this.wheels = getClonedList(wheels);
         this.engine = engine == null ? null : engine.clone();
     }
 
@@ -28,17 +25,21 @@ public final class Car {
         return color;
     }
 
-    public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+    private List<Wheel> getClonedList(List<Wheel> wheels) {
+        List<Wheel> newList = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            newList.add(wheel.clone());
+        }
+        return newList;
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        Engine newEngine = this.engine == null ? null : this.engine.clone();
+        return newEngine;
     }
 
     public Car changeEngine(Engine newEngine) {
         return new Car(year, color, wheels, newEngine);
-
     }
 
     public Car changeColor(String newColor) {
@@ -49,6 +50,19 @@ public final class Car {
         Car newCar = new Car(year, color, wheels, engine);
         newCar.wheels.add(newWheel);
         return newCar;
+    }
+
+    public List<Wheel> getWheels() {
+        return getClonedList(wheels);
+    }
+
+    @Override
+    public Car clone() {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create copy of car", e);
+        }
     }
 
     @Override
