@@ -1,10 +1,8 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public final class Car {
     private final int year;
@@ -86,7 +84,6 @@ public final class Car {
                     && Objects.equals(current.engine, engine)
                     && Objects.equals(current.wheels, wheels);
         }
-        Set<String> set = new HashSet<>();
         return false;
     }
 }
