@@ -13,6 +13,10 @@ public class Wheel implements Cloneable {
         return radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -37,9 +41,5 @@ public class Wheel implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't create clone of Wheel", e);
         }
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
     }
 }
