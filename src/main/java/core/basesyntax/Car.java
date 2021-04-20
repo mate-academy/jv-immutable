@@ -29,17 +29,17 @@ public final class Car implements Cloneable {
         return getWheelsListCopy(wheels);
     }
 
+    public Engine getEngine() {
+        return (engine == null) ? null : engine.clone();
+
+    }
+
     private List<Wheel> getWheelsListCopy(List<Wheel> originalList) {
         List<Wheel> copy = new ArrayList<>(originalList.size());
         for (Wheel wheel : originalList) {
             copy.add(wheel.clone());
         }
         return copy;
-    }
-
-    public Engine getEngine() {
-        return (engine == null) ? null : engine.clone();
-
     }
 
     public Car changeEngine(Engine engine) {
