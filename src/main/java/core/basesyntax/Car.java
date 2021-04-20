@@ -34,14 +34,6 @@ public final class Car implements Cloneable {
 
     }
 
-    private List<Wheel> getWheelsListCopy(List<Wheel> originalList) {
-        List<Wheel> copy = new ArrayList<>(originalList.size());
-        for (Wheel wheel : originalList) {
-            copy.add(wheel.clone());
-        }
-        return copy;
-    }
-
     public Car changeEngine(Engine engine) {
         return new Car(year, color, wheels, engine);
     }
@@ -54,6 +46,14 @@ public final class Car implements Cloneable {
 
     public Car changeColor(String newColor) {
         return new Car(year, newColor, wheels, engine);
+    }
+
+    private List<Wheel> getWheelsListCopy(List<Wheel> originalList) {
+        List<Wheel> copy = new ArrayList<>(originalList.size());
+        for (Wheel wheel : originalList) {
+            copy.add(wheel.clone());
+        }
+        return copy;
     }
 
     @Override
