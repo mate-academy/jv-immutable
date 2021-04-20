@@ -9,8 +9,12 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public Wheel(Wheel otherWheel) {
-        this.radius = otherWheel.radius;
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override
@@ -37,13 +41,5 @@ public class Wheel implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't clone wheel. ", e);
         }
-    }
-
-    public int getRadius() {
-        return radius;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
     }
 }

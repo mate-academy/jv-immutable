@@ -11,11 +11,6 @@ public class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
-    public Engine(Engine otherEngine) {
-        this.horsePower = otherEngine.horsePower;
-        this.manufacturer = otherEngine.manufacturer;
-    }
-
     public int getHorsePower() {
         return horsePower;
     }
