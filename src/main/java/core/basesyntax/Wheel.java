@@ -36,8 +36,6 @@ public class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        Wheel wheel = new Wheel(radius);
-        wheel.radius = this.radius;
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {

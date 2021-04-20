@@ -37,21 +37,16 @@ public final class Car {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Car car = (Car) obj;
-        return year == car.year && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
