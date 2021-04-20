@@ -25,17 +25,21 @@ public final class Car implements Cloneable {
         return color;
     }
 
-    private List<Wheel> getClonedList(List<Wheel> wheels) {
-        List<Wheel> newList = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            newList.add(wheel.clone());
-        }
-        return newList;
+    public List<Wheel> getWheels() {
+        return getClonedList(wheels);
     }
 
     public Engine getEngine() {
         Engine newEngine = this.engine == null ? null : this.engine.clone();
         return newEngine;
+    }
+
+    private List<Wheel> getClonedList(List<Wheel> wheels) {
+        List<Wheel> newList = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            newList.add(wheel.clone());
+        }
+        return newList;
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -50,10 +54,6 @@ public final class Car implements Cloneable {
         Car newCar = new Car(year, color, wheels, engine);
         newCar.wheels.add(newWheel);
         return newCar;
-    }
-
-    public List<Wheel> getWheels() {
-        return getClonedList(wheels);
     }
 
     @Override
