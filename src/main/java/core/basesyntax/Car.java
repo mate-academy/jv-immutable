@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -47,19 +47,6 @@ public final class Car implements Cloneable {
         return car;
     }
 
-    private Engine checkAndCloneEngine(Engine engine) {
-        return engine == null ? null : engine.clone();
-    }
-
-    @Override
-    public Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create clone for Car", e);
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -78,6 +65,10 @@ public final class Car implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
+    }
+
+    private Engine checkAndCloneEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
