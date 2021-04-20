@@ -1,10 +1,12 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -30,11 +32,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        }
-
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
@@ -63,17 +61,6 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    public Car clone() {
-        try {
-            Car clonedCar = (Car) super.clone();
-            clonedCar.cloneWheels(wheels);
-            return clonedCar.changeEngine(engine.clone());
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone" + e);
-        }
-    }
-
-    @Override
     public int hashCode() {
         int result = 79;
         result *= 31 * year;
@@ -99,7 +86,7 @@ public final class Car implements Cloneable {
                     && Objects.equals(current.engine, engine)
                     && Objects.equals(current.wheels, wheels);
         }
-
+        Set<String> set = new HashSet<>();
         return false;
     }
 }
