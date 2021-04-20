@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -47,7 +47,7 @@ public final class Car implements Cloneable {
         return new Car(year, color, newWheels, engine);
     }
 
-    public List<Wheel> getNewWheelsArray(List<Wheel> inputWheels) {
+    private List<Wheel> getNewWheelsArray(List<Wheel> inputWheels) {
         List<Wheel> newWheel = new ArrayList<>();
         for (Wheel wheel : inputWheels) {
             newWheel.add(wheel.clone());
