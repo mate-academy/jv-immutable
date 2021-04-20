@@ -45,9 +45,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheels = new ArrayList<>(getWheels());
-        wheels.add(newWheel);
-        return new Car(year, color, wheels, engine);
+        List<Wheel> newWheels = new ArrayList<>(wheels);
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
     }
 
     @Override
@@ -71,7 +71,7 @@ public final class Car {
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
-        List<Wheel> clonedWheels = new ArrayList<>();
+        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
         for (Wheel currentWheel : wheels) {
             clonedWheels.add(currentWheel.clone());
         }
