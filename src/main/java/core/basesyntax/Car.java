@@ -48,11 +48,11 @@ public final class Car {
     }
 
     private List<Wheel> copyOfWheels(List<Wheel> wheelList) {
-        List<Wheel> clone = new ArrayList<>();
-        for (Wheel item : wheelList) {
-            clone.add(item.clone());
+        List<Wheel> cloneWheels = new ArrayList<>(wheelList.size());
+        for (Wheel wheel : wheelList) {
+            cloneWheels.add(wheel.clone());
         }
-        return clone;
+        return cloneWheels;
     }
 
     @Override
