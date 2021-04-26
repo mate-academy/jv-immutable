@@ -268,7 +268,8 @@ public class CarTest {
     public void checkDeepListCloneIsReturnedInGetWheels() {
         int initialWheelRadius = 90;
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
-        car.getWheels().get(0).setRadius(1);
+        int newRadius = 1;
+        car.getWheels().get(0).setRadius(newRadius);
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
                     + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
