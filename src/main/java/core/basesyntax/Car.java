@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class Car {
     private final int year;
@@ -13,13 +14,10 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = getCopyWheels(wheels);
-        this.engine = engine != null ? engine.clone() : null;
+        this.engine = engine != null ? engine.clone() : null ;
     }
 
     public Car changeEngine(Engine newEngine) {
-        if (newEngine == null) {
-            throw new NullPointerException("Engine can`t be null");
-        }
         return new Car(year, color, wheels, newEngine);
     }
 
@@ -28,9 +26,6 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        if (wheel == null) {
-            throw new NullPointerException("Wheel can`t be null");
-        }
         List<Wheel> newWheels = getWheels();
         newWheels.add(wheel);
         return new Car(year, color, newWheels, engine);
@@ -45,17 +40,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        if (wheels == null) {
-            throw new NullPointerException("Wheels can`t be null");
-        }
         return getCopyWheels(wheels);
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            throw new NullPointerException("Engine can`t be null");
-        }
-        return engine.clone();
+        return engine != null ? engine.clone() : null ;
     }
 
     @Override
@@ -72,13 +61,13 @@ public final class Car {
         if (year != car.year) {
             return false;
         }
-        if (color != null ? !color.equals(car.color) : car.color != null) {
+        if (!Objects.equals(color, car.color)) {
             return false;
         }
-        if (wheels != null ? !wheels.equals(car.wheels) : car.wheels != null) {
+        if (!Objects.equals(wheels, car.wheels)) {
             return false;
         }
-        return engine != null ? engine.equals(car.engine) : car.engine == null;
+        return Objects.equals(engine, car.engine);
     }
 
     @Override
