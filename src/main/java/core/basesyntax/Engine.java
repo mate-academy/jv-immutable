@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import java.util.Objects;
+
 public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
@@ -56,7 +58,7 @@ public class Engine implements Cloneable {
         if (horsePower != engine.horsePower) {
             return false;
         }
-        return manufacturer != null ? manufacturer.equals(engine.manufacturer) : engine.manufacturer == null;
+        return Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
