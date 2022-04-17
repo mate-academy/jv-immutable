@@ -49,8 +49,7 @@ public class Engine implements Cloneable {
             return false;
         }
         Engine engine = (Engine) obj;
-        return horsePower == engine.horsePower
-                && (manufacturer == engine.manufacturer
+        return horsePower == engine.horsePower && (manufacturer == engine.manufacturer
                 || manufacturer != null && manufacturer.equals(engine.manufacturer));
     }
 
