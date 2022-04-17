@@ -2,14 +2,15 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel implements Cloneable{
+public class Wheel implements Cloneable {
     private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
     }
-    public void getRadius(int radius) {
-        radius = radius;
+
+    public int getRadius() {
+        return radius;
     }
 
     public void setRadius(int radius) {
@@ -21,19 +22,19 @@ public final class Wheel implements Cloneable{
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't create a new clone wheel", e);
+            throw new RuntimeException("Can't create clone of wheel object", e);
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Wheel wheel = (Wheel) obj;
+        Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
 
@@ -44,8 +45,7 @@ public final class Wheel implements Cloneable{
 
     @Override
     public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
+        return "Wheel{" + "radius=" + radius
+                + '}';
     }
 }
