@@ -1,4 +1,5 @@
 package core.basesyntax;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +9,7 @@ public final class Car implements Cloneable {
     private final String color;
     private final List<Wheel> wheels;
     private final Engine engine;
+
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -62,6 +64,7 @@ public final class Car implements Cloneable {
             + ", engine=" + engine
             + '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
