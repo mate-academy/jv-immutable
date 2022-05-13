@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -27,8 +27,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> wheels = copyWheels(this.wheels);
-        return wheels;
+        return copyWheels(this.wheels);
     }
 
     public Engine getEngine() {
@@ -36,19 +35,17 @@ public final class Car implements Cloneable {
     }
 
     public Car changeEngine(Engine engine) {
-        List<Wheel> listWheel = copyWheels(this.wheels);
-        return new Car(this.year, this.color, listWheel, engine);
+        return new Car(this.year, this.color, this.wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        List<Wheel> listWheel = copyWheels(this.wheels);
-        return new Car(this.year, newColor, listWheel, this.engine.clone());
+        return new Car(this.year, newColor, this.wheels, this.engine);
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> listWheel = copyWheels(this.wheels);
         listWheel.add(newWheel);
-        return new Car(this.year, this.color, listWheel, this.engine.clone());
+        return new Car(this.year, this.color, listWheel, this.engine);
     }
 
     @Override
