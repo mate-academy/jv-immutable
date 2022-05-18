@@ -9,10 +9,22 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -29,13 +41,11 @@ public class Wheel implements Cloneable {
             + '}';
     }
 
-    public Wheel clone(){
+    public Wheel clone() {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("cant clone", e);
         }
     }
-
-
 }
