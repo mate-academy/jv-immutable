@@ -7,7 +7,6 @@ public class Wheel implements Cloneable {
 
     //implement this class
 
-
     public Wheel(int radius) {
         this.radius = radius;
     }
@@ -22,8 +21,12 @@ public class Wheel implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
