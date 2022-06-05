@@ -14,25 +14,21 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = getCopyList(wheels);
-        if (engine == null) {
-            this.engine = null;
-        } else {
-            this.engine = engine.clone();
-        }
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(getYear(), getColor(), getWheels(), engine);
+        return new Car(year, color, wheels, engine);
     }
 
-    public Car changeColor(String color) {
-        return new Car(getYear(), color, getWheels(), getEngine());
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheels) {
         List<Wheel> newWheel = new ArrayList<>(wheels);
         newWheel.add(newWheels);
-        return new Car(getYear(), getColor(), newWheel, engine);
+        return new Car(year, color, newWheel, engine);
     }
 
     @Override
@@ -58,11 +54,11 @@ public final class Car {
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 
     public int getYear() {
