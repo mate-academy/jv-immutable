@@ -17,9 +17,10 @@ public final class Car {
         this.engine = cloneEngine(engine);
     }
 
-    private Engine cloneEngine (Engine engine) {
+    private Engine cloneEngine(Engine engine) {
         return engine == null ? null : engine.clone();
     }
+
     public Car changeEngine(Engine newEngine) {
         return new Car(year, color, getCopyOfWheels(wheels), newEngine.clone());
     }
@@ -70,8 +71,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
