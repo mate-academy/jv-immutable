@@ -1,9 +1,44 @@
 package core.basesyntax;
 
-public class Wheel {
+public class Wheel implements Cloneable {
     private int radius;
 
-    //implement this class
+    public Wheel(int radius) {
+        this.radius = radius;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 + radius;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Wheel wheel = (Wheel) obj;
+        return this.radius == wheel.radius;
+    }
+
+    @Override
+    public Wheel clone() {
+        return new Wheel(radius);
+    }
 
     @Override
     public String toString() {
