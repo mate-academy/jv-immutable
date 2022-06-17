@@ -26,7 +26,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> wheelsCopy = new ArrayList<>();
+        List<Wheel> wheelsCopy = new ArrayList<>(this.wheels.size());
         for (Wheel wheel : this.wheels) {
             wheelsCopy.add(wheel.clone());
         }
@@ -54,9 +54,9 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>();
+        List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(newWheel);
-        return new Car(year, color, wheels, engine);
+        return new Car(year, color, newWheels, engine);
     }
 
     @Override
@@ -76,7 +76,12 @@ public final class Car implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+        int hash = 17;
+        hash = hash * 31 + year;
+        hash = hash * 31 + (color == null ? 0 : color.hashCode());
+        hash = hash * 31 + (wheels == null ? 0 : wheels.hashCode());
+        hash = hash * 31 + (engine == null ? 0 : engine.hashCode());
+        return hash;
     }
 
     @Override
@@ -90,11 +95,11 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    protected Car clone() {
+    public Car clone() {
         try {
             return (Car) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can not clone car", e);
+            throw new RuntimeException("Can't clone Car", e);
         }
     }
 
