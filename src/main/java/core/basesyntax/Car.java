@@ -2,31 +2,31 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable{
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
-
-    public Car(int year) {
-        this.year = year;
-    }
-
-    public Car(int year, String color) {
-        this.year = year;
-        this.color = color;
-    }
+public final class Car {
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels;
-        this.engine = engine;
+        this.wheels = cloneWheels(wheels);
+        if (engine == null){
+            this.engine = null;
+        } else {
+            this.engine = engine.clone();
+        }
+
     }
+
+
+
 
     public int getYear() {
         return year;
@@ -37,27 +37,61 @@ public final class Car implements Cloneable{
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        if (engine == null) {
+            return null;
+        } else {
+            return engine.clone();
+        }
     }
 
     public Car changeEngine(Engine engine) {
+        return new Car(year,color,wheels,new Engine(engine.getHorsePower(),engine.getManufacturer()));
 
-        return null;
+
+
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> wheelCopy = cloneWheels(wheels);
+        wheelCopy.add(newWheel);
+        return new Car(year,color,wheelCopy,engine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year,newColor,wheels,engine);
+    }
+
+
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
+        List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels){
+            wheelCopy.add(wheel.clone());
+        }
+        return wheelCopy;
     }
 
     @Override
-    public Car clone() {
-        try {
-            return  (Car) super.clone();
+    public int hashCode() {
+        return Objects.hash(year,color,wheels,engine);
+    }
 
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cant clone object", e);
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        Car car = (Car) obj;
+        return year == car.year &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(wheels, car.wheels) &&
+                Objects.equals(engine, car.engine);
     }
 
     @Override
