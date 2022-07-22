@@ -12,6 +12,12 @@ public final class Car {
     private final Engine engine;
 
     //implement this class
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = getCopyWheel(wheels);
+        this.engine = cloneEngine(engine);
+    }
 
     @Override
     public String toString() {
