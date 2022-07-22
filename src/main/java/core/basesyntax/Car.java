@@ -31,6 +31,10 @@ public final class Car {
         return getCopyWheel(wheels);
     }
 
+    public Engine getEngine() {
+        return cloneEngine(engine);
+    }
+
     @Override
     public String toString() {
         return "Car{"
