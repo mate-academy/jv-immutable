@@ -19,6 +19,18 @@ public final class Car {
         this.engine = cloneEngine(engine);
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public List<Wheel> getWheels() {
+        return getCopyWheel(wheels);
+    }
+
     @Override
     public String toString() {
         return "Car{"
