@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public class Car {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+public final class Car {
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     //implement this class
 
