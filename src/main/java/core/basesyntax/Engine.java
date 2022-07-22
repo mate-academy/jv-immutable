@@ -27,6 +27,7 @@ public class Engine implements Cloneable {
     public String getManufacturer() {
         return manufacturer;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -52,6 +53,7 @@ public class Engine implements Cloneable {
             throw new RuntimeException("Can't create clone of Engine object", e);
         }
     }
+
     @Override
     public String toString() {
         return "Engine{"
