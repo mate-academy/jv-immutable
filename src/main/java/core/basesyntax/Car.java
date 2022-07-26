@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = сloneEngine(engine);
+        this.engine = cloneEngine(engine);
     }
 
     public int getYear() {
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return сloneEngine(engine);
+        return cloneEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -67,8 +67,6 @@ public final class Car {
         return Objects.hash(getYear(), color, getWheels(), getEngine());
     }
 
-
-
     @Override
     public String toString() {
         return "Car{"
@@ -87,8 +85,8 @@ public final class Car {
         return wheelList;
     }
 
-    private Engine сloneEngine(Engine engine) {
+    private Engine cloneEngine(Engine engine) {
         return engine == null ? null : engine.clone();
     }
-
 }
+

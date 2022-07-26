@@ -61,5 +61,4 @@ public class Engine implements Cloneable {
             throw new RuntimeException("Can't create clone of Engine", e);
         }
     }
-
 }
