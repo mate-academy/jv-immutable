@@ -23,7 +23,8 @@ public class Wheel implements Cloneable {
             return true;
         }
         if (object == null || getClass() != object.getClass()) {
-            return false;}
+            return false;
+        }
         Wheel wheel = (Wheel) object;
         return radius == wheel.radius;
     }
@@ -36,8 +37,8 @@ public class Wheel implements Cloneable {
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 
     @Override
