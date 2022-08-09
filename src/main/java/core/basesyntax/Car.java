@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Car {
+
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
