@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +16,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.engine = engine.clone();
+        this.engine = (engine == null) ? null : engine.clone();
         this.wheels = new ArrayList<>(wheels.size());
         this.wheels.addAll(wheels);
     }
@@ -27,7 +26,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
@@ -44,13 +43,13 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, getCopyWheelList(), engine.clone());
+        return new Car(year, newColor, getCopyWheelList(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> wheels = getCopyWheelList();
         wheels.add(newWheel);
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, getEngine());
     }
 
     @Override
