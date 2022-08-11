@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car {
+public final class Car implements Cloneable {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -17,8 +17,10 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.engine = (engine == null) ? null : engine.clone();
-        this.wheels = new ArrayList<>(wheels.size());
-        this.wheels.addAll(wheels);
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
     }
 
     public String getColor() {
@@ -47,9 +49,9 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheels = getCopyWheelList();
-        wheels.add(newWheel);
-        return new Car(year, color, wheels, getEngine());
+        Car newCar = clone();
+        newCar.wheels.add(newWheel.clone());
+        return newCar;
     }
 
     @Override
@@ -63,13 +65,12 @@ public final class Car {
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+        return Objects.hash(year, color, engine);
     }
 
     @Override
@@ -82,9 +83,16 @@ public final class Car {
             + '}';
     }
 
+    @Override
+    protected Car clone(){
+        return new Car(year, color, getCopyWheelList(), engine.clone());
+    }
+
     private List<Wheel> getCopyWheelList() {
-        List<Wheel> wheels = new ArrayList<>(this.wheels.size());
-        wheels.addAll(this.wheels);
-        return wheels;
+        List<Wheel> tempWheels = new ArrayList<>(this.wheels.size());
+        for (Wheel wheel : this.wheels) {
+            tempWheels.add(wheel.clone());
+        }
+        return tempWheels;
     }
 }
