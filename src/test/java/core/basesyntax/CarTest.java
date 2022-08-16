@@ -64,7 +64,7 @@ public class CarTest {
         Car car = new Car(1999, null, wheels, testEngine);
         expected.setRadius(14);
         Wheel actual = car.getWheels().get(0);
-        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
+         Assert.assertEquals("Immutable objects should not be changed from outside.\n",
             true, !expected.equals(actual));
     }
 
