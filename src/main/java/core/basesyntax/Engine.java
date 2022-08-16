@@ -52,7 +52,6 @@ public class Engine implements Cloneable {
         return Objects.hash(horsePower, manufacturer);
     }
 
-
     @Override
     public String toString() {
         return "Engine{"
