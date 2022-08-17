@@ -28,7 +28,7 @@ public final class Car {
         return new Car(this.year, newColor, this.wheels, this.engine);
     }
 
-    public Car addWheel (Wheel newWheel) {
+    public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = getWheelsCopy(wheels);
         newWheels.add(newWheel);
         return new Car(this.year, this.color, newWheels, this.engine);

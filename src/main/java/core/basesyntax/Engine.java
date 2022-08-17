@@ -46,7 +46,7 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    protected Object clone() {
+    protected Engine clone() {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
