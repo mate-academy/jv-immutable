@@ -28,13 +28,13 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = getWheelsDeepCopy(wheels);
+        List<Wheel> newWheels = getWheels();
         newWheels.add(newWheel);
-        return new Car(year, color, newWheels, getEngineDeepCopy(engine));
+        return new Car(year, color, newWheels, getEngine());
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, getWheelsDeepCopy(wheels), getEngineDeepCopy(engine));
+        return new Car(year, color, getWheels(), getEngineDeepCopy(engine));
     }
 
     public Car changeColor(String newColor) {
@@ -50,11 +50,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> newWheels = new ArrayList<>();
+        List<Wheel> allWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
+            allWheels.add(wheel.clone());
         }
-        return newWheels;
+        return allWheels;
     }
 
     public Engine getEngine() {
@@ -66,11 +66,11 @@ public final class Car {
     }
 
     private List<Wheel> getWheelsDeepCopy(List<Wheel> wheels) {
-        List<Wheel> newWheels = new ArrayList<>();
+        List<Wheel> allWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
+            allWheels.add(wheel.clone());
         }
-        return newWheels;
+        return allWheels;
     }
 
     @Override
