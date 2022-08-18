@@ -17,8 +17,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = wheelsCopy(wheels);
-        this.engine = engine == null ? null
-                : new Engine(engine.getHorsePower(), engine.getManufacturer());
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public Car changeColor(String newColor) {
@@ -49,7 +48,7 @@ public final class Car {
     }
 
     private List<Wheel> wheelsCopy(List<Wheel> wheels) {
-        List<Wheel> newWheels = new ArrayList<>(wheels.size());
+        List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             newWheels.add(wheel.clone());
         }
@@ -57,8 +56,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null
-                : new Engine(engine.getHorsePower(), engine.getManufacturer());
+        return engine == null ? null : engine.clone();
     }
 
     @Override
