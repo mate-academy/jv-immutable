@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
+/** Make this class immutable. See requirements in task description. */
 public final class Car implements Cloneable {
     private final int year;
     private final String color;
@@ -34,7 +32,6 @@ public final class Car implements Cloneable {
         } else {
             return engine.clone();
         }
-
     }
 
     public List<Wheel> getWheels() {
@@ -42,11 +39,11 @@ public final class Car implements Cloneable {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year,color, wheels,engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, wheels,engine);
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
@@ -54,34 +51,48 @@ public final class Car implements Cloneable {
         newWheels.add(wheel.clone());
         return new Car(year, color, newWheels, engine);
     }
+
     private List<Wheel> deepCopyWheel(List<Wheel> wheels) {
         List<Wheel> cloneWheels = new ArrayList<>();
-        for (Wheel wheel: wheels) {
+        for (Wheel wheel : wheels) {
             cloneWheels.add(wheel.clone());
         }
         return cloneWheels;
     }
+
     private Engine deepCopyEngine(Engine engine) {
         return engine == null ? new Engine(0, null) : engine.clone();
     }
-    //implement this class
+    // implement this class
 
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year="
+                + year
+                + ", color='"
+                + color
+                + '\''
+                + ", wheels="
+                + wheels
+                + ", engine="
+                + engine
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override

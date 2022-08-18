@@ -2,10 +2,10 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Wheel implements Cloneable{
+public class Wheel implements Cloneable {
     private int radius;
 
-    //implement this class
+    // implement this class
 
     public Wheel(int radius) {
         this.radius = radius;
@@ -21,15 +21,17 @@ public class Wheel implements Cloneable{
 
     @Override
     public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
+        return "Wheel{" + "radius=" + radius + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -40,6 +42,6 @@ public class Wheel implements Cloneable{
     }
 
     public Wheel clone() {
-        return new Wheel(radius); // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        return new Wheel(radius);
     }
 }
