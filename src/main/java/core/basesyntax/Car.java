@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
- * <p>
+ *
  * Class should be declared as final so it can’t be extended.
  * Make all fields private final
  * so the direct access is not allowed and field value can be assigned only once.
