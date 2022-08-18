@@ -45,7 +45,7 @@ public final class Car implements Cloneable {
 
     public List<Wheel> getWheels() {
         List<Wheel> cloneWheel = new ArrayList<>();
-        for(Wheel wheel: wheels) {
+        for (Wheel wheel: wheels) {
             cloneWheel.add(wheel.clone());
         }
         return cloneWheel;
@@ -61,7 +61,7 @@ public final class Car implements Cloneable {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> cloneW = new ArrayList<>();
-        for(Wheel wheel: wheels) {
+        for (Wheel wheel: wheels) {
             cloneW.add(wheel.clone());
         }
         cloneW.add(newWheel);
@@ -82,8 +82,8 @@ public final class Car implements Cloneable {
             return false;
         }
         Car car = (Car) obj;
-        return year == car.year &&
-                Objects.equals(color, car.color)
+        return year == car.year
+                && Objects.equals(color, car.color)
                 && Objects.equals(engine, car.engine)
                 && Objects.equals(wheels, car.wheels);
     }
