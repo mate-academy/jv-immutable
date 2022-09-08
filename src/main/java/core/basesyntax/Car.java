@@ -41,13 +41,17 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return getYear() == car.getYear() &&
-                getColor().equals(car.getColor()) &&
-                getWheels().equals(car.getWheels()) &&
-                getEngine().equals(car.getEngine());
+        return getYear() == car.getYear()
+                && getColor().equals(car.getColor())
+                && getWheels().equals(car.getWheels())
+                && getEngine().equals(car.getEngine());
     }
 
     @Override
