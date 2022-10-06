@@ -56,14 +56,24 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Car car = (Car) o;
 
-        if (year != car.year) return false;
-        if (!Objects.equals(color, car.color)) return false;
-        if (!Objects.equals(wheels, car.wheels)) return false;
+        if (year != car.year) {
+            return false;
+        }
+        if (!Objects.equals(color, car.color)) {
+            return false;
+        }
+        if (!Objects.equals(wheels, car.wheels)) {
+            return false;
+        }
         return Objects.equals(engine, car.engine);
     }
 
