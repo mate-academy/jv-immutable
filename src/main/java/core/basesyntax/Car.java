@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public class Car {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -15,7 +15,7 @@ public class Car {
         this.year = year;
         this.color = color;
         this.wheels = wheels;
-        this.engine = engine;
+        this.engine = engine.clone();
     }
 
     public int getYear() {
