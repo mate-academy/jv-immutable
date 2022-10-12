@@ -31,7 +31,7 @@ public final class Car implements Cloneable {
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = getWheels();
         newWheels.add(newWheel);
-        return new Car(year, color, newWheels , engine);
+        return new Car(year, color, newWheels, engine);
     }
 
     public int getYear() {
@@ -64,7 +64,6 @@ public final class Car implements Cloneable {
     public Car clone() {
         try {
             Car clone = (Car) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
