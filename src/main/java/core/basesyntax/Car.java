@@ -17,7 +17,11 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = deepCopyOfWheels(wheels);
-        this.engine = engine.clone();
+        this.engine = deepCopyOfEngine(engine);
+    }
+
+    private Engine deepCopyOfEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
     public int getYear() {
@@ -41,7 +45,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return deepCopyOfEngine(engine);
     }
 
     @Override
@@ -70,15 +74,17 @@ public final class Car {
             + '}';
     }
 
-    public Car changeEngine(Engine engine) {
-        return null;
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine);
     }
 
     public Car addWheel(Wheel wheel) {
-        return null;
+        List<Wheel> wheelList = deepCopyOfWheels(wheels);
+        wheelList.add(wheel);
+        return new Car(year, color, wheelList, engine);
     }
 
-    public Car changeColor(String blue) {
-        return null;
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
     }
 }
