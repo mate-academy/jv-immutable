@@ -20,10 +20,6 @@ public final class Car {
         this.engine = deepCopyOfEngine(engine);
     }
 
-    private Engine deepCopyOfEngine(Engine engine) {
-        return engine == null ? null : engine.clone();
-    }
-
     public int getYear() {
         return year;
     }
@@ -36,22 +32,32 @@ public final class Car {
         return deepCopyOfWheels(wheels);
     }
 
-    private List<Wheel> deepCopyOfWheels(List<Wheel> wheelList) {
-        List<Wheel> copyOfList = new ArrayList<>(wheelList.size());
-        for (Wheel listElement : wheelList) {
-            copyOfList.add(listElement.clone());
-        }
-        return copyOfList;
-    }
-
     public Engine getEngine() {
         return deepCopyOfEngine(engine);
     }
 
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine);
+    }
+
+    public Car addWheel(Wheel wheel) {
+        List<Wheel> wheelList = deepCopyOfWheels(wheels);
+        wheelList.add(wheel);
+        return new Car(year, color, wheelList, engine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
@@ -74,17 +80,15 @@ public final class Car {
             + '}';
     }
 
-    public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, newEngine);
+    private Engine deepCopyOfEngine(Engine engine) {
+        return engine == null ? null : engine.clone();
     }
 
-    public Car addWheel(Wheel wheel) {
-        List<Wheel> wheelList = deepCopyOfWheels(wheels);
-        wheelList.add(wheel);
-        return new Car(year, color, wheelList, engine);
-    }
-
-    public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
+    private List<Wheel> deepCopyOfWheels(List<Wheel> wheelList) {
+        List<Wheel> copyOfList = new ArrayList<>(wheelList.size());
+        for (Wheel listElement : wheelList) {
+            copyOfList.add(listElement.clone());
+        }
+        return copyOfList;
     }
 }
