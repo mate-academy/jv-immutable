@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Car {
-    final private int year;
-    final private String color;
-    final private List<Wheel> wheels;
-    final private Engine engine;
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
@@ -74,15 +74,6 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    @Override
-    public Car clone() {
-        try {
-            return (Car) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private Engine getCloneEngine(Engine engine) {
