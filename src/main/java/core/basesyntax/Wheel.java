@@ -13,6 +13,10 @@ public class Wheel implements Cloneable {
         return radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(radius);
@@ -28,6 +32,15 @@ public class Wheel implements Cloneable {
         }
         Wheel wheel = (Wheel) obj;
         return radius == wheel.radius;
+    }
+
+    @Override
+    protected Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
