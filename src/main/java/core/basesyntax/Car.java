@@ -13,12 +13,11 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels){
+        for (Wheel wheel : wheels) {
             wheelCopy.add(wheel.clone());
         }
         this.wheels = wheelCopy;
