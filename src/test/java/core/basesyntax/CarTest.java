@@ -6,7 +6,6 @@ import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
