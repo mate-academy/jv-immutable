@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class Car {
     private final int year;
@@ -13,11 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>(getCopy(wheels));
-        if (engine == null) {
-            this.engine = null;
-        } else {
-            this.engine = engine.clone();
-        }
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public int getYear() {
@@ -33,33 +30,25 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine == null) {
-            return null;
+        return engine == null ? null : engine.clone();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
-        return engine.clone();
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + year;
-        result = 31 * result + (color == null ? 0 : color.hashCode());
-        result = 31 * result + (wheels == null ? 0 : wheels.hashCode());
-        result = 31 * result + (engine == null ? 0 : engine.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass().equals(Car.class)) {
-            Car current = (Car) obj;
-            return this.year == current.year && this.color.equals(current.color)
-                    && this.wheels.equals(current.wheels) && this.engine.equals(current.engine);
-        }
-        return false;
+        return Objects.hash(year, color, wheels, engine);
     }
 
     private static List<Wheel> getCopy(List<Wheel> wheels) {

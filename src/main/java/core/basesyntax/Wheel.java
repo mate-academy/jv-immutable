@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import java.util.Objects;
+
 public class Wheel implements Cloneable {
     private int radius;
 
@@ -16,22 +18,20 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    public int hashCode() {
-        int result = 17;
-        result = 31 * result + radius;
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Wheel wheel = (Wheel) o;
+        return radius == wheel.radius;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass().equals(Wheel.class)) {
-            Wheel current = (Wheel) obj;
-            return this.radius == current.radius;
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(radius);
     }
 
     @Override
