@@ -29,8 +29,12 @@ public class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Engine engine = (Engine) o;
         return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
@@ -48,7 +52,6 @@ public class Engine implements Cloneable {
             throw new RuntimeException("Can`t make the clone of Engine object", e);
         }
     }
-    //implement this class
 
     @Override
     public String toString() {
