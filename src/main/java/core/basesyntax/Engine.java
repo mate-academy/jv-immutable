@@ -20,24 +20,12 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    public Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
-    }
-
-    public int getHorsePower() {
-        return horsePower;
-    }
-
-    public void setHorsePower(int horsePower) {
-        this.horsePower = horsePower;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
+    protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create clone of Engine object", e);
+        }
     }
 
     @Override
@@ -56,5 +44,21 @@ public class Engine implements Cloneable {
         int result = horsePower;
         result = 31 * result + (manufacturer != null ? manufacturer.hashCode() : 0);
         return result;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

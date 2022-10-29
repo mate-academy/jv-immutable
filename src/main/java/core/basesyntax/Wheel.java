@@ -7,28 +7,12 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public int getRadius() {
-        return radius;
-    }
-
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
-    @Override
-    public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
-    }
-
     @Override
     public Wheel clone() {
         try {
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            return new Wheel(this.radius);
+            throw new RuntimeException("Can't create clone of Wheel object", e);
         }
     }
 
@@ -45,5 +29,20 @@ public class Wheel implements Cloneable {
     @Override
     public int hashCode() {
         return radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Wheel{"
+                + "radius=" + radius
+                + '}';
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 }
