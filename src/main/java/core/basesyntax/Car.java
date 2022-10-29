@@ -1,4 +1,5 @@
 package core.basesyntax;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -6,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -17,16 +18,19 @@ public final class Car implements Cloneable {
         this.color = color;
         this.wheels = wheels;
         this.engine = engine;
+        /*if (wheels == null) {
+            throw new IllegalArgumentException("Null is not allowed");
+        }*/
     }
 
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 
     public int getYear() {
@@ -39,8 +43,10 @@ public final class Car implements Cloneable {
 
     public List<Wheel> getWheels() {
         List<Wheel> newWheelList = new ArrayList<>();
-        for (Wheel wheel: wheels) {
+        for (Wheel wheel : wheels) {
+            if (wheel != null) {
                 newWheelList.add(wheel.clone());
+            }
         }
         return newWheelList;
     }
@@ -59,7 +65,7 @@ public final class Car implements Cloneable {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newListOfWheels = new ArrayList<>();
-        for (Wheel wheel: wheels) {
+        for (Wheel wheel : wheels) {
             if (wheel != null) {
                 newListOfWheels.add(wheel.clone());
             }
@@ -68,7 +74,7 @@ public final class Car implements Cloneable {
         return new Car(year, color, newListOfWheels, engine);
     }
 
-    @Override
+    /*@Override
     protected Object clone() {
         Car car;
         List<Wheel> newWheelList = wheels;
@@ -79,7 +85,7 @@ public final class Car implements Cloneable {
             throw new RuntimeException(e);
         }
         return car;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
