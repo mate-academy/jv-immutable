@@ -17,8 +17,8 @@ public final class Car implements Cloneable {
         this.engine = (engine != null) ? engine.clone() : engine;
     }
 
-    public Car changeEngine (Engine engine) {
-        return new  Car(this.year, this.color, this.wheels,
+    public Car changeEngine(Engine engine) {
+        return new Car(this.year, this.color, this.wheels,
                 new Engine(engine.getHorsePower(), engine.getManufacturer()));
     }
 
@@ -40,24 +40,29 @@ public final class Car implements Cloneable {
 
     public Car changeColor(String newColor) {
         return new Car(this.year, newColor, this.wheels, this.engine);
-     }
-     public Car addWheel(Wheel newWheel) {
+    }
+
+    public Car addWheel(Wheel newWheel) {
         List<Wheel> copy = getCopy(wheels);
         copy.add(newWheel);
-          return new Car(this.year, this.color, copy, this.engine);
-      }
-      public List<Wheel> getCopy(List<Wheel> wheels) {
-          List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
-          for (Wheel wheel: wheels) {
-              wheelCopy.add(wheel.clone());
-          }
-          return wheelCopy;
-      }
+        return new Car(this.year, this.color, copy, this.engine);
+    }
+    public List<Wheel> getCopy(List<Wheel> wheels) {
+        List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
+        for (Wheel wheel: wheels) {
+            wheelCopy.add(wheel.clone());
+        }
+        return wheelCopy;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
