@@ -37,10 +37,11 @@ public final class Car implements Cloneable {
     public Engine getEngine() {
         return (engine != null) ? engine.clone() : engine;
     }
-     public Car changeColor(String newColor) {
+
+    public Car changeColor(String newColor) {
         return new Car(this.year, newColor, this.wheels, this.engine);
      }
-      public Car addWheel(Wheel newWheel) {
+     public Car addWheel(Wheel newWheel) {
         List<Wheel> copy = getCopy(wheels);
         copy.add(newWheel);
           return new Car(this.year, this.color, copy, this.engine);
