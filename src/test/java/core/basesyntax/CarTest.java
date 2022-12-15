@@ -16,7 +16,7 @@ public class CarTest {
     private List<Wheel> testWheels;
 
     @Before
-    public void setUp() throws CloneNotSupportedException {
+    public void setUp() {
         testWheels = List.of(new Wheel(10), new Wheel(15), new Wheel(20));
         testEngine = new Engine(100, "Some maker");
         testCar = new Car(1999, "red", testWheels, testEngine);
