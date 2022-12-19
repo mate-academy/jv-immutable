@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     final private int year;
     final private String color;
@@ -20,20 +17,20 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheelList, Engine engine) {
         if (wheelList == null) {
             throw new NullPointerException("nullpointerexception");
+        } else {
+            List<Wheel> wheels = new ArrayList<>();
+            for (Wheel wheel : wheelList) {
+                wheels.add(wheel.clone());
+            }
+            this.wheels = wheels;
         }
         if (engine == null) {
             this.engine = null;
         } else {
             this.engine = engine.clone();
         }
-
         this.year = year;
         this.color = color;
-        List<Wheel> wheels = new ArrayList<>();
-        for (Wheel wheel : wheelList) {
-            wheels.add(wheel.clone());
-        }
-        this.wheels = wheels;
     }
 
     public Car changeEngine(Engine engine) {
