@@ -99,7 +99,7 @@ public class CarTest {
 
     @Test
     public void changeEngine_isCarTheSameAfterChangingEngine() {
-        Car actual = testCar
+        Car actual = (Car) testCar
             .changeEngine(new Engine(90, "Other Maker"));
         Assert.assertEquals("Cars should not refer to the same object after changing engine.\n",
             true, testCar != actual);
