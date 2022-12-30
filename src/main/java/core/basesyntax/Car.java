@@ -2,9 +2,6 @@ package core.basesyntax;
 
 import java.util.List;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public class Car {
     private int year;
     private String color;
