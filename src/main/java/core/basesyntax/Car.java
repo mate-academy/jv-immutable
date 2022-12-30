@@ -27,6 +27,7 @@ public final class Car implements Cloneable {
     public int getYear() {
         return year;
     }
+
     private List<Wheel> getCopy(List<Wheel> wheels) {
         List<Wheel> wheelsCopy = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
@@ -50,6 +51,7 @@ public final class Car implements Cloneable {
     public Car changeEngine(Engine engine) {
         return new Car.Buider().setEngine(engine).build();
     }
+
     public Car changeColor(String newColor) {
         return new Car.Buider().setColor(newColor).build();
     }
@@ -62,8 +64,12 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
@@ -119,6 +125,7 @@ public final class Car implements Cloneable {
             this.engine = engine;
             return this;
         }
+
         public Car build() {
             return new Car(this);
         }
