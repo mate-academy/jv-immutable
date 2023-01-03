@@ -5,9 +5,6 @@ import java.util.Objects;
 public class Wheel implements Cloneable {
     private int radius;
 
-    //implement this class
-
-
     public Wheel(int radius) {
         this.radius = radius;
     }
@@ -29,8 +26,12 @@ public class Wheel implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -41,7 +42,11 @@ public class Wheel implements Cloneable {
     }
 
     @Override
-    protected Wheel clone() {
-        return new Wheel(radius);
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create copy of wheel", e);
+        }
     }
 }

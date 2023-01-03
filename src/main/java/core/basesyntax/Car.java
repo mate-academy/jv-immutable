@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * Make this class immutable. See requirements in task description.
  */
@@ -18,8 +17,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels;
-        this.engine = engine;
+        this.wheels = getCopyOfWheel(wheels);
+        if (engine == null) {
+            this.engine = null;
+        } else {
+            this.engine = engine.clone();
+        }
     }
 
     public int getYear() {
@@ -38,7 +41,7 @@ public final class Car {
         if (engine == null) {
             return null;
         }
-        return getCopyOfEngine(engine);
+        return engine.clone();
     }
 
     public Car changeColor(String color) {
@@ -47,7 +50,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, getCopyOfEngine(engine));
+        return new Car(year, color, wheels, engine.clone());
     }
 
     public Car addWheel(Wheel newWheel) {
@@ -90,16 +93,11 @@ public final class Car {
     }
 
     private List<Wheel> getCopyOfWheel(List<Wheel> wheels) {
-        List<Wheel> listOfWheels = new ArrayList<>(wheels.size());
+        List<Wheel> listOfWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             listOfWheels.add(wheel.clone());
         }
         return listOfWheels;
-    }
-
-    private Engine getCopyOfEngine(Engine engine) {
-        Engine newEngine = engine.clone();
-        return newEngine;
     }
 
     private String getCopyOfColor(String color) {
