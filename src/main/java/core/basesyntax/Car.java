@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = getDeepCopyByWheels(wheels);
-        this.engine = engine.clone();
+        this.engine = getDeepCopyAndCheckEngine(engine);
     }
 
     public Car changeEngine(Engine engine) {
@@ -34,13 +34,17 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year &&
-                color.equals(car.color) &&
-                wheels.equals(car.wheels) &&
-                engine.equals(car.engine);
+        return year == car.year
+                && color.equals(car.color)
+                && wheels.equals(car.wheels)
+                && engine.equals(car.engine);
     }
 
     @Override
@@ -74,7 +78,11 @@ public final class Car {
         return clonedWheels;
     }
 
-    public List<Wheel> getDeepCopyByWheels(List<Wheel> wheels) {
+    public Engine getEngine() {
+        return Objects.nonNull(engine) ? engine.clone() : null;
+    }
+
+    private List<Wheel> getDeepCopyByWheels(List<Wheel> wheels) {
         List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
             clonedWheels.add(wheel.clone());
@@ -82,7 +90,7 @@ public final class Car {
         return clonedWheels;
     }
 
-    public Engine getEngine() {
-        return engine.clone();
+    private Engine getDeepCopyAndCheckEngine(Engine engine) {
+        return Objects.nonNull(engine) ? engine.clone() : null;
     }
 }
