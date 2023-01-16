@@ -17,14 +17,6 @@ public final class Car {
         this.engine = engine == null ? null : engine.clone();
     }
 
-    private List<Wheel> getCopyWheels(List<Wheel> wheels) {
-        List<Wheel> copyList = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            copyList.add(wheel.clone());
-        }
-        return copyList;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -65,6 +57,14 @@ public final class Car {
     public List<Wheel> getWheels() {
         List<Wheel> copyList = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
+            copyList.add(wheel.clone());
+        }
+        return copyList;
+    }
+
+    private List<Wheel> getCopyWheels(List<Wheel> oldWheels) {
+        List<Wheel> copyList = new ArrayList<>(oldWheels.size());
+        for (Wheel wheel : oldWheels) {
             copyList.add(wheel.clone());
         }
         return copyList;
