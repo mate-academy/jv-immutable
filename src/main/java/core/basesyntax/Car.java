@@ -2,7 +2,6 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
@@ -86,13 +85,13 @@ public final class Car {
         }
         Car car = (Car) o;
 
-        boolean colorEquals = (color == null && car.color == null) ||
-                (color != null && color.equals(car.color));
+        boolean colorEquals = (color == null && car.color == null)
+                || (color != null && color.equals(car.color));
 
-        return year == car.year &&
-                colorEquals &&
-                wheels.equals(car.wheels) &&
-                engine.equals(car.engine);
+        return year == car.year
+                && colorEquals
+                && wheels.equals(car.wheels)
+                && engine.equals(car.engine);
     }
 
     @Override

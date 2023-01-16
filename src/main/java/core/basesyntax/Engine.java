@@ -39,7 +39,7 @@ public class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone an engine: "+ this, e);
+            throw new RuntimeException("Can't clone an engine: " + this, e);
         }
     }
 
@@ -61,9 +61,9 @@ public class Engine implements Cloneable {
         }
         Engine e = (Engine) o;
 
-        boolean manufacturerEquals = (this.manufacturer == null && e.manufacturer == null) ||
-                (this.manufacturer != null && this.manufacturer.equals(e.manufacturer));
+        boolean manufacturerEquals = (this.manufacturer == null && e.manufacturer == null)
+                || (this.manufacturer != null && this.manufacturer.equals(e.manufacturer));
 
-        return  manufacturerEquals && this.horsePower == e.horsePower;
+        return manufacturerEquals && this.horsePower == e.horsePower;
     }
 }
