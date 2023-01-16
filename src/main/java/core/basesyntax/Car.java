@@ -62,14 +62,6 @@ public final class Car {
         return copyList;
     }
 
-    private List<Wheel> getCopyWheels(List<Wheel> oldWheels) {
-        List<Wheel> copyList = new ArrayList<>(oldWheels.size());
-        for (Wheel wheel : oldWheels) {
-            copyList.add(wheel.clone());
-        }
-        return copyList;
-    }
-
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
     }
@@ -80,10 +72,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> copyList = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            copyList.add(wheel.clone());
-        }
+        List<Wheel> copyList = getWheels();
         copyList.add(newWheel);
         return new Car(this.year, this.color, copyList, this.engine);
     }
@@ -91,5 +80,13 @@ public final class Car {
     public Car changeColor(String color) {
         return new Car(this.year, color, this.wheels, this.engine);
 
+    }
+
+    private List<Wheel> getCopyWheels(List<Wheel> oldWheels) {
+        List<Wheel> copyList = new ArrayList<>(oldWheels.size());
+        for (Wheel wheel : oldWheels) {
+            copyList.add(wheel.clone());
+        }
+        return copyList;
     }
 }
