@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
-public final class Car implements Cloneable{
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -16,20 +13,23 @@ public final class Car implements Cloneable{
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = getWheels(wheels);
+        this.wheels = getDeepCopyByWheels(wheels);
         this.engine = engine.clone();
     }
 
-    public void changeEngine(Engine engine) {
+    public Car changeEngine(Engine engine) {
 
+        return new Car(getYear(), getColor(), getWheels(), engine);
     }
 
-    public void changeColor(String newColor) {
-
+    public Car changeColor(String newColor) {
+        return new Car(getYear(), newColor, getWheels(), getEngine());
     }
 
-    public void addWheel(Wheel newWheel) {
-
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = getWheels();
+        newWheels.add(newWheel);
+        return new Car(getYear(), getColor(), newWheels, getEngine());
     }
 
     @Override
@@ -58,13 +58,6 @@ public final class Car implements Cloneable{
             + '}';
     }
 
-    @Override
-    public Car clone() {
-        //Car clonedCar = new Car(year, color, getWheels(wheels), getEngine());
-        //return clonedCar;
-        return null;
-    }
-
     public int getYear() {
         return year;
     }
@@ -73,7 +66,15 @@ public final class Car implements Cloneable{
         return color;
     }
 
-    public List<Wheel> getWheels(List<Wheel> wheels) {
+    public List<Wheel> getWheels() {
+        List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(wheel.clone());
+        }
+        return clonedWheels;
+    }
+
+    public List<Wheel> getDeepCopyByWheels(List<Wheel> wheels) {
         List<Wheel> clonedWheels = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
             clonedWheels.add(wheel.clone());
