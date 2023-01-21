@@ -8,11 +8,21 @@ import java.util.Objects;
  * Make this class immutable. See requirements in task description.
  */
 public final class Car implements Cloneable {
-    private int year;
-    private String color;
-    private Engine engine;
-    private List<Wheel> wheels;
+    private final int year;
+    private final String color;
+    private final Engine engine;
+    private final List<Wheel> wheels;
 
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = getCopyWheels(wheels);
+        if (engine != null) {
+            this.engine = engine.clone();
+        } else {
+            this.engine = null;
+        }
+    }
 
     public int getYear() {
         return year;
@@ -23,39 +33,34 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return wheelsDeepClone(wheelsDeepClone(wheels));///
+        return getCopyWheels(wheels);///
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine != null ? engine.clone() : null;
     }
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.year = year;
-        this.color = color;
-        this.wheels = wheels;
-        this.engine = engine.clone();
-    }
-//implement this class
     public Car changeColor(String newColor) {
-       return new Car(year, newColor, wheelsDeepClone(wheels), engine.clone()); ///
+        return new Car(year, newColor, getCopyWheels(wheels), engine.clone()); ///
     }
 
     public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = null;
         if (newWheel != null) {
-            wheels.add(newWheel);
+            newWheels = getCopyWheels(wheels);
+            newWheels.add(newWheel);
         }
-        return new Car(year, color, wheelsDeepClone(wheels), engine.clone()); ///
+        return new Car(year, color, newWheels, engine.clone()); ///
     }
 
-    public Car changeEngine(Engine engine){
+    public Car changeEngine(Engine engine) {
         if (engine == null) {
             engine = this.engine;
         }
-        return new Car(year, color, wheelsDeepClone(wheels), engine);///
+        return new Car(year, color, getCopyWheels(wheels), engine);///
     }
 
-    public  List<Wheel> wheelsDeepClone(List<Wheel> wheels) {
+    public List<Wheel> getCopyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             newWheels.add(wheel.clone());
@@ -63,15 +68,19 @@ public final class Car implements Cloneable {
         return newWheels;
     }
 
-//qwrijrfvdjlds;s'djjj
-//kxkxcjvhxxlx;
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return getYear() == car.getYear() && Objects.equals(getColor(), car.getColor()) && Objects.equals(getWheels(), car.getWheels()) && Objects.equals(getEngine(), car.getEngine());
+        return getYear() == car.getYear() && Objects.equals(getColor(),
+                car.getColor()) && Objects.equals(getWheels(),
+                car.getWheels()) && Objects.equals(getEngine(),
+                car.getEngine());
     }
 
     @Override
@@ -82,10 +91,10 @@ public final class Car implements Cloneable {
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }

@@ -1,9 +1,16 @@
 package core.basesyntax;
 
-public class Engine implements Cloneable{
+import java.util.Objects;
+
+public class Engine implements Cloneable {
 
     private int horsePower;
     private String manufacturer;
+
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
 
     public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
@@ -21,28 +28,34 @@ public class Engine implements Cloneable{
         return manufacturer;
     }
 
-
-    public Engine(int horsePower, String manufacturer) {
-        this.horsePower = horsePower;
-        this.manufacturer = manufacturer;
+    @Override
+    public int hashCode() {
+        return 21 + 3 * horsePower + 4 * manufacturer.hashCode();
     }
 
-    //implement this class
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Engine engine = (Engine) o;
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
+    }
 
     @Override
     protected Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+        return new Engine(horsePower,manufacturer);
     }
 
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 }
