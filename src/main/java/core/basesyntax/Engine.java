@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Engine {
+public class Engine implements Cloneable{
     private int horsePower;
     private String manufacturer;
 
