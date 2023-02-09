@@ -35,7 +35,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        return getEngineCopy(engine);
     }
 
     public Car changeEngine(Engine engine) {
