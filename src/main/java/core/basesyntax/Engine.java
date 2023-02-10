@@ -38,6 +38,24 @@ public class Engine implements Cloneable{
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Engine engine = (Engine) o;
+
+        if (horsePower != engine.horsePower) return false;
+        return manufacturer.equals(engine.manufacturer);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = horsePower;
+        result = 31 * result + manufacturer.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Engine{"
             + "horsePower=" + horsePower

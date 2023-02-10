@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import com.sun.source.tree.LiteralTree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,9 +20,19 @@ public final class Car {
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
-        this.color = new String(color);
-        this.wheels = new ArrayList<>(wheels);
-        this.engine = engine.clone();
+        this.color = color == null ? null : new String(color);
+        this.wheels = new ArrayList<Wheel>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(new Wheel(wheel.getRadius()));
+        }
+        this.engine = engine == null ? null :engine.clone();
+    }
+
+    public Car(Car car) {
+        this.year = car.year;
+        this.color = new String(car.color);
+        this.wheels = new ArrayList<>(car.wheels);
+        this.engine = new Engine(car.engine);
     }
 
     public int getYear() {
@@ -32,23 +44,28 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        List<Wheel> returnedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            returnedWheels.add(new Wheel(wheel.getRadius()));
+        }
+        return returnedWheels;
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine == null ? null :new Engine(engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return this;
+        return new Car(this.year, this.color, this.wheels, engine);
     }
 
     public Car addWheel(Wheel wheel) {
-        return this;
+        this.wheels.add(wheel);
+        return new Car(this.year, this.color, this.wheels, this.engine);
     }
 
     public Car changeColor(String color) {
-        return this;
+        return new Car(this.year, color, this.wheels, this.engine);
     }
 
     @Override
