@@ -1,7 +1,7 @@
 package core.basesyntax;
 
-public final class Wheel implements Cloneable{
-    private final int radius;
+public final class Wheel implements Cloneable {
+    private int radius;
 
     //implement this class
 
@@ -13,8 +13,8 @@ public final class Wheel implements Cloneable{
         return radius;
     }
 
-    public Wheel setRadius(int radius) {
-        return new Wheel(radius);
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public Wheel clone() {
@@ -23,8 +23,12 @@ public final class Wheel implements Cloneable{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Wheel wheel = (Wheel) o;
 
@@ -39,7 +43,7 @@ public final class Wheel implements Cloneable{
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 }
