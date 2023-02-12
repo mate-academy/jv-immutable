@@ -304,4 +304,20 @@ public class CarTest {
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
+
+    @Test
+    public void testToString() {
+    }
+
+    @Test
+    public void testClone() {
+    }
+
+    @Test
+    public void testEquals() {
+    }
+
+    @Test
+    public void testHashCode() {
+    }
 }
