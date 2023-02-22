@@ -78,7 +78,7 @@ public final class Car {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Car)){
+        if (!(o instanceof Car)) {
             return false;
         }
         Car car = (Car) o;
