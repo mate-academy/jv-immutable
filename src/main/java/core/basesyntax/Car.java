@@ -16,11 +16,7 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        List<Wheel> listCopy = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            listCopy.add(wheel.clone());
-        }
-        this.wheels = listCopy;
+        this.wheels = getCopy(wheels);
         if (engine != null) {
             this.engine = engine.clone();
         } else {
@@ -37,11 +33,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> listCopy = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            listCopy.add(wheel.clone());
-        }
-        return listCopy;
+        return getCopy(wheels);
     }
 
     public Engine getEngine() {
@@ -62,7 +54,8 @@ public final class Car implements Cloneable {
         if (car.getClass().equals(Car.class)) {
             Car newCar = (Car) car;
             return year == newCar.year && Objects.equals(color, newCar.color)
-                    && Objects.equals(wheels, newCar.wheels) && Objects.equals(engine, newCar.engine);
+                    && Objects.equals(wheels, newCar.wheels)
+                    && Objects.equals(engine, newCar.engine);
         }
         return false;
     }
@@ -87,16 +80,17 @@ public final class Car implements Cloneable {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
-        }
+        List<Wheel> newWheels = getCopy(wheels);
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
 
-    private List <Wheel> getCopy (List<Wheel> wheels){
-
+    private List<Wheel> getCopy(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
     }
 
     @Override
