@@ -52,16 +52,19 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object car) {
+        if (this == car) {
             return true;
         }
-        if (!(o instanceof Car)) {
+        if (car == null) {
             return false;
         }
-        Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        if (car.getClass().equals(Car.class)) {
+            Car newCar = (Car) car;
+            return year == newCar.year && Objects.equals(color, newCar.color)
+                    && Objects.equals(wheels, newCar.wheels) && Objects.equals(engine, newCar.engine);
+        }
+        return false;
     }
 
     @Override
@@ -90,6 +93,10 @@ public final class Car implements Cloneable {
         }
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
+    }
+
+    private List <Wheel> getCopy (List<Wheel> wheels){
+
     }
 
     @Override
