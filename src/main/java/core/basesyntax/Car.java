@@ -10,7 +10,7 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car (int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>(wheels.size());
@@ -28,7 +28,8 @@ public final class Car {
         if (engine == null) {
             return new Car(year, color, wheels, null);
         }
-        return new Car(year, color, wheels, new Engine(engine.getHorsePower(), engine.getManufacturer()));
+        return new Car(year, color, wheels,
+                new Engine(engine.getHorsePower(), engine.getManufacturer()));
     }
 
     public Car changeColor(String newColor) {
@@ -51,7 +52,7 @@ public final class Car {
         return wheelsCopy;
     }
 
-    public Car addWheel (Wheel newWheel) {
+    public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = getWheels();
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
@@ -73,10 +74,15 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
