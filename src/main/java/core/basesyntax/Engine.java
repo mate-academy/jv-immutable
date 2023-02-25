@@ -41,7 +41,9 @@ public class Engine implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Engine engine = (Engine) o;
         return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
