@@ -19,11 +19,7 @@ public class Wheel implements Cloneable {
 
     @Override
     protected Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Cant create clone of Wheel object", e);
-        }
+        return new Wheel(this.radius);
     }
 
     @Override
@@ -38,14 +34,15 @@ public class Wheel implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
-        return radius == wheel.radius && Objects.equals(radius, wheel.radius);
+        return radius == wheel.radius;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(radius);
     }
-
 }

@@ -13,11 +13,11 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = (color == null) ? null : new String(color);
-        if (wheels == null) {
-            throw new NullPointerException("Car cant ride without wheels");
+        this.wheels = new ArrayList<Wheel>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
         }
-        this.wheels = wheels;
-        this.engine = engine;
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
