@@ -3,6 +3,8 @@ package core.basesyntax;
 public class Wheel implements Cloneable {
     private int radius;
 
+    //implement this class
+
     public Wheel(int radius) {
         this.radius = radius;
     }

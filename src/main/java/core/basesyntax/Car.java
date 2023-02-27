@@ -13,6 +13,7 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
+    //implement this class
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -51,26 +52,22 @@ public final class Car {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (obj == this) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null) {
             return false;
         }
 
-        Car car = (Car) o;
-
-        if (year != car.year) {
-            return false;
+        if (obj.getClass().equals(Car.class)) {
+            Car carToEquals = (Car) obj;
+            return Objects.equals(carToEquals.getColor(), color)
+                    && Objects.equals(carToEquals.getWheels(), wheels)
+                    && Objects.equals(carToEquals.getEngine(), engine)
+                    && Objects.equals(carToEquals.getYear(), year);
         }
-        if (!Objects.equals(color, car.color)) {
-            return false;
-        }
-        if (!Objects.equals(wheels, car.wheels)) {
-            return false;
-        }
-        return Objects.equals(engine, car.engine);
+        return false;
     }
 
     @Override
