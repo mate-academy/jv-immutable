@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = getCopy(wheels);
-        this.engine = engine == null ? null: engine.clone();
+        this.engine = engine == null ? null : engine.clone();
     }
 
     private List<Wheel> getCopy(List<Wheel> wheels) {
@@ -54,6 +54,7 @@ public final class Car {
         list.add(newWhel);
         return new Car(year, color, list, engine);
     }
+
     @Override
     public String toString() {
         return "Car{"
@@ -66,8 +67,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
