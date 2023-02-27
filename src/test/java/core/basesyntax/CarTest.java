@@ -58,7 +58,7 @@ public class CarTest {
     }
 
     @Test
-    public void setRadius_isWheelsInCarChanged() {
+    public void setRadius_chheelsInCarChanged() {
         Wheel expected = new Wheel(12);
         List<Wheel> wheels = List.of(expected);
         Car car = new Car(1999, null, wheels, testEngine);
