@@ -67,6 +67,4 @@ public class Engine implements Cloneable {
             + ", manufacturer='" + manufacturer + '\''
             + '}';
     }
-
-
 }
