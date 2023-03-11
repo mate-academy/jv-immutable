@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>(wheels);
-        this.engine = engine.clone();
+        this.engine = engine;
     }
 
     public Car addWheel(Wheel newWheel) {
