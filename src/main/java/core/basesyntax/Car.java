@@ -48,7 +48,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return null == engine ? null : engine.clone();
     }
 
     @Override
