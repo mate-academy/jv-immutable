@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public final class Car {
     private final int year;
@@ -48,6 +49,22 @@ public final class Car {
 
     public Engine getEngine() {
         return engine.clone();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return year == car.year &&
+                color.equals(car.color) &&
+                wheels.equals(car.wheels) &&
+                engine.equals(car.engine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
     }
 
     @Override
