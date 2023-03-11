@@ -18,7 +18,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> list = new ArrayList<>();
+        List<Wheel> list = getWheels();
         list.add(newWheel);
         return new Car(getYear(), getColor(), list, getEngine());
     }
