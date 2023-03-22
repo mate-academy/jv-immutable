@@ -51,6 +51,7 @@ public class Engine implements Cloneable {
     public int hashCode() {
         return Objects.hash(horsePower, manufacturer);
     }
+
     @Override
     public Engine clone() {
         try {
