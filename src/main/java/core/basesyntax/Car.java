@@ -2,11 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -17,7 +13,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheelList(wheels);
-        this.engine = engine.clone();
+        this.engine = engine == null ? engine : engine.clone();
 
     }
 
@@ -28,6 +24,7 @@ public final class Car {
     public Car changeEngine(Engine engine) {
         return new Car(year, color, cloneWheelList(wheels), engine);
     }
+
     public Car addWheel(Wheel newWheel) {
         List<Wheel> list = cloneWheelList(wheels);
         list.add(newWheel);
@@ -53,7 +50,10 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year && color.equals(car.color) && wheels.equals(car.wheels) && engine.equals(car.engine);
+        return year == car.year
+                && color.equals(car.color)
+                && wheels.equals(car.wheels)
+                && engine.equals(car.engine);
     }
 
     @Override
@@ -75,11 +75,14 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        return cloneWheelList(wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        if (engine == null) {
+            return null;
+        }
+        return engine.clone();
     }
 
     private List<Wheel> cloneWheelList(List<Wheel> wheels) {
