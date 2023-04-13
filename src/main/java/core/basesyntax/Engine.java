@@ -56,18 +56,18 @@ public class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "horsePower=" + horsePower +
-                ", manufacturer='" + manufacturer + '\'' +
-                '}';
+        return "Engine{"
+                +"horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer
+                + '\'' + '}';
     }
 
     @Override
-        protected Engine clone () {
-            try {
-                return (Engine) super.clone();
-            } catch (CloneNotSupportedException e) {
-                throw new RuntimeException("Cant create clone of Engine object", e);
-            }
+        protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cant create clone of Engine object", e);
         }
     }
+}
