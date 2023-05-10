@@ -32,11 +32,11 @@ public final class Car {
     }
 
     private List<Wheel> getWheelsCopy(List<Wheel> wheels) {
-        List<Wheel> whellClone = new ArrayList<>(wheels.size());
+        List<Wheel> wheelClone = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
-            whellClone.add(wheel.clone());
+            wheelClone.add(wheel.clone());
         }
-        return whellClone;
+        return wheelClone;
     }
 
     private Engine engineClone(Engine engine) {
