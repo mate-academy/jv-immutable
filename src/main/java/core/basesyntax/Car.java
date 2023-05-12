@@ -13,7 +13,7 @@ public final class Car implements Cloneable {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car (int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = new ArrayList<Wheel>();
@@ -23,11 +23,11 @@ public final class Car implements Cloneable {
         this.engine = (engine == null) ? null : engine.clone();
     }
 
-    public int getYear () {
+    public int getYear() {
         return year;
     }
 
-    public String getColor () {
+    public String getColor() {
         return color;
     }
 
