@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Wheel implements Cloneable {
     private int radius;
 
-    //implement this class
     public int getRadius() {
         return radius;
     }
