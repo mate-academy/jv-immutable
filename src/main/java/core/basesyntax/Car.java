@@ -66,16 +66,16 @@ public final class Car {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = getWheels();
-        newWheels.add(newWheel);
-        return new Car(year, color, newWheels, engine);
+        newWheels.add(newWheel.clone());
+        return new Car(year, color, newWheels, getEngine());
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
+        return new Car(year, color, getWheels(), getEngine());
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
+        return new Car(year, newColor, getWheels(), getEngine());
     }
 
     @Override
