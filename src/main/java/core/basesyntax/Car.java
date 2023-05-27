@@ -44,7 +44,7 @@ public final class Car {
 
     public Engine getEngine() {
         if (engine == null) {
-            return engine;
+            return null;
         }
         return engine.clone();
     }
