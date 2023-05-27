@@ -34,6 +34,7 @@ public class Wheel implements Cloneable {
     }
 
     public void setRadius(int i) {
+        this.radius = i;
     }
 
     @Override
