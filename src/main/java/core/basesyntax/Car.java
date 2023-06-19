@@ -39,7 +39,7 @@ public final class Car {
     private List<Wheel> getWheelsCopy(List<Wheel> wheels) {
         List<Wheel> wheelsCopy = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
-            wheelsCopy.add((wheel == null) ? null : wheel.clone());
+            wheelsCopy.add(wheel.clone());
         }
         return wheelsCopy;
     }
