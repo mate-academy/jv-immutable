@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
@@ -21,18 +22,28 @@ public final class Car {
             wheelsCopy.add(wheel.clone());
         }
         this.wheels = wheelsCopy;
-        this.engine = (engine == null) ? null: engine.clone();
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        if (year != car.year) return false;
-        if (color != null ? !color.equals(car.color) : car.color != null) return false;
-        if (wheels != null ? !wheels.equals(car.wheels) : car.wheels != null) return false;
-        return engine != null ? engine.equals(car.engine) : car.engine == null;
+        if (year != car.year) {
+            return false;
+        }
+        if (!Objects.equals(color, car.color)) {
+            return false;
+        }
+        if (!Objects.equals(wheels, car.wheels)) {
+            return false;
+        }
+        return Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -76,16 +87,17 @@ public final class Car {
         }
         return engine.clone();
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Each of these requirements should be fulfilled while designing an immutable class:
-     * - Class should be declared as final so it can’t be extended.
-     * - Make all fields private final so the direct access is not allowed and field value can be assigned only once.
-     * - Your class can’t have setter methods for fields.
-     * - Initialize all fields via a constructor, setting to a field a deep copy of input value.
-     * - In getters you should return deep copy instead of a simple reference to the objects field.
+     * - Class should be declared as final so it can’t be extended
+     * - Make all fields private final so the direct access is not allowed and field value
+     * can be assigned only once
+     * - Your class can’t have setter methods for fields
+     * - Initialize all fields via a constructor, setting to a field a deep copy of input value
+     * - In getters you should return deep copy instead of a simple reference to the objects field
      */
-//////////////////////////////////////////////////////////////////////////////////////////////////
+
     public Car changeEngine(Engine engine) {
         return new Car(this.year, this.color, this.wheels, engine.clone());
     }

@@ -10,8 +10,12 @@ public class Wheel implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Wheel wheel = (Wheel) o;
 
@@ -41,6 +45,10 @@ public class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        return new Wheel(radius);
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't clone wheel", e);
+        }
     }
 }
