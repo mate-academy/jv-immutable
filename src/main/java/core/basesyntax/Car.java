@@ -25,17 +25,17 @@ public final class Car implements Cloneable {
 
     //implement this class
     public Car changeEngine(Engine engine) {
-        return new Car(getYear(),getColor(),getWheels(),engine);
+        return new Car(getYear(), getColor(), getWheels(), engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(getYear(),newColor,getWheels(),getEngine());
+        return new Car(getYear(), newColor, getWheels(), getEngine());
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = new ArrayList<>(getWheels());
         newWheels.add(newWheel);
-        return new Car(getYear(),getColor(),newWheels,getEngine());
+        return new Car(getYear(), getColor(), newWheels, getEngine());
     }
 
     public int getYear() {
@@ -51,8 +51,7 @@ public final class Car implements Cloneable {
         for (Wheel wheel : wheels) {
             if (wheel == null) {
                 copyWheel.add(null);
-            }
-            else {
+            } else {
                 copyWheel.add(wheel.clone());
             }
         }
@@ -68,10 +67,15 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -80,17 +84,17 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    protected Car clone()  {
-        return new Car(getYear(),getColor(),getWheels(),getEngine());
+    protected Car clone() {
+        return new Car(getYear(), getColor(), getWheels(), getEngine());
     }
 
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }
