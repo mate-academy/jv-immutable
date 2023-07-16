@@ -1,10 +1,57 @@
 package core.basesyntax;
 
-public class Engine {
-    private int horsePower;
-    private String manufacturer;
+import java.util.Objects;
 
-    //implement this class
+public class Engine implements Cloneable {
+    private String manufacturer;
+    private int horsePower;
+
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
+    @Override
+    protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("method clone not supported",e);
+        }
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Engine engine = (Engine) o;
+        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(horsePower, manufacturer);
+    }
 
     @Override
     public String toString() {
