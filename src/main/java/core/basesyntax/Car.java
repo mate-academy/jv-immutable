@@ -52,11 +52,11 @@ public final class Car {
 
     @Override
     public int hashCode() {
-        int result = 31;
-        result *= 17 * year;
-        result *= 17 * (color == null ? 0 : color.hashCode());
-        result *= 17 * (wheels == null ? 0 : wheels.hashCode());
-        result *= 17 * (engine == null ? 0 : engine.hashCode());
+        int result = 17;
+        result = 31 * result + year;
+        result = 31 * result + (color == null ? 0 : color.hashCode());
+        result = 31 * result + (wheels == null ? 0 : wheels.hashCode());
+        result = 31 * result + (engine == null ? 0 : engine.hashCode());
         return result;
     }
 

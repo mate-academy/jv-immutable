@@ -44,9 +44,9 @@ public class Engine implements Cloneable {
 
     @Override
     public int hashCode() {
-        int result = 31;
-        result *= 17 * horsePower;
-        result *= 17 * manufacturer.hashCode();
+        int result = 17;
+        result = 31 * result + horsePower;
+        result = 31 * result + manufacturer.hashCode();
         return result;
     }
 

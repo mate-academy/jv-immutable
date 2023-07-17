@@ -17,8 +17,8 @@ public class Wheel implements Cloneable {
 
     @Override
     public int hashCode() {
-        int result = 31;
-        result *= 17 * radius;
+        int result = 17;
+        result = 31 * result + radius;
         return result;
     }
 
