@@ -65,8 +65,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Car car = (Car) obj;
         return Objects.equals(engine, car.engine)
                 && Objects.equals(color, car.color)
