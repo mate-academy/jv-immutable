@@ -5,6 +5,10 @@ import java.util.Objects;
 public class Wheel implements Cloneable {
     private int radius;
 
+    public Wheel(int radius) {
+        this.radius = radius;
+    }
+
     public int getRadius() {
         return radius;
     }
@@ -44,9 +48,5 @@ public class Wheel implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Cannot clone this object", e);
         }
-    }
-
-    public Wheel(int radius) {
-        this.radius = radius;
     }
 }
