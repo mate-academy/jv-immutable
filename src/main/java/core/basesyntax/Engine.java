@@ -1,10 +1,29 @@
 package core.basesyntax;
 
-public class Engine {
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
     @Override
     public String toString() {
@@ -12,5 +31,37 @@ public class Engine {
             + "horsePower=" + horsePower
             + ", manufacturer='" + manufacturer + '\''
             + '}';
+    }
+
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int res = 17 + horsePower;
+
+        if (manufacturer != null) {
+            res += manufacturer.hashCode();
+        }
+
+        return res;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Engine engine = (Engine) o;
+        return horsePower == engine.horsePower && manufacturer.equals(engine.manufacturer);
     }
 }
