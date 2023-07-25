@@ -66,10 +66,10 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year &&
-                color.equals(car.color) &&
-                wheels.equals(car.wheels) &&
-                engine.equals(car.engine);
+        return year == car.year
+                && color.equals(car.color)
+                && wheels.equals(car.wheels)
+                && engine.equals(car.engine);
     }
 
     @Override
@@ -79,12 +79,12 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "year=" + year +
-                ", color='" + color + '\'' +
-                ", wheels=" + wheels +
-                ", engine=" + engine +
-                '}';
+        return "Car{"
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 
     @Override
