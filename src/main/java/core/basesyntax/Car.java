@@ -21,11 +21,11 @@ public final class Car implements Cloneable {
         return new Car(year, color, wheels, engine);
     }
 
-    public Car changeColor (String newColor) {
+    public Car changeColor(String newColor) {
         return new Car(year, newColor, wheels, engine);
     }
 
-    public Car addWheel (Wheel newWheel) {
+    public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(newWheel);
         return new Car(year,color, newWheels, engine);
@@ -66,8 +66,12 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year && color.equals(car.color)
                 && wheels.equals(car.wheels) && engine.equals(car.engine);
