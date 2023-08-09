@@ -21,8 +21,11 @@ public final class Car implements Cloneable {
             list.add(wheel.clone());
         }
         this.wheels = list;
-        Engine engine1 = engine.clone();
-        this.engine = engine1;
+        if (engine != null) {
+            this.engine = engine.clone();
+        } else {
+            this.engine = null;
+        }
 
     }
 
@@ -44,6 +47,7 @@ public final class Car implements Cloneable {
 
     public Engine getEngine() {
         if (engine != null) {
+
             return engine.clone();
         }
         return null;
