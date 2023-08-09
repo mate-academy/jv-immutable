@@ -29,7 +29,7 @@ public class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o ) {
+        if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {
@@ -55,7 +55,7 @@ public class Engine implements Cloneable {
     @Override
     protected Engine clone() {
         try {
-                return (Engine) super.clone();
+            return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException(e);
         }
