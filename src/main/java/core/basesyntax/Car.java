@@ -78,7 +78,7 @@ public final class Car {
         }
         if (obj.getClass().equals(Car.class)) {
             Car current = (Car) obj;
-            Boolean wheelsEquals = this.wheels.size() == current.wheels.size();
+            boolean wheelsEquals = this.wheels.size() == current.wheels.size();
             for (int i = 0; i < wheels.size(); i++) {
                 wheelsEquals = wheelsEquals && this.wheels.get(i).equals(current.wheels.get(i));
             }
