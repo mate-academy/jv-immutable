@@ -48,8 +48,8 @@ public class Engine implements Cloneable {
         }
         if (obj.getClass().equals(Engine.class)) {
             Engine current = (Engine) obj;
-            return (this.horsePower == current.horsePower &&
-                    this.manufacturer.equals(current.manufacturer));
+            return (this.horsePower == current.horsePower
+                    && this.manufacturer.equals(current.manufacturer));
         }
         return false;
     }

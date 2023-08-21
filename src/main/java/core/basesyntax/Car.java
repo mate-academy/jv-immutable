@@ -82,10 +82,10 @@ public final class Car {
             for (int i = 0; i < wheels.size(); i++) {
                 wheelsEquals = wheelsEquals && this.wheels.get(i).equals(current.wheels.get(i));
             }
-            return this.year == current.year &&
-                    this.color.equals(current.color) &&
-                    this.engine.equals(current.engine) &&
-                    wheelsEquals;
+            return this.year == current.year
+                    && this.color.equals(current.color)
+                    && this.engine.equals(current.engine)
+                    && wheelsEquals;
         }
         return false;
     }
