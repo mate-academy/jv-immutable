@@ -17,7 +17,7 @@ public final class Wheel implements Cloneable {
     }
 
     @Override
-    protected Wheel clone() {
+    public Wheel clone() {
 
         return new Wheel(radius);
     }
