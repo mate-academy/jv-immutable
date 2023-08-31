@@ -77,12 +77,7 @@ public final class Car {
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + year;
-        result = 31 * result + (color == null ? 0 : color.hashCode());
-        result = 31 * result + (wheels == null ? 0 : wheels.hashCode());
-        result = 31 * result + (engine == null ? 0 : engine.hashCode());
-        return result;
+        return Objects.hash(color, wheels, engine);
     }
 
     private List<Wheel> getCopyWheels(List<Wheel> wheels) {
