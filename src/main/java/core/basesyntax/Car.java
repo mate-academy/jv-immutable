@@ -13,9 +13,6 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    //implement this class
-
-
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -42,7 +39,7 @@ public final class Car {
         return new Car(year, color, getWheels(), newEngine);
     }
 
-    public Car changeColor (String newColor) {
+    public Car changeColor(String newColor) {
         return new Car(year, newColor, getWheels(), getEngine());
     }
 
@@ -82,6 +79,7 @@ public final class Car {
             + ", engine=" + engine
             + '}';
     }
+
     public List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> copy = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {

@@ -6,7 +6,10 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
 
     private Engine(int horsePower) {
 
@@ -34,17 +37,12 @@ public class Engine implements Cloneable {
             return false;
         }
         Engine engine = (Engine) obj;
-        return horsePower == engine.horsePower &&
-                manufacturer != null && (manufacturer.equals(engine.manufacturer));
+        return horsePower == engine.horsePower
+                && manufacturer != null && (manufacturer.equals(engine.manufacturer));
     }
 
     public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
-    }
-
-    public Engine(int horsePower, String manufacturer) {
-        this.horsePower = horsePower;
-        this.manufacturer = manufacturer;
     }
 
     public int getHorsePower() {
@@ -63,7 +61,6 @@ public class Engine implements Cloneable {
     public Engine clone() {
         try {
             Engine clone = (Engine) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
