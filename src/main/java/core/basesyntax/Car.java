@@ -24,6 +24,7 @@ public final class Car {
     public int getYear() {
         return year;
     }
+
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
     }
@@ -72,9 +73,9 @@ public final class Car {
 
         Car car = (Car) o;
         return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+                Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
