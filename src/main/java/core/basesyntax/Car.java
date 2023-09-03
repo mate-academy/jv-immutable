@@ -43,7 +43,11 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        List<Wheel> clonedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(wheel.clone());
+        }
+        return clonedWheels;
     }
 
     public Engine getEngine() {
