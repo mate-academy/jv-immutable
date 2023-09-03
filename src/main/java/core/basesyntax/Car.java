@@ -17,7 +17,7 @@ public final class Car implements Cloneable {
         for (Wheel wheel: wheels) {
             this.wheels.add(wheel.clone());
         }
-        this.engine = engine != null ? engine.clone(): null;
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -62,10 +62,10 @@ public final class Car implements Cloneable {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -75,11 +75,21 @@ public final class Car implements Cloneable {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "year=" + year +
-                ", color='" + color + '\'' +
-                ", wheels=" + wheels +
-                ", engine=" + engine +
+        return "Car{"
+                +
+                "year="
+                + year
+                +
+                ", color='"
+                + color
+                + '\''
+                +
+                ", wheels="
+                + wheels
+                +
+                ", engine="
+                + engine
+                +
                 '}';
     }
 
