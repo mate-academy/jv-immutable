@@ -41,7 +41,6 @@ public class CarTest {
         Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
             true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
     }
-
     @Test
     public void carConstructor_checkWheelsAfterAddingToCar() {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
