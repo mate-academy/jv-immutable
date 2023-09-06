@@ -82,7 +82,7 @@ public class CarTest {
     @Test
     public void getEngine_checkEngineForNull() {
         Car car = new Car(0, "red", Collections.emptyList(), null);
-        Engine engine = car.    getEngine();
+        Engine engine = car.getEngine();
         Assert.assertEquals("Engines should be null after constructor initialisation.\n",
             true, engine == null);
     }
