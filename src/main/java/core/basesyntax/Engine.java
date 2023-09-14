@@ -52,7 +52,7 @@ public class Engine implements Cloneable {
             clonedEngine.setManufacturer(manufacturer);
             return clonedEngine;
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone Engine object", e);
+            throw new RuntimeException("Can't clone Engine ", e);
         }
     }
 
