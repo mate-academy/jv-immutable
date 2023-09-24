@@ -9,8 +9,6 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    //implement this class
-
     @Override
     public String toString() {
         return "Wheel{"

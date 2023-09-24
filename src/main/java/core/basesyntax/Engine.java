@@ -11,8 +11,6 @@ public class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
-    //implement this class
-
     @Override
     public String toString() {
         return "Engine{"
