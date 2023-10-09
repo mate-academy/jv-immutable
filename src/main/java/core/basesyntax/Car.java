@@ -4,34 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Wheel> listOfWheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = getWheels1(wheels);
-        this.engine = engine == null? null : engine.clone();
+        this.wheels = setWheels(listOfWheels);
+        this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 
     public Car changeEngine(Engine engine) {
-         return new Car(getYear(), getColor(), getWheels(), engine.clone());
+        return new Car(getYear(), getColor(), getWheels(), engine.clone());
     }
 
     public Car changeColor(String newColor) {
@@ -39,12 +36,12 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-         List<Wheel> allWheels = new ArrayList<>();
-         for (Wheel wheel : wheels) {
-             allWheels.add(wheel.clone());
-         }
-         allWheels.add(newWheel);
-         return new Car(getYear(), getColor(), allWheels, getEngine());
+        List<Wheel> allWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            allWheels.add(wheel.clone());
+        }
+        allWheels.add(newWheel);
+        return new Car(getYear(), getColor(), allWheels, getEngine());
     }
 
     @Override
@@ -67,10 +64,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine != null) {
-            return engine.clone();
-        }
-        return null;
+        return engine == null ? null : engine.clone();
     }
 
     public int getYear() {
@@ -81,23 +75,17 @@ public final class Car {
         return color;
     }
 
-    public List<Wheel> getWheels1(List<Wheel> list) {
-        if (wheels == null) {
-            return new ArrayList<>();
-        }
-        List<Wheel> allWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            allWheels.add(wheel.clone());
-        }
-        return allWheels;
+    public List<Wheel> getWheels() {
+        return copyList(wheels);
     }
 
-    public List<Wheel> getWheels() {
-        if (wheels == null) {
-            return new ArrayList<>();
-        }
+    public List<Wheel> setWheels(List<Wheel> list) {
+        return copyList(list);
+    }
+
+    private List<Wheel> copyList(List<Wheel> list) {
         List<Wheel> allWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
+        for (Wheel wheel : list) {
             allWheels.add(wheel.clone());
         }
         return allWheels;
