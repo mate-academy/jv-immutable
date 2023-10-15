@@ -8,8 +8,7 @@ public final class Car implements Cloneable {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
-    private  Engine engine;
-
+    private Engine engine;
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -17,11 +16,11 @@ public final class Car implements Cloneable {
         this.engine = engine.clone();
     }
 
-    public Car changeEngine(Engine engine){
+    public Car changeEngine(Engine engine) {
         return new Car(year, color, wheels, engine);
     }
 
-    public Car changeColor(String newColor){
+    public Car changeColor(String newColor) {
         return new Car(year, newColor,wheels, engine);
     }
 
