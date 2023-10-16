@@ -60,10 +60,10 @@ public final class Car {
         }
 
         Car car = (Car) o;
-        return Objects.equals(year, car.year) &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return Objects.equals(year, car.year)
+            && Objects.equals(color, car.color)
+            && Objects.equals(wheels, car.wheels)
+            && Objects.equals(engine, car.engine);
     }
 
     public int hashCode() {
