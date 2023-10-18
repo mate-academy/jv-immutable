@@ -40,6 +40,7 @@ public final class Car {
     public Car changeColor(String newColor) {
         return new Car(year, newColor, wheels, engine);
     }
+
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheelsList = new ArrayList<>(wheels);
         newWheelsList.add(newWheel);
