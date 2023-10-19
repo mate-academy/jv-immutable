@@ -26,7 +26,6 @@ public class Engine implements Cloneable {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
-//implement this class
 
     @Override
     public String toString() {

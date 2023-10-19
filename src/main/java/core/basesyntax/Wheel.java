@@ -12,7 +12,6 @@ public class Wheel implements Cloneable {
     public int getRadius() {
         return radius;
     }
-//implement this class
 
     public void setRadius(int radius) {
         this.radius = radius;
