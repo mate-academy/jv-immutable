@@ -80,15 +80,17 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> returnWheels = new ArrayList<>(wheels.size());
+        List<Wheel> newWheels = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
-
-            returnWheels.add(wheel.clone());
+            newWheels.add(wheel.clone());
         }
-        return returnWheels;
+        return newWheels;
     }
 
     public Engine getEngine() {
+        if (this.engine == null) {
+            return null;
+        }
         return this.engine.clone();
     }
 }
