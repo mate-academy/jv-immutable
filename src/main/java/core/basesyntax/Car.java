@@ -59,8 +59,10 @@ public final class Car implements Cloneable {
 
         Car current = (Car) car;
         return year == current.year && color.equals(current.color)
-                && (Objects.equals(engine, current.engine) || engine != null && Objects.equals(engine, current.engine))
-                && (Objects.equals(wheels, current.wheels) || wheels != null && Objects.equals(wheels, current.wheels));
+                && (Objects.equals(engine, current.engine) || engine != null
+                && Objects.equals(engine, current.engine))
+                && (Objects.equals(wheels, current.wheels) || wheels != null
+                && Objects.equals(wheels, current.wheels));
     }
 
     @Override
