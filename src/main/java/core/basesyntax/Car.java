@@ -47,40 +47,40 @@ public final class Car {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
-            newWheels.add(newWheel);
-            return new Car(year, color, newWheels, engine);
-        }
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
+    }
 
-        @Override
+    @Override
         public String toString() {
-            return "Car{" + "year=" + year
+        return "Car{" + "year=" + year
                     + ", color='" + color + '\'' + ", wheels=" + wheels
                     + ", engine=" + engine + '}';
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(year, color, wheels, engine);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            Car other = (Car) obj;
-            return year == other.year && Objects.equals(color, other.color)
-                    && wheels.equals(other.wheels) && engine.equals(other.engine);
-        }
-
-        private List<Wheel> getCopy(List<Wheel> wheels) {
-            List<Wheel> wheelsCopy = new ArrayList<>(wheels.size());
-            for (Wheel wheel : wheels) {
-                wheelsCopy.add(wheel.clone());
-            }
-            return wheelsCopy;
-        }
     }
+
+    @Override
+        public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
+    }
+
+    @Override
+        public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Car other = (Car) obj;
+        return year == other.year && Objects.equals(color, other.color)
+                    && wheels.equals(other.wheels) && engine.equals(other.engine);
+    }
+
+    private List<Wheel> getCopy(List<Wheel> wheels) {
+        List<Wheel> wheelsCopy = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            wheelsCopy.add(wheel.clone());
+        }
+        return wheelsCopy;
+    }
+}
