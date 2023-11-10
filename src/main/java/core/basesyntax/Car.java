@@ -16,8 +16,12 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(getCopyWheels(wheels));
-        this.engine = engine.clone();
+        this.engine = (engine == null) ? null : engine.clone();
+        this.wheels = new ArrayList<>();
+
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
     }
 
     public int getYear() {
@@ -37,16 +41,16 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year,newColor,wheels,engine);
+        return (engine != null) ? new Car(year,newColor,wheels,engine) : null;
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine.clone());
+        return (engine != null) ? new Car(year, color, wheels, engine.clone()) : null;
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> wheelsCopy = new ArrayList<>(wheels);
-        wheelsCopy.add(newWheel);
+        List<Wheel> wheelsCopy = getCopyWheels(wheels);
+        wheelsCopy.add(newWheel.clone());
         return new Car(year, color, wheelsCopy, engine.clone());
     }
 

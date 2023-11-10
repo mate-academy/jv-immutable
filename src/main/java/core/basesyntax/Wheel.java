@@ -43,10 +43,6 @@ public final class Wheel implements Cloneable {
 
     @Override
     protected Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Error Clone Wheel",e);
-        }
+        return new Wheel(this.radius);
     }
 }

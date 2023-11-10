@@ -30,11 +30,7 @@ public final class Engine implements Cloneable {
 
     @Override
     protected Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone Engine", e);
-        }
+        return new Engine(this.horsePower, this.manufacturer);
     }
 
     @Override
