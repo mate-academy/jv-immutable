@@ -2,26 +2,26 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel implements Cloneable {
-    private final int radius;
+public class Wheel implements Cloneable {
+    private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
-    }
-
-    public int getRadius() {
-        return radius;
     }
 
     public Wheel setRadius(int radius) {
         return new Wheel(radius);
     }
 
+    public int getRadius() {
+        return radius;
+    }
+
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 
     @Override

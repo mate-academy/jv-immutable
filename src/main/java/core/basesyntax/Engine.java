@@ -2,9 +2,9 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine implements Cloneable {
-    private final int horsePower;
-    private final String manufacturer;
+public class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -12,12 +12,11 @@ public final class Engine implements Cloneable {
     }
 
     public Engine setHorsePower(int horsePower) {
-        return new Engine(horsePower, manufacturer);
+        return new Engine(horsePower, this.manufacturer);
     }
 
     public Engine setManufacturer(String manufacturer) {
-        return Objects.equals(this.manufacturer, manufacturer)
-                ? this : new Engine(horsePower, manufacturer);
+        return new Engine(this.horsePower, manufacturer);
     }
 
     public int getHorsePower() {
@@ -36,9 +35,9 @@ public final class Engine implements Cloneable {
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 
     @Override
@@ -58,5 +57,4 @@ public final class Engine implements Cloneable {
     public int hashCode() {
         return Objects.hash(horsePower, manufacturer);
     }
-
 }
