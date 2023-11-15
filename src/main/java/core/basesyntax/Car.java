@@ -33,7 +33,7 @@ public final class Car implements Cloneable {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return getCopyWheels(wheels);
     }
 
     public Engine getEngine() {
@@ -41,17 +41,19 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String newColor) {
-        return (engine != null) ? new Car(year,newColor,wheels,engine) : null;
+        return new Car(year, newColor, getCopyWheels(wheels), (engine != null)
+                ? engine.clone() : null);
     }
 
-    public Car changeEngine(Engine engine) {
-        return (engine != null) ? new Car(year, color, wheels, engine.clone()) : null;
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, getCopyWheels(wheels), (newEngine != null)
+                ? newEngine.clone() : null);
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> wheelsCopy = getCopyWheels(wheels);
         wheelsCopy.add(newWheel.clone());
-        return new Car(year, color, wheelsCopy, engine.clone());
+        return new Car(year, color, wheelsCopy, (engine != null) ? engine.clone() : null);
     }
 
     private List<Wheel> getCopyWheels(List<Wheel> wheels) {

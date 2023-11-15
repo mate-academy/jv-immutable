@@ -9,8 +9,8 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public Wheel setRadius(int radius) {
-        return new Wheel(radius);
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     public int getRadius() {
