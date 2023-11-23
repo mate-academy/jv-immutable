@@ -42,12 +42,12 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
-    public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
-    }
-
     public Car changeColor(String newColor) {
         return new Car(year, newColor, wheels, engine);
+    }
+
+    public Car changeEngine(Engine engine) {
+        return new Car(year, color, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
