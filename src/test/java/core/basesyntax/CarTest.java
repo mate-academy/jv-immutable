@@ -36,6 +36,7 @@ public class CarTest {
         testEngine.setHorsePower(90);
         testEngine.setManufacturer("new maker");
         Engine engine = testCar.getEngine();
+        System.out.println(testEngine.getHorsePower() + "    " + engine.getHorsePower());
         Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
             true, testEngine.getHorsePower() != engine.getHorsePower());
         Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
