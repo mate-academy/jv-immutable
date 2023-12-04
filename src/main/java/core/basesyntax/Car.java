@@ -91,12 +91,16 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         Car car = (Car) object;
-        return year == car.year && Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) && Objects.equals(engine,
-                car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
