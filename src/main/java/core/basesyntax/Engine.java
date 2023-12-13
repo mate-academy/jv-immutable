@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
-    //implement this class
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
