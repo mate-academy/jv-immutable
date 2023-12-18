@@ -13,7 +13,13 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels;
+        List<Wheel> deepCopyOfWheels = new ArrayList<>();
+        if(wheels != null) {
+            for(Wheel wheel : wheels) {
+                deepCopyOfWheels.add(wheel.clone());
+            }
+        }
+        this.wheels = deepCopyOfWheels;
         if (engine != null) {
             this.engine = engine.clone();
         } else {
@@ -48,15 +54,22 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return this;
+      return new Car(this.year, this.color, this.wheels, engine);
     }
 
-    public Car changeColor(String newColor) {
-        return this;
+    public Car changeColor(String color) {
+        return new Car(this.year, color, this.wheels, this.engine);
     }
 
     public Car addWheel(Wheel wheel) {
-        return this;
+        List<Wheel> deepCopyOfWheels = new ArrayList<>();
+        if(wheels != null) {
+            for(Wheel existingWheel : wheels) {
+                deepCopyOfWheels.add(existingWheel.clone());
+            }
+        }
+        deepCopyOfWheels.add(wheel);
+        return new Car(this.year, this.color, deepCopyOfWheels, this.engine);
     }
 
     @Override
