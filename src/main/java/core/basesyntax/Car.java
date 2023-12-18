@@ -14,8 +14,8 @@ public final class Car {
         this.year = year;
         this.color = color;
         List<Wheel> deepCopyOfWheels = new ArrayList<>();
-        if(wheels != null) {
-            for(Wheel wheel : wheels) {
+        if (wheels != null) {
+            for (Wheel wheel : wheels) {
                 deepCopyOfWheels.add(wheel.clone());
             }
         }
@@ -24,6 +24,9 @@ public final class Car {
             this.engine = engine.clone();
         } else {
             this.engine = null;
+        }
+        if (wheels == null) {
+            throw new NullPointerException();
         }
     }
 
@@ -54,7 +57,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-      return new Car(this.year, this.color, this.wheels, engine);
+        return new Car(this.year, this.color, this.wheels, engine);
     }
 
     public Car changeColor(String color) {
@@ -63,8 +66,8 @@ public final class Car {
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> deepCopyOfWheels = new ArrayList<>();
-        if(wheels != null) {
-            for(Wheel existingWheel : wheels) {
+        if (wheels != null) {
+            for (Wheel existingWheel : wheels) {
                 deepCopyOfWheels.add(existingWheel.clone());
             }
         }
@@ -74,10 +77,17 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -87,6 +97,9 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "year=" + year + ", color='" + color + '\'' + ", wheels=" + wheels + ", engine=" + engine + '}';
+        return "Car{" + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine + '}';
     }
 }
