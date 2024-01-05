@@ -11,7 +11,19 @@ public class Car {
     private List<Wheel> wheels;
     private Engine engine;
 
-    //implement this class
+    /**
+     * Implement this class.
+     */
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = wheels;
+        if (engine != null) {
+            this.engine = engine.clone();
+        } else {
+            this.engine = null;
+        }
+    }
 
     @Override
     public String toString() {
