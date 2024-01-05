@@ -27,7 +27,11 @@ public class Wheel implements Cloneable {
             return false;
         }
         Wheel wheel = (Wheel) o;
-        return radius == wheel.radius;
+        if (radius == wheel.radius) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

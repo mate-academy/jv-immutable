@@ -54,7 +54,11 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : engine.clone();
+        if (engine == null) {
+            return null;
+        } else {
+            return engine.clone();
+        }
     }
 
     public List<Wheel> getWheels() {
