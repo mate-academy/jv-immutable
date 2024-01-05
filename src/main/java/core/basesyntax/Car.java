@@ -13,13 +13,10 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    /**
-     * Implement this class.
-     */
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = getCopyListWheels(wheels);
+        this.wheels = getCopyListWheel(wheels);
         if (engine != null) {
             this.engine = engine.clone();
         } else {
@@ -36,37 +33,48 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> listWheels = getWheels();
-        listWheels.add(newWheel);
-        return new Car(year, color, listWheels, engine);
+        List<Wheel> wheelList = getWheels();
+        wheelList.add(newWheel);
+        return new Car(year, color, wheelList, engine);
     }
 
-    public int getYear() {
-        return year;
+    @Override
+    public String toString() {
+        return "Car{"
+                + "year="
+                + year
+                + ", color='"
+                + color
+                + '\''
+                + ", wheels="
+                + wheels
+                + ", engine="
+                + engine
+                + '}';
+    }
+
+    public Engine getEngine() {
+        return engine == null ? null : engine.clone();
+    }
+
+    public List<Wheel> getWheels() {
+        return getCopyListWheel(wheels);
     }
 
     public String getColor() {
         return color;
     }
 
-    public List<Wheel> getWheels() {
-        return getCopyListWheels(wheels);
+    public int getYear() {
+        return year;
     }
 
-    public Engine getEngine() {
-        if (engine == null) {
-            return null;
-        } else {
-            return engine.clone();
+    private List<Wheel> getCopyListWheel(List<Wheel> list) {
+        List<Wheel> newList = new ArrayList<>(list.size());
+        for (Wheel wheel : list) {
+            newList.add(wheel.clone());
         }
-    }
-
-    private List<Wheel> getCopyListWheels(List<Wheel> listWheel) {
-        List<Wheel> newListWheel = new ArrayList<>(listWheel.size());
-        for (Wheel wheel : listWheel) {
-            newListWheel.add(wheel.clone());
-        }
-        return newListWheel;
+        return newList;
     }
 
     @Override
@@ -87,20 +95,5 @@ public final class Car {
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{"
-                + "year="
-                + year
-                + ", color='"
-                + color
-                + '\''
-                + ", wheels="
-                + wheels
-                + ", engine="
-                + engine
-                + '}';
     }
 }
