@@ -69,7 +69,6 @@ public final class Car implements Cloneable {
 
 
     public Engine getEngine() {
-        //return this.engine == null ? null : this.engine.clone();
         return new Engine(engine.getHorsePower(),engine.getManufacturer());
     }
 
