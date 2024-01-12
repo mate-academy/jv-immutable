@@ -15,12 +15,12 @@ public class Engine implements Cloneable {
         return horsePower;
     }
 
-    public void setHorsePower(int horsePower) {
-       this.horsePower = horsePower;
+    public void setHorsePower(int newHorsePower) {
+        horsePower = newHorsePower;
     }
 
     public void setManufacturer(String newMaker) {
-        this.manufacturer = newMaker;
+        manufacturer = newMaker;
     }
 
     public String getManufacturer() {
@@ -29,15 +29,19 @@ public class Engine implements Cloneable {
 
     @Override
     protected Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
+        return new Engine(horsePower, manufacturer);
     }
 
-    @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Engine engine = (Engine) object;
-        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+        if (this == object) {
+            return true;
+        } else if (object == null || getClass() != object.getClass()) {
+            return false;
+        } else {
+            Engine engine = (Engine) object;
+            return horsePower == engine.horsePower
+                    && Objects.equals(manufacturer, engine.manufacturer);
+        }
     }
 
     @Override

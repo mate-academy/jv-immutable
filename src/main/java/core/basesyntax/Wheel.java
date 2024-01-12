@@ -5,7 +5,7 @@ import java.util.Objects;
 public final class Wheel implements Cloneable {
     private int radius;
 
-    public Wheel (int radius) {
+    public Wheel(int radius) {
         this.radius = radius;
     }
 
@@ -17,24 +17,27 @@ public final class Wheel implements Cloneable {
     }
 
     public int getRadius() {
-        return this.radius;
+        return radius;
     }
 
     public void setRadius(int newRadius) {
-        this.radius = newRadius;
+        radius = newRadius;
     }
 
     @Override
     public Wheel clone() {
-        return new Wheel(this.getRadius());
+        return new Wheel(radius);
     }
 
-    @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Wheel wheel = (Wheel) object;
-        return radius == wheel.radius;
+        if (this == object) {
+            return true;
+        } else if (object == null || getClass() != object.getClass()) {
+            return false;
+        } else {
+            Wheel wheel = (Wheel) object;
+            return radius == wheel.radius;
+        }
     }
 
     @Override
