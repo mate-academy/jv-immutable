@@ -23,8 +23,12 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    protected Engine clone() {
-        return new Engine(horsePower, manufacturer);
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Clone of the wheel couldn't be created", e);
+        }
     }
 
     @Override
@@ -49,10 +53,10 @@ public class Engine implements Cloneable {
     }
 
     public void setHorsePower(int horsePower) {
-        new Engine(horsePower, manufacturer);
+        this.horsePower = horsePower;
     }
 
     public void setManufacturer(String manufacturer) {
-        new Engine(horsePower, manufacturer);
+        this.manufacturer = manufacturer;
     }
 }

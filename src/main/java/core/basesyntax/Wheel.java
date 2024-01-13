@@ -15,8 +15,12 @@ public class Wheel implements Cloneable{
     }
 
     @Override
-    protected Wheel clone() {
-        return new Wheel(radius);
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Clone of the wheel couldn't be created", e);
+        }
     }
 
     @Override
@@ -40,6 +44,6 @@ public class Wheel implements Cloneable{
     }
 
     public void setRadius(int radius) {
-        this.radius = radius;
+        new Wheel(radius);
     }
 }
