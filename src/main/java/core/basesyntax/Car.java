@@ -17,8 +17,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.engine = engine.clone();
-        this.wheels = wheels;
+        if (engine == null) {
+            this.engine = null;
+        } else {
+            this.engine = engine.clone();
+        }
+        this.wheels = getCopyWheels(wheels);
     }
 
     public int getYear() {
@@ -38,7 +42,19 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        if (engine == null) {
+            return null;
+        } else {
+            return engine.clone();
+        }
+    }
+
+    public List<Wheel> getCopyWheels(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel wheel: wheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
     }
 
     public Car addWheel(Wheel newWheel) {
@@ -46,12 +62,12 @@ public final class Car {
         for (Wheel wheel: wheels) {
             newWheels.add(wheel.clone());
         }
-         newWheels.add(newWheel.clone());
+        newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine.clone());
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
@@ -60,10 +76,15 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && color.equals(car.color) && wheels.equals(car.wheels) && engine.equals(car.engine);
+        return year == car.year && color.equals(car.color)
+                && wheels.equals(car.wheels) && engine.equals(car.engine);
     }
 
     @Override
