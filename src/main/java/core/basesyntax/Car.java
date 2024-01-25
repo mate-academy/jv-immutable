@@ -8,40 +8,42 @@ import java.util.Objects;
  * Make this class immutable. See requirements in task description.
  */
 public final class Car implements Cloneable {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     //implement this class
-    public Car (int year,  String color) {
+    public Car (int year,  String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
+        if (engine != null) {
+            this.engine = engine.clone();
+        } else {
+            this.engine = null;
+        }
+        this.wheels = new ArrayList<>(wheels);
     }
 
-    public Car (int year,  String color, Engine engine,  List<Wheel> wheels) {
-        this.year = year;
-        this.color = color;
-        this.engine = engine;
-        this.wheels = wheels;
-    }
-
-    public void addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = this.getWheels();
         newWheels.add(newWheel.clone());
-        this.wheels.clear();
-        this.wheels.addAll(newWheels);
+        return new Car(year, color, newWheels, engine);
     }
 
-    public changeColor(String newColor) {
+    public Car changeColor(String newColor) {
+        return new Car (year, newColor, wheels, engine);
     }
 
-    public changeEngine(Engine engine) {
-
+    public Car changeEngine(Engine engine) {
+        if (engine != null) {
+            return new Car(year, color, wheels, engine.clone());
+        }
+        return null;
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> wheelsCopy = new ArrayList<>(wheels);
+        List<Wheel> wheelsCopy = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
             wheelsCopy.add(wheel.clone());
         }
@@ -49,7 +51,10 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-      return  engine.clone();
+        if(engine != null) {
+            return engine.clone();
+        }
+        return null;
     }
 
     public int getYear() {
