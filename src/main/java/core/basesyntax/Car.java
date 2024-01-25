@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
@@ -30,7 +31,12 @@ public final class Car implements Cloneable {
     }
 
     public Car changeColor(String newColor) {
-        return new Car.Builder().setColor(newColor).build();
+        return new Car.Builder()
+                .setYear(year)
+                .setColor(newColor)
+                .setWheels(wheels)
+                .setEngine(engine.clone())
+                .build();
     }
 
     public void addWheel(Wheel newWheel) {
@@ -79,6 +85,11 @@ public final class Car implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Car not cloned", e);
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, wheels, engine);
     }
 
     private static class Builder {
