@@ -22,10 +22,8 @@ public final class Car {
         } else {
             this.engine = null;
         }
-        this.wheels = new ArrayList<>(wheels.size());
-        for (Wheel wheel : wheels) {
-            this.wheels.add(wheel.clone());
-        }    }
+        this.wheels = new ArrayList<>(getWheels());
+    }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = this.getWheels();
