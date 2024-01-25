@@ -8,35 +8,22 @@ import java.util.Objects;
  * Make this class immutable. See requirements in task description.
  */
 public final class Car implements Cloneable {
-    private final int year;
-    private final String color;
-    private final List<Wheel> wheels;
-    private final Engine engine;
-
-    public Car(Builder builder) {
-        this.year = builder.year;
-        this.color = builder.color;
-        this.engine = builder.engine.clone();
-        this.wheels = getWheels();
-    }
+    private int year;
+    private String color;
+    private List<Wheel> wheels;
+    private Engine engine;
 
     //implement this class
-    public Car changeEngine(Engine engine) {
-        return new Car.Builder()
-                .setYear(year)
-                .setColor(color)
-                .setWheels(wheels)
-                .setEngine(engine.clone())
-                .build();
+    public Car (int year,  String color) {
+        this.year = year;
+        this.color = color;
     }
 
-    public Car changeColor(String newColor) {
-        return new Car.Builder()
-                .setYear(year)
-                .setColor(newColor)
-                .setWheels(wheels)
-                .setEngine(engine.clone())
-                .build();
+    public Car (int year,  String color, Engine engine,  List<Wheel> wheels) {
+        this.year = year;
+        this.color = color;
+        this.engine = engine;
+        this.wheels = wheels;
     }
 
     public void addWheel(Wheel newWheel) {
@@ -44,6 +31,13 @@ public final class Car implements Cloneable {
         newWheels.add(newWheel.clone());
         this.wheels.clear();
         this.wheels.addAll(newWheels);
+    }
+
+    public changeColor(String newColor) {
+    }
+
+    public changeEngine(Engine engine) {
+
     }
 
     public List<Wheel> getWheels() {
@@ -77,49 +71,18 @@ public final class Car implements Cloneable {
     }
 
     @Override
-    public Car clone() {
-        try {
-        Car clonedCar = (Car) super.clone();
-        clonedCar.changeEngine(engine.clone());
-        return clonedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Car not cloned", e);
-        }
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(color, wheels, engine);
     }
 
-    private static class Builder {
-        private int year;
-        private String color;
-        private List<Wheel> wheels;
-        private Engine engine;
-
-        public Builder setYear(int year) {
-            this.year = year;
-            return this;
-        }
-
-        public Builder setColor(String color) {
-            this.color = color;
-            return this;
-        }
-
-        public Builder setWheels(List<Wheel> wheels) {
-            this.wheels = new ArrayList<>(wheels);
-            return this;
-        }
-
-        public Builder setEngine(Engine engine) {
-            this.engine = engine;
-            return this;
-        }
-
-        public Car build() {
-            return new Car(this);
-        }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Car otherCar = (Car) obj;
+        return Objects.equals(color, otherCar.color) &&
+                Objects.equals(wheels, otherCar.wheels) &&
+                Objects.equals(engine, otherCar.engine);
     }
+
 }
