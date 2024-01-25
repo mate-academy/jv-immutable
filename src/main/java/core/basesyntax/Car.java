@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -22,8 +22,10 @@ public final class Car implements Cloneable {
         } else {
             this.engine = null;
         }
-        this.wheels = new ArrayList<>(wheels);
-    }
+        this.wheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }    }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = this.getWheels();
@@ -84,10 +86,10 @@ public final class Car implements Cloneable {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Car otherCar = (Car) obj;
-        return Objects.equals(color, otherCar.color) &&
-                Objects.equals(wheels, otherCar.wheels) &&
-                Objects.equals(engine, otherCar.engine);
+        Car current = (Car) obj;
+        return Objects.equals(color, current.color) &&
+                Objects.equals(wheels, current.wheels) &&
+                Objects.equals(engine, current.engine);
     }
 
 }
