@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Wheel implements Cloneable {
-    private  int radius;
+    private int radius;
     //implement this class
 
     public Wheel(int radius) {
@@ -29,8 +29,12 @@ public class Wheel implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Wheel.class != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || Wheel.class != o.getClass()) {
+            return false;
+        }
         Wheel current = (Wheel) o;
         return radius == current.radius;
     }
