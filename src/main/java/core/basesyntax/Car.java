@@ -13,7 +13,6 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    //implement this class
     public Car (int year,  String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -22,7 +21,7 @@ public final class Car {
         } else {
             this.engine = null;
         }
-        this.wheels = new ArrayList<>(wheels.size());
+        this.wheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             this.wheels.add(wheel.clone());
         }
@@ -66,6 +65,14 @@ public final class Car {
 
     public String getColor() {
         return color;
+    }
+
+    private List<Wheel> deepCopyWheels(List<Wheel> originalWheels) {
+        List<Wheel> newWheels = new ArrayList<>(originalWheels.size());
+        for (Wheel wheel : originalWheels) {
+            newWheels.add(wheel.clone());
+        }
+        return newWheels;
     }
 
     @Override
