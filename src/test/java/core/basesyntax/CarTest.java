@@ -9,7 +9,6 @@ import java.util.Objects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 public class CarTest {
     private Engine testEngine;
     private Car testCar;
@@ -68,7 +67,7 @@ public class CarTest {
             true, !expected.equals(actual));
     }
 
-    @Test
+   @Test
     public void carConstructor_checkColorAfterAddingToCar() {
         String expected = "red";
         Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
@@ -79,7 +78,7 @@ public class CarTest {
             expected != actual);
     }
 
-    @Test
+   @Test
     public void getEngine_checkEngineForNull() {
         Car car = new Car(0, "red", Collections.emptyList(), null);
         Engine engine = car.getEngine();
@@ -87,7 +86,7 @@ public class CarTest {
             true, engine == null);
     }
 
-    @Test
+   @Test
     public void carConstructor_checkWheelsForNull() {
         try {
             Car car = new Car(0, "red", null, testEngine);
@@ -97,7 +96,7 @@ public class CarTest {
         Assert.assertEquals("You should not set objects as null.\n", true, false);
     }
 
-    @Test
+   @Test
     public void changeEngine_isCarTheSameAfterChangingEngine() {
         Car actual = testCar
             .changeEngine(new Engine(90, "Other Maker"));
@@ -215,7 +214,7 @@ public class CarTest {
         }
     }
 
-    @Test
+   @Test
     public void classEngine_checkEngineGetMethods() {
         int expectedHorsePower = 90;
         String expectedMaker = "maker";
@@ -226,7 +225,7 @@ public class CarTest {
             expectedMaker, engine.getManufacturer());
     }
 
-    @Test
+   @Test
     public void classWheel_getWheelRadius() {
         int expected = 20;
         Wheel wheel = new Wheel(expected);
