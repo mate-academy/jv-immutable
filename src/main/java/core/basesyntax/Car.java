@@ -66,6 +66,15 @@ public final class Car implements Cloneable {
     }
 
     @Override
+    protected Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create clone of car", e);
+        }
+    }
+
+    @Override
     public String toString() {
         return "Car{"
             + "year=" + year
