@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine {
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
@@ -12,15 +12,23 @@ public class Engine {
     }
 
     public Engine(Engine engine) {
-        this(engine.horsePower, engine.manufacturer);
+        this(engine.getHorsePower(), engine.getManufacturer());
     }
 
     public int getHorsePower() {
         return horsePower;
     }
 
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public Engine clone() {

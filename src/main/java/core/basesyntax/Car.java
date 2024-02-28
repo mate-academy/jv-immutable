@@ -10,11 +10,11 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    Car(int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = engine.clone();
+        this.engine = engine == null ? null : engine.clone();
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public String getColor() {
