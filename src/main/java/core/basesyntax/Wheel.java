@@ -13,6 +13,10 @@ public class Wheel {
         this(wheel.radius);
     }
 
+    public int getRadius() {
+        return radius;
+    }
+
     public Wheel clone() {
         return new Wheel(this);
     }

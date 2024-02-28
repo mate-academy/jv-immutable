@@ -15,6 +15,14 @@ public class Engine {
         this(engine.horsePower, engine.manufacturer);
     }
 
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
     public Engine clone() {
         return new Engine(this);
     }
