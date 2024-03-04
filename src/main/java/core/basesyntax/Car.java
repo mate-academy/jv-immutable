@@ -22,7 +22,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, getWheels(), cloneEngine(engine));
+        return new Car(year, color, getWheels(), cloneEngine(newEngine));
     }
 
     public Car addWheel(Wheel newWheel) {
@@ -59,8 +59,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
