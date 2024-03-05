@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine implements Cloneable{
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
@@ -18,8 +18,12 @@ public class Engine implements Cloneable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Engine engine = (Engine) obj;
         return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
