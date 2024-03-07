@@ -33,12 +33,13 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        Engine modifiedEngine = new Engine(90, "new maker");
-        Car carWithModifiedEngine = testCar.changeEngine(modifiedEngine);
-        Assert.assertNotEquals("Horse power should be different in a new car with modified engine.\n",
-                testEngine.getHorsePower(), carWithModifiedEngine.getEngine().getHorsePower());
-        Assert.assertNotEquals("Manufacturers should be different in a new car with modified engine.\n",
-                testEngine.getManufacturer(), carWithModifiedEngine.getEngine().getManufacturer());
+        testEngine.setHorsePower(90);
+        testEngine.setManufacturer("new maker");
+        Engine engine = testCar.getEngine();
+        Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
+            true, testEngine.getHorsePower() != engine.getHorsePower());
+        Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
+            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
     }
 
     @Test
@@ -57,13 +58,14 @@ public class CarTest {
     }
 
     @Test
-    public void addWheel_isCarImmutable() {
-        Wheel newWheel = new Wheel(14);
-        Car carWithAddedWheel = testCar.addWheel(newWheel);
-        Assert.assertEquals("Original car's wheels size should remain unchanged.\n",
-                3, testCar.getWheels().size());
-        Assert.assertEquals("New car should have one more wheel.\n",
-                4, carWithAddedWheel.getWheels().size());
+    public void setRadius_isWheelsInCarChanged() {
+        Wheel expected = new Wheel(12);
+        List<Wheel> wheels = List.of(expected);
+        Car car = new Car(1999, null, wheels, testEngine);
+        expected.setRadius(14);
+        Wheel actual = car.getWheels().get(0);
+        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
+            true, !expected.equals(actual));
     }
 
     @Test
