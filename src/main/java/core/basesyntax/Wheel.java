@@ -1,3 +1,5 @@
+package core.basesyntax;
+
 public class Wheel {
     private final int radius;
 
