@@ -303,4 +303,15 @@ public class CarTest {
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
+    
+    @Test
+    public void testChangeEngine() {
+        Engine newEngine = new Engine(120, "New Maker");
+        Car carWithNewEngine = testCar.changeEngine(newEngine);
+    
+       Assert.assertNotEquals("Engine should be different after replacement.",
+               testCar.getEngine().getHorsePower(), carWithNewEngine.getEngine().getHorsePower());
+       Assert.assertNotEquals("Engine manufacturer should be different after replacement.",
+               testCar.getEngine().getManufacturer(), carWithNewEngine.getEngine().getManufacturer());
+    }
 }
