@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import java.util.Objects;
+
 public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
