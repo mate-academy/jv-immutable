@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable{
+public final class Car implements Cloneable {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -85,10 +85,10 @@ public final class Car implements Cloneable{
             return false;
         }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
