@@ -1,16 +1,16 @@
 package core.basesyntax;
 
-public class Engine {
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
-
     @Override
-    public String toString() {
-        return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
+
 }
