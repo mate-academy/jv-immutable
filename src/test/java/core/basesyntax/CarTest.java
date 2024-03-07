@@ -33,13 +33,12 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        testEngine.setHorsePower(90);
-        testEngine.setManufacturer("new maker");
-        Engine engine = testCar.getEngine();
-        Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
-            true, testEngine.getHorsePower() != engine.getHorsePower());
-        Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
-            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
+        Engine modifiedEngine = new Engine(90, "new maker");
+        Car carWithModifiedEngine = testCar.changeEngine(modifiedEngine);
+        Assert.assertNotEquals("Horse power should be different in a new car with modified engine.\n",
+                testEngine.getHorsePower(), carWithModifiedEngine.getEngine().getHorsePower());
+        Assert.assertNotEquals("Manufacturers should be different in a new car with modified engine.\n",
+                testEngine.getManufacturer(), carWithModifiedEngine.getEngine().getManufacturer());
     }
 
     @Test
