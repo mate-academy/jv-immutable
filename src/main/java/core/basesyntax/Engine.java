@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Engine {
+public class Engine implements Cloneable {
     private final int horsePower;
     private final String manufacturer;
 
@@ -17,11 +17,12 @@ public class Engine {
         return manufacturer;
     }
 
-    public Engine withHorsePower(int newHorsePower) {
-        return new Engine(newHorsePower, this.manufacturer);
-    }
-
-    public Engine withManufacturer(String newManufacturer) {
-        return new Engine(this.horsePower, newManufacturer);
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
