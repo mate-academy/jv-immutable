@@ -1,8 +1,6 @@
-package core.basesyntax;
-
 public class Engine {
-    private int horsePower;
-    private String manufacturer;
+    private final int horsePower;
+    private final String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -17,7 +15,11 @@ public class Engine {
         return manufacturer;
     }
 
-    public Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
+    public Engine withHorsePower(int newHorsePower) {
+        return new Engine(newHorsePower, this.manufacturer);
+    }
+
+    public Engine withManufacturer(String newManufacturer) {
+        return new Engine(this.horsePower, newManufacturer);
     }
 }
