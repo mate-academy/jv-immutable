@@ -1,3 +1,5 @@
+package core.basesyntax;
+
 public class Engine {
     private final int horsePower;
     private final String manufacturer;
