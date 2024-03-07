@@ -1,7 +1,5 @@
-package core.basesyntax;
-
 public class Wheel {
-    private int radius;
+    private final int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
@@ -11,7 +9,7 @@ public class Wheel {
         return radius;
     }
 
-    public Wheel clone() {
-        return new Wheel(this.radius);
+    public Wheel withRadius(int newRadius) {
+        return new Wheel(newRadius);
     }
 }
