@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Wheel {
+public class Wheel implements Cloneable {
     private final int radius;
 
     public Wheel(int radius) {
@@ -11,7 +11,12 @@ public class Wheel {
         return radius;
     }
 
-    public Wheel withRadius(int newRadius) {
-        return new Wheel(newRadius);
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
