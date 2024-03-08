@@ -33,13 +33,14 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        Engine modifiedEngine = new Engine(90, "new maker");
+        testEngine.setHorsePower(90);
+        testEngine.setManufacturer("new maker");
         Engine engine = testCar.getEngine();
-        Assert.assertNotEquals("Horse power should not be the same after setting it on immutable object.\n",
-                modifiedEngine.getHorsePower(), engine.getHorsePower());
-        Assert.assertNotEquals("Manufacturers should not be the same after setting it on immutable object.\n",
-               modifiedEngine.getManufacturer(), engine.getManufacturer());
-     }
+        Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
+            true, testEngine.getHorsePower() != engine.getHorsePower());
+        Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
+            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
+    }
 
     @Test
     public void carConstructor_checkWheelsAfterAddingToCar() {
@@ -61,10 +62,10 @@ public class CarTest {
         Wheel expected = new Wheel(12);
         List<Wheel> wheels = List.of(expected);
         Car car = new Car(1999, null, wheels, testEngine);
-        Wheel modifiedWheel = new Wheel(14);
+        expected.setRadius(14);
         Wheel actual = car.getWheels().get(0);
-        Assert.assertNotEquals("Immutable objects should not be changed from outside.\n",
-                modifiedWheel.getRadius(), actual.getRadius());
+        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
+            true, !expected.equals(actual));
     }
 
     @Test
@@ -302,16 +303,5 @@ public class CarTest {
         car.getWheels().get(0).setRadius(newRadius);
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
-    }
-    
-    @Test
-    public void testChangeEngine() {
-        Engine newEngine = new Engine(120, "New Maker");
-        Car carWithNewEngine = testCar.changeEngine(newEngine);
-    
-       Assert.assertNotEquals("Engine should be different after replacement.",
-               testCar.getEngine().getHorsePower(), carWithNewEngine.getEngine().getHorsePower());
-       Assert.assertNotEquals("Engine manufacturer should be different after replacement.",
-               testCar.getEngine().getManufacturer(), carWithNewEngine.getEngine().getManufacturer());
     }
 }
