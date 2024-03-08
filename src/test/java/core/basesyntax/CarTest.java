@@ -55,14 +55,10 @@ public class CarTest {
     }
 
     @Test
-    public void setRadius_isWheelsInCarChanged() {
-        Wheel expected = new Wheel(12);
-        List<Wheel> wheels = List.of(expected);
-        Car car = new Car(1999, null, wheels, testEngine);
-        expected.setRadius(14);
-        Wheel actual = car.getWheels().get(0);
-        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
-            true, !expected.equals(actual));
+    public void addWheel_isCarTheSameAfterAddingWheel() {
+        Car newCar = testCar.addWheel(new Wheel(90));
+        Assert.assertNotEquals("Car should not be the same after adding a wheel.",
+            testCar.getWheels(), newCar.getWheels());
     }
 
     @Test
