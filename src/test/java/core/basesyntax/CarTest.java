@@ -33,10 +33,13 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        Engine newEngine = new Engine(90, "new maker");
-        Car newCar = testCar.changeEngine(newEngine);
-        Assert.assertNotEquals("Engine should be changed after creating a new car object with different engine.",
-            testCar.getEngine(), newCar.getEngine());
+        testEngine.setHorsePower(90);
+        testEngine.setManufacturer("new maker");
+        Engine engine = testCar.getEngine();
+        Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
+            true, testEngine.getHorsePower() != engine.getHorsePower());
+        Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
+            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
     }
 
     @Test
@@ -55,10 +58,14 @@ public class CarTest {
     }
 
     @Test
-    public void addWheel_isCarTheSameAfterAddingWheel() {
-        Car newCar = testCar.addWheel(new Wheel(90));
-        Assert.assertNotEquals("Car should not be the same after adding a wheel.",
-            testCar.getWheels(), newCar.getWheels());
+    public void setRadius_isWheelsInCarChanged() {
+        Wheel expected = new Wheel(12);
+        List<Wheel> wheels = List.of(expected);
+        Car car = new Car(1999, null, wheels, testEngine);
+        expected.setRadius(14);
+        Wheel actual = car.getWheels().get(0);
+        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
+            true, !expected.equals(actual));
     }
 
     @Test
