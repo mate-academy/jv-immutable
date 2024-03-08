@@ -1,21 +1,17 @@
 package core.basesyntax;
 
-public class Wheel implements Cloneable {
-    private int radius;
+public class Wheel {
+    private final int radius;
 
-    @Override
-    public Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+    public Wheel(int radius) {
+        this.radius = radius;
     }
 
-    @Override
-    public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
+    public int getRadius() {
+        return radius;
+    }
+
+    public Wheel clone() {
+        return new Wheel(this.radius);
     }
 }
