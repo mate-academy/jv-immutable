@@ -1,8 +1,8 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public final class Car {
     private final int year;
@@ -33,8 +33,8 @@ public final class Car {
         return engine != null ? engine.clone() : null;
     }
 
-    public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, newEngine);
+    public Car changeEngine(Engine engine) {
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
@@ -52,36 +52,16 @@ public final class Car {
         for (Wheel wheel : wheels) {
             copy.add(wheel.clone());
         }
-        return copy;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+        return Collections.unmodifiableList(copy);
     }
 
     @Override
     public String toString() {
-        return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
+        return "Car{" +
+            "year=" + year +
+            ", color='" + color + '\'' +
+            ", wheels=" + wheels +
+            ", engine=" + engine +
+            '}';
     }
 }
