@@ -1,17 +1,23 @@
 package core.basesyntax;
 
-public class Wheel {
-    private final int radius;
+public class Engine {
+    private final int horsePower;
+    private final String manufacturer;
 
-    public Wheel(int radius) {
-        this.radius = radius;
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
     }
 
-    public int getRadius() {
-        return radius;
+    public int getHorsePower() {
+        return horsePower;
     }
 
-    public Wheel clone() {
-        return new Wheel(this.radius);
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public Engine clone() {
+        return new Engine(this.horsePower, this.manufacturer);
     }
 }
