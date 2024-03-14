@@ -21,8 +21,8 @@ public final class Car implements Cloneable {
         for (Wheel wheel : wheels) {
             this.wheels.add(new Wheel(wheel.getRadius()));
         }
-        this.engine = engine != null ?
-                new Engine(engine.getHorsePower(), engine.getManufacturer()) : null;
+        this.engine = engine != null
+                ? new Engine(engine.getHorsePower(), engine.getManufacturer()) : null;
     }
 
     public Car changeEngine(Engine engine) {
@@ -48,8 +48,8 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return this.engine != null ?
-                new Engine(this.engine.getHorsePower(), this.engine.getManufacturer()) : null;
+        return this.engine != null
+                ? new Engine(this.engine.getHorsePower(), this.engine.getManufacturer()) : null;
     }
 
     public List<Wheel> getWheels() {
