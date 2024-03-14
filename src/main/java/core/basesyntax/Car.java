@@ -6,6 +6,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
+
 public final class Car implements Cloneable {
     private final int year;
     private final String color;
@@ -20,7 +21,8 @@ public final class Car implements Cloneable {
         for (Wheel wheel : wheels) {
             this.wheels.add(new Wheel(wheel.getRadius()));
         }
-        this.engine = engine != null ? new Engine(engine.getHorsePower(), engine.getManufacturer()) : null;
+        this.engine = engine != null ?
+                new Engine(engine.getHorsePower(), engine.getManufacturer()) : null;
     }
 
     public Car changeEngine(Engine engine) {
@@ -46,7 +48,8 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return this.engine != null ? new Engine(this.engine.getHorsePower(), this.engine.getManufacturer()) : null;
+        return this.engine != null ?
+                new Engine(this.engine.getHorsePower(), this.engine.getManufacturer()) : null;
     }
 
     public List<Wheel> getWheels() {
@@ -61,7 +64,7 @@ public final class Car implements Cloneable {
     protected Car clone() {
         Car clone = null;
         try {
-            clone =  (Car) super.clone();
+            clone = (Car) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't clone this car: " + e);
         }

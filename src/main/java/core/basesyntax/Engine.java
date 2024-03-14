@@ -6,35 +6,34 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
-    public Engine(int horsePower, String manufacturer) {
+   public Engine(int horsePower, String manufacturer) {
+       this.horsePower = horsePower;
+       this.manufacturer = manufacturer;
+   }
+
+   public int getHorsePower() {
+        return this.horsePower;
+   }
+
+   public String getManufacturer() {
+        return this.manufacturer;
+   }
+
+    public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
 
-    public int getHorsePower() {
-        return this.horsePower;
-    }
-
-    public String getManufacturer() {
-        return this.manufacturer;
-    }
-
-     public void setHorsePower(int horsePower) {
-         this.horsePower = horsePower;
-     }
-
-     public void setManufacturer(String manufacturer) {
-         this.manufacturer = manufacturer;
-     }
-
     @Override
     protected Engine clone() {
-        try {
+       try {
            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can't clone this engine: " + e);
-        }
+       } catch (CloneNotSupportedException e) {
+           throw new RuntimeException("Can't clone this engine: " + e);
+       }
     }
 
     @Override
@@ -44,6 +43,7 @@ public class Engine implements Cloneable {
             + ", manufacturer='" + manufacturer + '\''
             + '}';
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

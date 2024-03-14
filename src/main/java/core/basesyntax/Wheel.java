@@ -1,12 +1,10 @@
 package core.basesyntax;
 
-import java.util.Objects;
-
 public class Wheel implements Cloneable {
     private int radius;
 
     //implement this class
-    public Wheel (int radius) {
+    public Wheel(int radius) {
         this.radius = radius;
     }
 
@@ -22,7 +20,7 @@ public class Wheel implements Cloneable {
     protected Wheel clone() {
         Wheel clone = null;
         try {
-           clone =  (Wheel) super.clone();
+            clone = (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't clone this wheels: " + e);
         }
