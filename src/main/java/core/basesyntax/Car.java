@@ -17,9 +17,9 @@ public final class Car {
         this.engine = engine == null ? null : engine.clone();
     }
 
-    public Car addWheel(Wheel newWheel) {
+    public Car addWheel(Wheel wheel) {
         List<Wheel> newWheels = getClonedWheels(wheels);
-        newWheels.add(newWheel.clone());
+        newWheels.add(wheel.clone());
         return new Car(year, color, newWheels, engine.clone());
     }
 
