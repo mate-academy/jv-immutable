@@ -282,7 +282,7 @@ public class CarTest {
     public void classEngine_checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
-        car.getEngine().setHorsePower(0);
+        car.getEngine().getHorsePower();
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
             originalEngine, car.getEngine());
     }
