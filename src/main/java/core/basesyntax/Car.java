@@ -59,10 +59,6 @@ public final class Car implements Cloneable {
         return engine.clone();
     }
 
-    public Car changeEngine(Engine otherMaker) {
-        return null;
-    }
-
     public Car addWheel(Wheel wheel) {
         List<Wheel> newList = new ArrayList<>();
         for (Wheel wheel2 : wheels) {
@@ -111,5 +107,9 @@ public final class Car implements Cloneable {
     @Override
     protected Car clone() {
         return new Car(year, color, getWheels(), engine);
+    }
+
+    public Car changeEngine(Engine otherMaker) {
+        return null;
     }
 }
