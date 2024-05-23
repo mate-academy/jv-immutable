@@ -1,7 +1,7 @@
 package core.basesyntax;
 
 public final class Engine implements Cloneable {
-    private final String CLONE_ERROR = "Failed to clone Engine";
+    private static final String CloneError = "Failed to clone Engine";
     private int horsePower;
     private String manufacturer;
 
@@ -31,29 +31,33 @@ public final class Engine implements Cloneable {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(CLONE_ERROR, e);
+            throw new RuntimeException(CloneError, e);
         }
     }
 
     @Override
     public String toString() {
         return "Engine{"
-                + "horsePower=" + horsePower
-                + ", manufacturer='" + manufacturer + '\''
+                + "horsePower="
+                + horsePower
+                + ", manufacturer='"
+                + manufacturer
+                + '\''
                 + '}';
     }
 
     @Override
     public int hashCode() {
-        return CLONE_ERROR.hashCode()
+        return CloneError.hashCode()
                 * Integer.valueOf(horsePower).hashCode()
                 * manufacturer.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Engine castedToEngine && (this == castedToEngine ||
-                (this.manufacturer.equals(castedToEngine.manufacturer) &&
-                        this.horsePower == castedToEngine.horsePower));
+        return obj instanceof Engine castedToEngine
+                && (this == castedToEngine
+                || (this.manufacturer.equals(castedToEngine.manufacturer)
+                && this.horsePower == castedToEngine.horsePower));
     }
 }

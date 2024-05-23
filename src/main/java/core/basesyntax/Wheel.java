@@ -1,7 +1,7 @@
 package core.basesyntax;
 
 public final class Wheel implements Cloneable {
-    private final String CLONE_ERROR = "Failed to clone wheel";
+    private static final String CloneError = "Failed to clone wheel";
     private int radius;
 
     public Wheel(int radius) {
@@ -13,7 +13,7 @@ public final class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(CLONE_ERROR, e);
+            throw new RuntimeException(CloneError, e);
         }
     }
 
@@ -27,14 +27,12 @@ public final class Wheel implements Cloneable {
 
     @Override
     public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
+        return "Wheel{" + "radius=" + radius + '}';
     }
 
     @Override
     public int hashCode() {
-        return radius * CLONE_ERROR.hashCode();
+        return radius * CloneError.hashCode();
     }
 
     @Override
@@ -42,8 +40,8 @@ public final class Wheel implements Cloneable {
         if (obj == null) {
             return false;
         }
-        return obj instanceof Wheel castedObject &&
-                (this == castedObject
-                        || this.radius == castedObject.radius);
+        return obj instanceof Wheel castedObject
+                && (this == castedObject
+                || this.radius == castedObject.radius);
     }
 }
