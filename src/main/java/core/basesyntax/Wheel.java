@@ -8,8 +8,9 @@ public class Wheel implements Cloneable {
     public Wheel(int radius) {
         this.radius = radius;
     }
+
     @Override
-    protected Wheel clone() {
+    public Wheel clone() {
         return new Wheel(radius);
     }
 

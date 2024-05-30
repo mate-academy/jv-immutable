@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine implements Cloneable{
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
@@ -20,7 +20,7 @@ public class Engine implements Cloneable{
     }
 
     @Override
-    protected Engine clone() {
+    public Engine clone() {
         return new Engine(horsePower, manufacturer);
     }
 
