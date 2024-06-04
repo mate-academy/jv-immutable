@@ -2,9 +2,9 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine implements Cloneable {
-    private final int horsePower;
-    private final String manufacturer;
+public class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -15,16 +15,16 @@ public final class Engine implements Cloneable {
         return horsePower;
     }
 
-    public Engine setHorsePower(int newPower) {
-        return new Engine(newPower, manufacturer);
+    public void setHorsePower(int newPower) {
+        this.horsePower = newPower;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    public Engine setManufacturer(String newMaker) {
-        return new Engine(horsePower, newMaker);
+    public void setManufacturer(String newMaker) {
+        manufacturer = newMaker;
     }
 
     @Override

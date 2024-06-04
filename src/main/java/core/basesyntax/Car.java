@@ -17,12 +17,10 @@ public final class Car implements Cloneable {
         if (wheels == null) {
             throw new NullPointerException("wheels is null");
         }
-//        this.wheels = wheels;
         this.wheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
             this.wheels.add(wheel.clone());
         }
-
         this.year = year;
         this.color = color;
         this.engine = engine != null ? engine.clone() : null;
@@ -39,14 +37,13 @@ public final class Car implements Cloneable {
     public List<Wheel> getWheels() {
         List<Wheel> copyWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            Wheel copyWheel = wheel.clone();
-            copyWheels.add(copyWheel);
+            copyWheels.add(wheel.clone());
         }
         return copyWheels;
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, getWheels(), engine);
+        return new Car(year, color, getWheels(), engine.clone());
     }
 
     public Car changeColor(String color) {
