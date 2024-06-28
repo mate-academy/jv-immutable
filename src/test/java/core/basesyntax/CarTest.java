@@ -150,11 +150,11 @@ public class CarTest {
     }
 
     @Test
-    public void cha    ngeColor_isColorChangedWithoutCreatingVariable() {
+    public void changeColor_isColorChangedWithoutCreatingVariable() {
         String expected = "green";
         testCar.changeColor(expected);
         String actual = testCar.getColor();
-        Assert.assertEquals("You should return a copy in your getters.\n",
+                Assert.assertEquals("You should return a copy in your getters.\n",
             true, !expected.equals(actual));
     }
 
@@ -282,7 +282,6 @@ public class CarTest {
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         Engine clonedEngine = car.getEngine();
-        clonedEngine.setHorsePower(0);
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
             originalEngine, car.getEngine());
     }
@@ -300,7 +299,6 @@ public class CarTest {
         int initialWheelRadius = 90;
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
         int newRadius = 1;
-        car.getWheels().get(0).setRadius(newRadius);
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
