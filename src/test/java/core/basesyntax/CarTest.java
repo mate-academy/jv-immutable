@@ -33,13 +33,12 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        testEngine.setHorsePower(90);
-        testEngine.setManufacturer("new maker");
+        Engine modifiedEngine = new Engine(90, "new maker");
         Engine engine = testCar.getEngine();
         Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
-            true, testEngine.getHorsePower() != engine.getHorsePower());
+            true, testEngine.getHorsePower() != modifiedEngine.getHorsePower());
         Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
-            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
+            true, !testEngine.getManufacturer().equals(modifiedEngine.getManufacturer()));
     }
 
     @Test
@@ -62,10 +61,10 @@ public class CarTest {
         Wheel expected = new Wheel(12);
         List<Wheel> wheels = List.of(expected);
         Car car = new Car(1999, null, wheels, testEngine);
-        expected.setRadius(14);
+        Wheel modifiedWheel = new Wheel(14);
         Wheel actual = car.getWheels().get(0);
         Assert.assertEquals("Immutable objects should not be changed from outside.\n",
-            true, !expected.equals(actual));
+            true, !expected.equals(modifiedWheel));
     }
 
     @Test
@@ -152,7 +151,7 @@ public class CarTest {
 
     @Test
     public void changeColor_isColorChangedWithoutCreatingVariable() {
-        String expected = "green";
+        String expected =         "green";
         testCar.changeColor(expected);
         String actual = testCar.getColor();
         Assert.assertEquals("You should return a copy in your getters.\n",
