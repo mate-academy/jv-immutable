@@ -1,50 +1,18 @@
 package core.basesyntax;
 
-import java.util.Objects;
-
-public final class Wheel implements Cloneable {
-    private final int radius;
+public class Wheel implements Cloneable {
+    private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
-    }
-
-    public Wheel(Wheel wheel) {
-        this.radius = wheel.radius;
-    }
-
-    public static Wheel copyOf(Wheel wheel) {
-        return new Wheel(wheel.radius);
     }
 
     public int getRadius() {
         return radius;
     }
 
-    @Override
-    public Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Wheel wheel = (Wheel) o;
-        return radius == wheel.radius;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(radius);
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override
@@ -52,5 +20,31 @@ public final class Wheel implements Cloneable {
         return "Wheel{"
                 + "radius=" + radius
                 + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(radius);
+    }
+
+    @Override
+    public boolean equals(Object wheel) {
+        if (this == wheel) {
+            return true;
+        }
+        if (wheel == null || getClass() != wheel.getClass()) {
+            return false;
+        }
+        Wheel newWheel = (Wheel) wheel;
+        return radius == newWheel.radius;
+    }
+
+    @Override
+    protected Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can`t clone object, because its not cloneable. ", e);
+        }
     }
 }

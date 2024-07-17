@@ -2,47 +2,29 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine implements Cloneable {
-    private final int horsePower;
-    private final String manufacturer;
+public class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
         this.manufacturer = manufacturer;
     }
 
-    public static Engine copyOf(Engine engine) {
-        return new Engine(engine.horsePower, engine.manufacturer);
-    }
-
     public int getHorsePower() {
         return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
 
-    @Override
-    public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Engine engine = (Engine) o;
-        return horsePower == engine.horsePower
-                && Objects.equals(manufacturer, engine.manufacturer);
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Override
@@ -51,10 +33,32 @@ public final class Engine implements Cloneable {
     }
 
     @Override
+    public boolean equals(Object engine) {
+        if (this == engine) {
+            return true;
+        }
+        if (engine == null || getClass() != engine.getClass()) {
+            return false;
+        }
+        Engine newEngine = (Engine) engine;
+        return horsePower == newEngine.horsePower
+                && Objects.equals(manufacturer, newEngine.manufacturer);
+    }
+
+    @Override
     public String toString() {
         return "Engine{"
                 + "horsePower=" + horsePower
                 + ", manufacturer='" + manufacturer + '\''
                 + '}';
+    }
+
+    @Override
+    protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can`t clone object, because its not cloneable. ", e);
+        }
     }
 }
