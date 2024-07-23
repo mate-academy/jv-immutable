@@ -21,7 +21,7 @@ public final class Car {
             wheelCopy.add(wheel.clone());
         }
         this.wheels = wheelCopy;
-        this.engine = engine == null ? null : engine.clone();;
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
