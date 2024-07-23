@@ -54,6 +54,7 @@ public class Engine implements Cloneable {
             + '}';
     }
 
+    @SuppressWarnings("CloneDoesntCallSuperClone")
     @Override
     protected Engine clone() {
         try {
