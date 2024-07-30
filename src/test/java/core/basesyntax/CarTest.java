@@ -97,6 +97,19 @@ public class CarTest {
         Assert.assertEquals("You should not set objects as null.\n", true, false);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CarTest carTest = (CarTest) o;
+        return Objects.equals(testEngine, carTest.testEngine) && Objects.equals(testCar, carTest.testCar) && Objects.equals(testWheels, carTest.testWheels);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(testEngine, testCar, testWheels);
+    }
+
     @Test
     public void changeEngine_isCarTheSameAfterChangingEngine() {
         Car actual = testCar
