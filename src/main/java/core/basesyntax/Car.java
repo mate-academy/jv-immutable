@@ -77,6 +77,15 @@ public final class Car implements Cloneable {
                 + '}';
     }
 
+    @Override
+    protected Car clone() {
+        try {
+            return (Car) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
