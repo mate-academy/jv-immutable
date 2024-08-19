@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Make this class immutable. See requirements in task description.
+ */
 public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
     private final Engine engine;
 
+    //implement this class
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -74,11 +78,11 @@ public final class Car {
     @Override
     public String toString() {
         return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
+                    + "year=" + year
+                    + ", color='" + color + '\''
+                    + ", wheels=" + wheels
+                    + ", engine=" + engine
+                    + '}';
     }
 
     private List<Wheel> deepCopyWheels(List<Wheel> wheels) {
