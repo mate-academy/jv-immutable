@@ -4,7 +4,6 @@ public final class Engine implements Cloneable {
     private final int horsePower;
     private final String manufacturer;
 
-
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
         this.manufacturer = manufacturer;
@@ -20,22 +19,19 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
-
-
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 
     @Override
     protected Engine clone() {
         try {
-            return (Engine)super.clone();
-        }
-        catch (CloneNotSupportedException e) {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't create a clone of Engine object", e);
         }
     }
@@ -48,8 +44,8 @@ public final class Engine implements Cloneable {
         if (object.getClass() != this.getClass()) {
             return false;
         }
-        if (this.horsePower == ((Engine)object).horsePower &&
-                this.manufacturer.equals(((Engine)object).manufacturer)) {
+        if (this.horsePower == ((Engine) object).horsePower
+                && this.manufacturer.equals(((Engine) object).manufacturer)) {
             return true;
         }
         return false;
@@ -66,7 +62,7 @@ public final class Engine implements Cloneable {
     }
 
     public Engine setManufacturer(String newMaker) {
-        int HP = this.getHorsePower();
-        return new Engine(HP, newMaker);
+        int horsePower1 = this.getHorsePower();
+        return new Engine(horsePower1, newMaker);
     }
 }

@@ -64,7 +64,6 @@ public final class Car {
         return new Car(this.getYear(), newColor, this.getWheels(), this.getEngine());
     }
 
-
     @Override
     public String toString() {
         return "Car{"
@@ -85,7 +84,7 @@ public final class Car {
         }
         Car car = (Car) object;
         if ((this.year == car.getYear())
-            && (this.color.equals(car.getColor()))
+                && (this.color.equals(car.getColor()))
                 && this.wheels.equals(car.getWheels())
                 && this.engine.equals(car.getEngine())) {
             return true;
@@ -96,6 +95,5 @@ public final class Car {
     public int hashCode() {
         return year * color.hashCode();
     }
-
 
 }

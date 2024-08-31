@@ -27,8 +27,12 @@ public final class Wheel implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius && o.hashCode() == this.hashCode();
     }
@@ -37,10 +41,10 @@ public final class Wheel implements Cloneable {
     public int hashCode() {
         return radius;
     }
+
     public int getRadius() {
         return this.radius;
     }
-
 
     public Wheel setRadius(int i) {
         return new Wheel(i);
