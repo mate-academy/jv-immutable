@@ -21,10 +21,10 @@ public final class Car {
         this.wheels = new ArrayList<Wheel>();
         for (Wheel wheel : wheels
         ) {
-            this.wheels.add(wheel);
+            this.wheels.add(wheel.clone());
 
         }
-        this.engine = engine;
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public String getColor() {

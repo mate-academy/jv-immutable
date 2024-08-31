@@ -1,8 +1,8 @@
 package core.basesyntax;
 
-public final class Engine implements Cloneable {
-    private final int horsePower;
-    private final String manufacturer;
+public class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -56,13 +56,11 @@ public final class Engine implements Cloneable {
         return horsePower * manufacturer.hashCode();
     }
 
-    public Engine setHorsePower(int newHP) {
-        String manufacturer = this.getManufacturer();
-        return new Engine(newHP, manufacturer);
+    public void setHorsePower(int newHP) {
+        this.horsePower = newHP;
     }
 
-    public Engine setManufacturer(String newMaker) {
-        int horsePower1 = this.getHorsePower();
-        return new Engine(horsePower1, newMaker);
+    public void setManufacturer(String newMaker) {
+        this.manufacturer = newMaker;
     }
 }

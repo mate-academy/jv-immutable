@@ -1,7 +1,7 @@
 package core.basesyntax;
 
-public final class Wheel implements Cloneable {
-    private final int radius;
+public class Wheel implements Cloneable {
+    private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
@@ -46,7 +46,7 @@ public final class Wheel implements Cloneable {
         return this.radius;
     }
 
-    public Wheel setRadius(int i) {
-        return new Wheel(i);
+    public void setRadius(int i) {
+        this.radius = i;
     }
 }
