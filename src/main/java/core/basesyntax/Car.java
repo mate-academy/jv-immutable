@@ -17,7 +17,7 @@ public final class Car implements Cloneable {
         this.year = year;
         this.color = color;
         List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
-        for(Wheel wheel: wheels) {
+        for (Wheel wheel : wheels) {
             wheelCopy.add(wheel.clone());
         }
         this.wheels = wheelCopy;
@@ -34,7 +34,7 @@ public final class Car implements Cloneable {
 
     public List<Wheel> getWheels() {
         List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
-        for(Wheel wheel: wheels) {
+        for (Wheel wheel : wheels) {
             wheelCopy.add(wheel.clone());
         }
 
@@ -42,7 +42,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return engine == null ?  null : engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
@@ -63,19 +63,26 @@ public final class Car implements Cloneable {
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
