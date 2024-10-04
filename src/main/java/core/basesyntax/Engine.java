@@ -28,6 +28,15 @@ public final class Engine implements Cloneable {
     }
 
     @Override
+    protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -43,15 +52,6 @@ public final class Engine implements Cloneable {
     @Override
     public int hashCode() {
         return Objects.hash(horsePower, manufacturer);
-    }
-
-    @Override
-    protected Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
