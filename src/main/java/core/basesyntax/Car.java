@@ -17,6 +17,13 @@ public final class Car {
         this.wheels = new ArrayList<>(wheels);
     }
 
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = wheels;
+        this.engine = engine;
+    }
+
     public int getYear() {
         return year;
     }
