@@ -13,8 +13,19 @@ public final class Car {
     public Car(int year, String color, Engine engine, List<Wheel> wheels) {
         this.year = year;
         this.color = color;
-        this.engine = engine;
-        this.wheels = new ArrayList<>(wheels);
+        this.engine = (engine == null) ? null : engine.clone();
+        List<Wheel> wheelCopies = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            wheelCopies.add(wheel.clone());
+        }
+        this.wheels = wheelCopies;
+    }
+
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = wheels;
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
@@ -26,25 +37,39 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine;
+        return (engine == null) ? null : engine.clone();
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        List<Wheel> copiedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            copiedWheels.add(new Wheel(wheel.getRadius()));
+        }
+        return copiedWheels;
+    }
+
+    public Car(Engine engine, List<Wheel> wheels, int year, String color) {
+        this.engine = engine == null ? null : engine.clone();
+        this.year = year;
+        this.color = color;
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(new Wheel(wheel.getRadius()));
+        }
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, engine, this.wheels);
+        return new Car(this.year, this.color, engine.clone(), getWheels());
     }
 
     public Car changeColor(String newColor) {
-        return new Car(this.year, newColor, this.engine, this.wheels);
+        return new Car(this.year, newColor, this.engine.clone(), getWheels());
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(this.wheels);
-        newWheels.add(newWheel);
-        return new Car(this.year, this.color, this.engine, this.wheels);
+        List<Wheel> newWheels = new ArrayList<>(getWheels());
+        newWheels.add(newWheel.clone());
+        return new Car(this.year, this.color, this.engine, newWheels);
     }
 
     @Override

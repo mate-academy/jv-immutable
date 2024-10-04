@@ -11,6 +11,13 @@ public final class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
+    public Engine(Engine engine) {
+        if (engine != null) {
+            this.horsePower = engine.horsePower;
+            this.manufacturer = engine.manufacturer;
+        }
+    }
+
     public int getHorsePower() {
         return horsePower;
     }
