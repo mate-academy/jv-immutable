@@ -29,6 +29,13 @@ public final class Car {
         return engine;
     }
 
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = wheels;
+        this.engine = engine;
+    }
+
     public List<Wheel> getWheels() {
         return wheels;
     }
