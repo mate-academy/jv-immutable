@@ -35,7 +35,7 @@ public final class Wheel implements Cloneable {
     }
 
     @Override
-    protected Wheel clone() throws CloneNotSupportedException {
+    protected Wheel clone() {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
