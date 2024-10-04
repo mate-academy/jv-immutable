@@ -81,7 +81,7 @@ public class CarTest {
 
     @Test
     public void getEngine_checkEngineForNull() {
-        Car car = new Car(0, "red", Collections.emptyList(), null);
+        Car car = new Car(0, "red", null, Collections.emptyList());
         Engine engine = car.getEngine();
         Assert.assertEquals("Engines should be null after constructor initialisation.\n",
             true, engine == null);
@@ -90,7 +90,7 @@ public class CarTest {
     @Test
     public void carConstructor_checkWheelsForNull() {
         try {
-            Car car = new Car(0, "red", null, testEngine);
+            Car car = new Car(0, "red", testEngine, null);
         } catch (NullPointerException e) {
             return;
         }
@@ -144,7 +144,7 @@ public class CarTest {
     @Test
     public void changeColor_checkChangeColor() {
         String expected = "red";
-        Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
+        Car car = new Car(1999, expected, testEngine, Collections.emptyList());
         Car changedCar = car.changeColor("blue");
         Assert.assertEquals("Color should be changed after changeColor method.\n",
             true, !expected.equals(changedCar.getColor()));
@@ -162,7 +162,7 @@ public class CarTest {
     @Test
     public void classCar_getYear() {
         int expected = 80;
-        Car car = new Car(expected, "red", Collections.emptyList(), testEngine);
+        Car car = new Car(expected, "red", testEngine, Collections.emptyList());
         int actual = car.getYear();
         Assert.assertEquals("Wrong getter for year.\n", expected, actual);
     }
