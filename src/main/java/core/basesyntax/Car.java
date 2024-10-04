@@ -10,13 +10,6 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.year = year;
-        this.color = color;
-        this.wheels = wheels;
-        this.engine = engine;
-    }
-
     public Car(int year, String color, Engine engine, List<Wheel> wheels) {
         this.year = year;
         this.color = color;
