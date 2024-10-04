@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine {
+public final class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
