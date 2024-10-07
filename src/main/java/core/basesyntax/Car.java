@@ -47,6 +47,14 @@ public final class Car {
         return new Car(year, color, newWheels, engine);
     }
 
+    public Car setWheelRadius(int index, int newRadius) {
+        List<Wheel> newWheels = new ArrayList<>(wheels);
+        if (index >= 0 && index < newWheels.size()) {
+            newWheels.set(index, new Wheel(newRadius));
+        }
+        return new Car(year, color, newWheels, engine);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

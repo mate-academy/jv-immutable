@@ -3,8 +3,8 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Engine implements Cloneable {
-    private int horsePower;
-    private String manufacturer;
+    private final int horsePower;
+    private final String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -23,12 +23,8 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
-    public Engine setHorsePower(int horsePower) {
+    public Engine withHorsePower(int horsePower) {
         return new Engine(horsePower, this.manufacturer);
-    }
-
-    public Engine setManufacturer(String manufacturer) {
-        return new Engine(this.horsePower, manufacturer);
     }
 
     @Override

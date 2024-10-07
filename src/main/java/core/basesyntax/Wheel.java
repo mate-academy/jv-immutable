@@ -17,10 +17,6 @@ public final class Wheel implements Cloneable {
         return radius;
     }
 
-    public Wheel setRadius(int newRadius) {
-        return new Wheel(newRadius);
-    }
-
     @Override
     public Wheel clone() {
         try {
