@@ -25,11 +25,15 @@ public final class Engine {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Engine engine = (Engine) o;
-        return horsePower == engine.horsePower &&
-                Objects.equals(manufacturer, engine.manufacturer);
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -39,9 +43,9 @@ public final class Engine {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "horsePower=" + horsePower +
-                ", manufacturer='" + manufacturer + '\'' +
-                '}';
+        return "Engine{"
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer
+                + '\'' + '}';
     }
 }
