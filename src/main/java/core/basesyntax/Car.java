@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = deepCopyWheels(wheels);
-        this.engine = engine != null ? new Engine(engine) : null;
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public int getYear() {
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine != null ? new Engine(engine) : null;
+        return engine != null ? engine.clone() : null;
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -42,16 +42,8 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(newWheel);
-        return new Car(year, color, newWheels, engine);
-    }
-
-    public Car setWheelRadius(int index, int newRadius) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
-        if (index >= 0 && index < newWheels.size()) {
-            newWheels.set(index, new Wheel(newRadius));
-        }
+        List<Wheel> newWheels = deepCopyWheels(wheels);
+        newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
     }
 
@@ -88,7 +80,7 @@ public final class Car {
     private List<Wheel> deepCopyWheels(List<Wheel> wheels) {
         List<Wheel> copy = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            copy.add(new Wheel(wheel));
+            copy.add(wheel.clone());
         }
         return copy;
     }
