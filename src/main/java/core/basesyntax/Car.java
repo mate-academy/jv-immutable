@@ -81,4 +81,8 @@ public final class Car {
             + ", engine=" + engine
             + '}';
     }
+
+    Car changeEngine(Engine engine) {
+        return new Car(getYear(), getColor(), getWheels(), engine);
+    }
 }
