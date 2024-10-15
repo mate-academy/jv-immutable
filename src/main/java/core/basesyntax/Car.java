@@ -89,4 +89,13 @@ public final class Car {
     Car changeColor(String newColor) {
         return new Car(getYear(), newColor, getWheels(), getEngine());
     }
+
+    Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel w : wheels) {
+            newWheels.add(w.clone());
+        }
+        newWheels.add(newWheel);
+        return new Car(getYear(), getColor(), newWheels, getEngine());
+    }
 }
