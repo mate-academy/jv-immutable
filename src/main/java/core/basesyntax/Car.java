@@ -86,4 +86,12 @@ public final class Car {
     public Car addWheel(Wheel newWheel) {
         return new Car(new Wheel(newWheel.getRadius()));
     }
+
+    private static List<Wheel> getCopy (List<Wheel> wheels) {
+        List<Wheel> copyWheel = new ArrayList<>(wheels.size());
+        for(Wheel wheel : wheels) {
+            copyWheel.add(wheel.clone());
+        }
+        return copyWheel;
+    }
 }
