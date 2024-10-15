@@ -13,7 +13,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
+        this.wheels = getCopy(wheels);
         this.engine = engine.clone();
     }
 
