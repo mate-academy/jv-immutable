@@ -29,7 +29,6 @@ public final class Car {
         this.wheels.add(wheel);
     }
 
-
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
@@ -37,11 +36,11 @@ public final class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
 
-        if(obj == null || obj.getClass() != this.getClass()) {
+        if (obj == null || obj.getClass() != this.getClass()) {
             return false;
         }
         Car car = (Car) obj;
@@ -79,6 +78,7 @@ public final class Car {
     public Car changeEngine(Engine engine) {
         return new Car(new Engine(engine.getHorsePower(), engine.getManufacturer()));
     }
+
     public Car changeColor(String newColor) {
         return new Car(newColor);
     }

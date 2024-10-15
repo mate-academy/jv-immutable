@@ -1,7 +1,7 @@
 package core.basesyntax;
 
 public class Engine implements Cloneable {
-    private final int horsePower;
+    private int horsePower;
     private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
@@ -28,5 +28,13 @@ public class Engine implements Cloneable {
                 + "horsePower=" + horsePower
                 + ", manufacturer='" + manufacturer + '\''
                 + '}';
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }
