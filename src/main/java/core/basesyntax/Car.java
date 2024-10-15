@@ -25,16 +25,28 @@ public final class Car {
         this.wheels = newWheels;
     }
 
-/**
- * Make this class immutable. See requirements in task description.
- */
-public class Car {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+    public int getYear() {
+        return year;
+    }
 
-    //implement this class
+    public String getColor() {
+        return color;
+    }
+
+    public List<Wheel> getWheels() {
+        List<Wheel> clonedWheels = new ArrayList<>();
+        for (Wheel w : wheels) {
+            clonedWheels.add(w.clone());
+        }
+        return clonedWheels;
+    }
+
+    public Engine getEngine() {
+        if (engine != null) {
+            return engine.clone();
+        }
+        return null;
+    }
 
     @Override
     public boolean equals(Object o) {
