@@ -11,7 +11,11 @@ public class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        return new Wheel(radius);
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't clone objects", e);
+        }
     }
 
     @Override
