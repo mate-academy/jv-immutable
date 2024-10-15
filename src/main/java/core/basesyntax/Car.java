@@ -85,4 +85,8 @@ public final class Car {
     Car changeEngine(Engine engine) {
         return new Car(getYear(), getColor(), getWheels(), engine);
     }
+
+    Car changeColor(String newColor) {
+        return new Car(getYear(), newColor, getWheels(), getEngine());
+    }
 }
