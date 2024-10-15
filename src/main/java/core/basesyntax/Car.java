@@ -5,28 +5,16 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Car {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = getCopy(wheels);
-        this.engine = engine.clone();
-    }
-
-    public Car(Engine engine) {
-        this.engine = engine;
-    }
-
-    public Car(String color) {
-        this.color = color;
-    }
-
-    public Car(Wheel wheel) {
-        this.wheels.add(wheel);
+        this.engine = engine == null ? null : engine.clone();
     }
 
     @Override
@@ -68,23 +56,25 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return getCopy(wheels);
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(new Engine(engine.getHorsePower(), engine.getManufacturer()));
+        return new Car(year, color, wheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(newColor);
+        return new Car(year, newColor, wheels, engine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        return new Car(new Wheel(newWheel.getRadius()));
+        List<Wheel> newWheels = getCopy(wheels);
+        newWheels.add(newWheel);
+        return new Car(this.year, this.color, newWheels, this.engine);
     }
 
     private static List<Wheel> getCopy(List<Wheel> wheels) {
