@@ -76,9 +76,13 @@ public final class Car {
         return new Car(this.year, this.color, newWheels, this.engine);
     }
 
-    public int getYear() { return year; }
+    public int getYear() {
+        return year;
+    }
 
-    public String getColor() { return new String(color); }
+    public String getColor() {
+        return new String(color);
+    }
 
     public List<Wheel> getWheels() {
         List<Wheel> newWheels = new ArrayList<>(wheels.size());
@@ -89,7 +93,9 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        if (engine == null) return null;
+        if (engine == null) {
+            return null;
+        }
         return engine.clone();
     }
 }

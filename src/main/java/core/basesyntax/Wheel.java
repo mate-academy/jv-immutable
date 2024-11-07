@@ -5,15 +5,15 @@ import java.util.Objects;
 public class Wheel implements Cloneable {
     private int radius;
 
+    public Wheel(int radius) {
+        this.radius = radius;
+    }
+
     @Override
     public String toString() {
         return "Wheel{"
             + "radius=" + radius
             + '}';
-    }
-
-    public Wheel(int radius) {
-        this.radius = radius;
     }
 
     @Override

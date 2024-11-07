@@ -6,7 +6,10 @@ public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
 
     @Override
     public String toString() {
@@ -14,11 +17,6 @@ public class Engine implements Cloneable {
             + "horsePower=" + horsePower
             + ", manufacturer='" + manufacturer + '\''
             + '}';
-    }
-
-    public Engine(int horsePower, String manufacturer) {
-        this.horsePower = horsePower;
-        this.manufacturer = manufacturer;
     }
 
     @Override
