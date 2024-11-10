@@ -18,6 +18,9 @@ public final class Car {
         for (Wheel wheel : wheels) {
             this.wheels.add(wheel.clone()); // создаём копии каждого колеса
         }
+        if (engine == null) {
+            throw new IllegalArgumentException("Engine cannot be null");
+        }
         this.engine = engine.clone(); // создаём копию двигателя
     }
 
@@ -32,9 +35,9 @@ public final class Car {
     public List<Wheel> getWheels() {
         List<Wheel> wheelsCopy = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            wheelsCopy.add(wheel.clone()); // возвращаем копии колёс
+            wheelsCopy.add(wheel.clone()); // возвращаем копию каждого колеса
         }
-        return Collections.unmodifiableList(wheelsCopy); // возвращаем неизменяемый список
+        return wheelsCopy; // убрали Collections.unmodifiableList
     }
 
     public Engine getEngine() {
