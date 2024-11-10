@@ -11,12 +11,19 @@ public final class Car {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.year = year;
-        this.color = color;
-        this.wheels = List.copyOf(wheels);
+        // Проверка на null для входных данных
+        if (wheels == null) {
+            throw new NullPointerException("Wheels list cannot be null");
+        }
 
-        // Если engine == null, установите значение null
-        this.engine = engine != null ? engine.clone() : null;
+        this.year = year;
+        this.color = color != null ? new String(color) : null; // Чтобы избежать мутации строки
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone()); // Глубокое копирование списка колес
+        }
+
+        this.engine = engine != null ? engine.clone() : null; // Клонирование двигателя, если он не null
     }
 
     public int getYear() {
@@ -28,52 +35,51 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> wheelsCopy = new ArrayList<>();
+        // Возвращаем новый список, чтобы предотвратить мутацию
+        List<Wheel> copiedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            wheelsCopy.add(wheel.clone()); // возвращаем копию каждого колеса
+            copiedWheels.add(wheel.clone());
         }
-        return wheelsCopy; // убрали Collections.unmodifiableList
+        return copiedWheels;
     }
 
     public Engine getEngine() {
-        return engine.clone(); // возвращаем копию двигателя
+        return engine != null ? engine.clone() : null; // Возвращаем клон двигателя
     }
 
-    public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, this.wheels, engine);
+    public Car changeEngine(Engine newEngine) {
+        return new Car(this.year, this.color, this.wheels, newEngine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>(this.wheels);
+        newWheels.add(newWheel.clone()); // Клонируем новый объект колеса
+        return new Car(this.year, this.color, newWheels, this.engine);
     }
 
     public Car changeColor(String newColor) {
         return new Car(this.year, newColor, this.wheels, this.engine);
     }
 
-    public Car addWheel(Wheel newWheel) {
-        List<Wheel> newList = new ArrayList<>(this.wheels); // создаём копию списка
-        newList.add(newWheel.clone()); // добавляем копию нового колеса
-        return new Car(this.year, this.color, newList, this.engine);
-    }
-
     @Override
     public String toString() {
-        return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
+        return "Car{" +
+                "year=" + year +
+                ", color='" + color + '\'' +
+                ", wheels=" + wheels +
+                ", engine=" + engine +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(wheels, car.wheels) &&
+                Objects.equals(engine, car.engine);
     }
 
     @Override
