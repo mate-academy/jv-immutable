@@ -13,14 +13,10 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            this.wheels.add(wheel.clone()); // создаём копии каждого колеса
-        }
-        if (engine == null) {
-            throw new IllegalArgumentException("Engine cannot be null");
-        }
-        this.engine = engine.clone(); // создаём копию двигателя
+        this.wheels = List.copyOf(wheels);
+
+        // Если engine == null, установите значение null
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public int getYear() {
