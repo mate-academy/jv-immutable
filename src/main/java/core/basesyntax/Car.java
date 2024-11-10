@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -17,8 +14,11 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = List.copyOf(wheels);
-        this.engine = engine.clone();
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone()); // создаём копии каждого колеса
+        }
+        this.engine = engine.clone(); // создаём копию двигателя
     }
 
     public int getYear() {
@@ -30,11 +30,15 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        List<Wheel> wheelsCopy = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            wheelsCopy.add(wheel.clone()); // возвращаем копии колёс
+        }
+        return Collections.unmodifiableList(wheelsCopy); // возвращаем неизменяемый список
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine.clone(); // возвращаем копию двигателя
     }
 
     public Car changeEngine(Engine engine) {
@@ -46,9 +50,8 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newList = new ArrayList<>();
-        Collections.copy(newList, this.wheels);
-        newList.add(newWheel);
+        List<Wheel> newList = new ArrayList<>(this.wheels); // создаём копию списка
+        newList.add(newWheel.clone()); // добавляем копию нового колеса
         return new Car(this.year, this.color, newList, this.engine);
     }
 
