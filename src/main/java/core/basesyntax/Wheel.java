@@ -9,16 +9,22 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public Wheel(Wheel other) {
-        this.radius = other.radius;
-    }
-
     public int getRadius() {
-        return radius;
+        return this.radius;
     }
 
     public void setRadius(int radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public Wheel clone() {
+        try {
+            // Вызываем super.clone() для клонирования объекта
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported for Wheel", e);
+        }
     }
 
     @Override
@@ -35,22 +41,11 @@ public class Wheel implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(radius);
-    }
-
-    @Override
-    public Wheel clone() {
-        try {
-            return (Wheel) super.clone(); // Perform a shallow clone
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Cloning failed", e);
-        }
+        return Objects.hash(radius);
     }
 
     @Override
     public String toString() {
-        return "Wheel{"
-            + "radius=" + radius
-            + '}';
+        return "Wheel{" + "radius=" + radius + '}';
     }
 }

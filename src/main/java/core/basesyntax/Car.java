@@ -1,13 +1,9 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -17,7 +13,13 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = Collections.unmodifiableList(new ArrayList<>(wheels));
+        if (wheels == null) {
+            throw new NullPointerException("Wheels list cannot be null");
+        }
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
         this.engine = (engine == null) ? null : new Engine(engine);
     }
 
@@ -30,9 +32,9 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> wheelCopy = new ArrayList<>();
+        List<Wheel> wheelCopy = new ArrayList<>(wheels.size());
         for (Wheel wheel : wheels) {
-            wheelCopy.add(new Wheel(wheel)); // Deep copy for each Wheel
+            wheelCopy.add(wheel.clone());
         }
         return wheelCopy;
     }
