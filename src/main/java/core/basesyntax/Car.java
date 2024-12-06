@@ -52,12 +52,11 @@ public final class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
+
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        }
         Car car = (Car) obj;
         return year.equals(car.year) && engine.equals(car.engine) && color.equals(car.color) && wheels.equals(car.wheels);
     }
