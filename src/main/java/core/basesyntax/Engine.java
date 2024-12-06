@@ -23,7 +23,7 @@ public final class Engine {
         return manufacturer;
     }
 
-    public void  setManufacturer(String newManufacturer) {
+    public void setManufacturer(String newManufacturer) {
         this.manufacturer = newManufacturer;
     }
 
