@@ -3,10 +3,10 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Engine {
-    private final Integer horsePower;
-    private final String manufacturer;
+    private int horsePower;
+    private String manufacturer;
 
-    public Engine(Integer horsePower, String manufacturer) {
+    public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
         this.manufacturer = manufacturer;
     }
@@ -14,9 +14,15 @@ public final class Engine {
     public int getHorsePower() {
         return horsePower;
     }
+    public void setHorsePower(int newHorsePower){
+        this.horsePower = newHorsePower;
+    }
 
     public String getManufacturer() {
         return manufacturer;
+    }
+    public void  setManufacturer(String newManufacturer){
+        this.manufacturer = newManufacturer;
     }
 
     @Override
@@ -28,7 +34,7 @@ public final class Engine {
             return false;
         }
         Engine engine = (Engine) o;
-        return horsePower.equals(engine.horsePower) && manufacturer.equals(engine.manufacturer);
+        return Objects.equals(horsePower, engine.horsePower) && manufacturer.equals(engine.manufacturer);
     }
 
     @Override
