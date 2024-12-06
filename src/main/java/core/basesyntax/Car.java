@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public class Car {
     private final Integer year;
     private final String color;
