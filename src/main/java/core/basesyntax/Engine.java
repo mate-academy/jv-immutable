@@ -14,14 +14,14 @@ public final class Engine {
     public int getHorsePower() {
         return horsePower;
     }
-    public void setHorsePower(int newHorsePower){
+    public void setHorsePower(int newHorsePower) {
         this.horsePower = newHorsePower;
     }
 
     public String getManufacturer() {
         return manufacturer;
     }
-    public void  setManufacturer(String newManufacturer){
+    public void  setManufacturer(String newManufacturer) {
         this.manufacturer = newManufacturer;
     }
 
