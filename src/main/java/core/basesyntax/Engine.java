@@ -34,7 +34,8 @@ public final class Engine {
             return false;
         }
         Engine engine = (Engine) o;
-        return Objects.equals(horsePower, engine.horsePower) && manufacturer.equals(engine.manufacturer);
+        return Objects.equals(horsePower, engine.horsePower)
+                && manufacturer.equals(engine.manufacturer);
     }
 
     @Override
