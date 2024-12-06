@@ -59,10 +59,7 @@ public final class Car {
             return false;
         }
         Car car = (Car) obj;
-        return year.equals(car.year)
-                && engine.equals(car.engine)
-                && color.equals(car.color)
-                && wheels.equals(car.wheels);
+        return year.equals(car.year) && engine.equals(car.engine) && color.equals(car.color) && wheels.equals(car.wheels);
     }
 
     @Override
