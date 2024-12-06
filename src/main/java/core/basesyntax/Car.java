@@ -49,7 +49,6 @@ public final class Car {
         newWheels.add(newWheel);
         return new Car(this.year, this.color, newWheels, this.engine);
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
