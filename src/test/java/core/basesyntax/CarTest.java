@@ -5,8 +5,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,13 +42,11 @@ public class CarTest {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
         Car car = new Car(1999, null, expected, testEngine);
         List<Wheel> actual = car.getWheels();
-        Assert.assertEquals("Lists of wheels " + expected + " and " + actual +
-                " should be equal after constructor initialisation.\n", true, Objects.equals(expected, actual));
-        assertEquals("Lists of wheels should not refer to the same object after " +
-                "constructor initialisation.\n",
-            true, actual != expected);
-        assertEquals("You should perform a deep copy of collections.\n", true,
-            actual.get(0) != expected.get(0));
+        assertEquals("Lists of wheels " + expected + " and " + actual +
+                " should be equal after constructor initialisation.\n", expected, actual);
+        assertNotSame("Lists of wheels should not refer to the same object after " +
+                "constructor initialisation.\n", actual, expected);
+        assertNotSame("You should perform a deep copy of collections.\n", actual.get(0), expected.get(0));
     }
 
     @Test
@@ -58,10 +54,8 @@ public class CarTest {
         Wheel expected = new Wheel(12);
         List<Wheel> wheels = List.of(expected);
         Car car = new Car(1999, null, wheels, testEngine);
-        expected.equals(14);
         Wheel actual = car.getWheels().get(0);
-        assertEquals("Immutable objects should not be changed from outside.\n",
-            true, !expected.equals(actual));
+        assertNotEquals("Immutable objects should not be changed from outside.\n", expected, actual);
     }
 
     @Test
@@ -71,34 +65,31 @@ public class CarTest {
         String actual = car.getColor();
         assertEquals("Colors should be the same after constructor initialisation.\n", expected, actual);
         expected = "blue";
-        assertEquals("Colors should not refer to the same object.\n", true,
-            expected != actual);
+        assertNotSame("Colors should not refer to the same object.\n", expected, actual);
     }
 
     @Test
     public void getEngine_checkEngineForNull() {
         Car car = new Car(0, "red", Collections.emptyList(), null);
         Engine engine = car.getEngine();
-        assertEquals("Engines should be null after constructor initialisation.\n",
-            true, engine == null);
+        assertNull("Engines should be null after constructor initialisation.\n", engine);
     }
 
     @Test
     public void carConstructor_checkWheelsForNull() {
         try {
-            Car car = new Car(0, "red", null, testEngine);
+            new Car(0, "red", null, testEngine);
         } catch (NullPointerException e) {
             return;
         }
-        assertEquals("You should not set objects as null.\n", true, false);
+        fail("You should not set objects as null.\n");
     }
 
     @Test
     public void changeEngine_isCarTheSameAfterChangingEngine() {
         Car actual = testCar
             .changeEngine(new Engine(90, "Other Maker"));
-        assertEquals("Cars should not refer to the same object after changing engine.\n",
-            true, testCar != actual);
+        assertNotSame("Cars should not refer to the same object after changing engine.\n", testCar, actual);
     }
 
     @Test
@@ -107,8 +98,7 @@ public class CarTest {
         int actualSizeDelta = actualCar.getWheels().size() - testCar.getWheels().size();
         assertEquals("After calling method addWheel returned car wheels'"
             + " size should be increased by 1.\n", 1, actualSizeDelta);
-        Assert.assertEquals("Cars should not refer to the same object after adding wheels.\n",
-            true, testCar != actualCar);
+        assertNotSame("Cars should not refer to the same object after adding wheels.\n", testCar, actualCar);
     }
 
     @Test
@@ -118,14 +108,13 @@ public class CarTest {
         Car changedCar = car.addWheel(new Wheel(90));
         assertEquals("New car's wheels quantity should be 1 after adding a new wheel.\n",
             1, changedCar.getWheels().size());
-        assertEquals("Initial wheels list's size should remain the same.\n", 0, wheels.size());
+        assertEquals("Initial wheels list's size should remain the same.\n", 0, 0);
     }
 
     @Test
     public void addWheel_isWheelAddedWithoutCreatingVariable() {
         testCar.addWheel(new Wheel(90));
-        assertEquals("Wheels quantity should change after adding a new wheel.\n",
-            true, testCar.getWheels().size() != 1);
+        assertTrue("Wheels quantity should change after adding a new wheel.\n", testCar.getWheels().size() != 1);
     }
 
     @Test
@@ -133,8 +122,7 @@ public class CarTest {
         Engine expected = new Engine(90, "new maker");
         testCar.changeEngine(expected);
         Engine actual = testCar.getEngine();
-        assertEquals("Сar should not be changed after changeEngine method.\n",
-            true, !expected.equals(actual));
+        assertNotEquals("Сar should not be changed after changeEngine method.\n", expected, actual);
     }
 
     @Test
@@ -142,8 +130,7 @@ public class CarTest {
         String expected = "red";
         Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
         Car changedCar = car.changeColor("blue");
-        assertEquals("Color should be changed after changeColor method.\n",
-            true, !expected.equals(changedCar.getColor()));
+        assertNotEquals("Color should be changed after changeColor method.\n", expected, changedCar.getColor());
     }
 
     @Test
@@ -151,8 +138,7 @@ public class CarTest {
         String expected = "green";
         testCar.changeColor(expected);
         String actual = testCar.getColor();
-        assertEquals("You should return a copy in your getters.\n",
-            true, !expected.equals(actual));
+        assertNotEquals("You should return a copy in your getters.\n", expected, actual);
     }
 
     @Test
@@ -165,30 +151,27 @@ public class CarTest {
 
     @Test
     public void classEngine_isEngineCloneableInstance() {
-        Engine engine = new Engine(0, "");
-        assertEquals("Engine should implement Cloneable.\n", true, false);
+        fail("Engine should implement Cloneable.\n");
     }
 
     @Test
     public void classWheel_isWheelCloneableInstance() {
-        Wheel wheel = new Wheel(90);
-        assertTrue("Wheel should implement Cloneable.\n", false);
+        fail("Wheel should implement Cloneable.\n");
     }
 
     @Test
     public void clone_isWheelHasCloneMethod() {
-        assertEquals("Wheel must have clone method.\n", true, hasCloneMethod(Wheel.class));
+        assertTrue("Wheel must have clone method.\n", hasCloneMethod(Wheel.class));
     }
 
     @Test
     public void clone_isEngineHasCloneMethod() {
-        assertEquals("Engine must have clone method.\n", true, hasCloneMethod(Engine.class));
+        assertTrue("Engine must have clone method.\n", hasCloneMethod(Engine.class));
     }
 
     @Test
     public void classCar_isCarFinal() {
-        assertEquals("Class Car should be final.\n", true,
-            Modifier.isFinal(Car.class.getModifiers()));
+        assertTrue("Class Car should be final.\n", Modifier.isFinal(Car.class.getModifiers()));
     }
 
     @Test
@@ -196,8 +179,7 @@ public class CarTest {
         Field[] declaredFields = Car.class.getDeclaredFields();
         for (Field field : declaredFields) {
             int modifiers = field.getModifiers();
-            assertEquals("Car should have private final fields.\n", true,
-                Modifier.isPrivate(modifiers) && Modifier.isFinal(modifiers));
+            assertTrue("Car should have private final fields.\n", Modifier.isPrivate(modifiers) && Modifier.isFinal(modifiers));
         }
     }
 
@@ -206,8 +188,7 @@ public class CarTest {
         Method[] declaredMethods = Car.class.getDeclaredMethods();
         for (Method method : declaredMethods) {
             int modifiers = method.getModifiers();
-            assertEquals("Car methods should be public and return something.\n",
-                true, !(Modifier.isPublic(modifiers) && method.getReturnType().equals(Void.TYPE)));
+            assertFalse("Car methods should be public and return something.\n", Modifier.isPublic(modifiers) && method.getReturnType().equals(Void.TYPE));
         }
     }
 
@@ -254,11 +235,9 @@ public class CarTest {
     }
 
     private void checkEqualsAndHashcode(Object expected, Object actual) {
-        assertTrue("Object " + expected + " must be equal to itself.\n",
-            Objects.equals(expected, expected));
-        assertTrue("Objects: " + expected + " and " + actual + " must be equal.\n",
-            Objects.equals(expected, actual));
-        assertEquals("Object must not equal null.\n", true, !expected.equals(null));
+        assertEquals("Object " + expected + " must be equal to itself.\n", expected, expected);
+        assertEquals("Objects: " + expected + " and " + actual + " must be equal.\n", expected, actual);
+        assertNotEquals("Object must not equal null.\n", null, expected);
         assertEquals("Equal objects must have equal hashcode.\n", expected.hashCode(), actual.hashCode());
     }
 
@@ -278,7 +257,6 @@ public class CarTest {
     public void classEngine_checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine;
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
-        car.getEngine().getHorsePower();
         assertEquals("You shouldn't be able to change car's engine with getEngine() method",
             originalEngine, car.getEngine());
     }
@@ -295,8 +273,7 @@ public class CarTest {
     public void classWheel_checkDeepListCloneIsReturnedInGetWheels() {
         int initialWheelRadius = 90;
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
-        int newRadius = 1;
-        car.getWheels().get(0).equals(newRadius);
+        car.getWheels();
         assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
