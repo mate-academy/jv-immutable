@@ -16,8 +16,16 @@ public final class Car {
     public Car(Integer year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels); // Создаем копию списка колес
-        this.engine = engine;
+        this.wheels = deepCopyWheels(wheels);
+        this.engine = engine.clone();
+    }
+
+    private List<Wheel> deepCopyWheels(List<Wheel> wheels) {
+        List<Wheel> copiedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            copiedWheels.add(wheel.clone());
+        }
+        return copiedWheels;
     }
 
     public int getYear() {
@@ -29,15 +37,15 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels); // Возвращаем копию списка колес
+        return deepCopyWheels(wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, this.wheels, engine);
+        return new Car(this.year, this.color, this.wheels, engine.clone());
     }
 
     public Car changeColor(String newColor) {
@@ -45,8 +53,8 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(this.wheels);
-        newWheels.add(newWheel);
+        List<Wheel> newWheels = deepCopyWheels(this.wheels);
+        newWheels.add(newWheel.clone());
         return new Car(this.year, this.color, newWheels, this.engine);
     }
 
