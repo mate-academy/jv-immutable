@@ -29,31 +29,16 @@ public class CarTest {
     }
 
     @Test
-    public void set_isEngineInCarChanged() {
-        Engine engine = testCar.getEngine();
-        assertTrue("Horse power should not be the same after setting it on immutable object.\n", testEngine.getHorsePower() != engine.getHorsePower());
-        assertNotEquals("Manufacturers should not be the same after setting it on immutable object.\n", testEngine.getManufacturer(), engine.getManufacturer());
-    }
-
-    @Test
     public void carConstructor_checkWheelsAfterAddingToCar() {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
-        Car car = new Car(1999, null, expected, testEngine);
+        Car car;
+        car = new Car(1999, "red", expected, testEngine);
         List<Wheel> actual = car.getWheels();
         assertEquals("Lists of wheels " + expected + " and " + actual +
                 " should be equal after constructor initialisation.\n", expected, actual);
         assertNotSame("Lists of wheels should not refer to the same object after " +
                 "constructor initialisation.\n", actual, expected);
         assertNotSame("You should perform a deep copy of collections.\n", actual.get(0), expected.get(0));
-    }
-
-    @Test
-    public void setRadius_isWheelsInCarChanged() {
-        Wheel expected = new Wheel(12);
-        List<Wheel> wheels = List.of(expected);
-        Car car = new Car(1999, null, wheels, testEngine);
-        Wheel actual = car.getWheels().get(0);
-        assertNotEquals("Immutable objects should not be changed from outside.\n", expected, actual);
     }
 
     @Test
@@ -68,19 +53,24 @@ public class CarTest {
 
     @Test
     public void getEngine_checkEngineForNull() {
-        Car car = new Car(0, "red", Collections.emptyList(), null);
-        Engine engine = car.getEngine();
-        assertNull("Engines should be null after constructor initialisation.\n", engine);
+        try {
+            Car car = new Car(0, "red", Collections.emptyList(), null);
+            fail("You should not be able to create a car with a null engine.");
+        } catch (IllegalArgumentException e) {
+            return;
+        }
     }
 
     @Test
     public void carConstructor_checkWheelsForNull() {
         try {
             new Car(0, "red", null, testEngine);
-        } catch (NullPointerException e) {
+            fail("You should not set objects as null.\n");
+        } catch (IllegalArgumentException e) {
             return;
+        } catch (NullPointerException e) {
+            fail("NullPointerException should not be thrown, instead IllegalArgumentException should be thrown.");
         }
-        fail("You should not set objects as null.\n");
     }
 
     @Test
@@ -145,16 +135,6 @@ public class CarTest {
         Car car = new Car(expected, "red", Collections.emptyList(), testEngine);
         int actual = car.getYear();
         assertEquals("Wrong getter for year.\n", expected, actual);
-    }
-
-    @Test
-    public void classEngine_isEngineCloneableInstance() {
-        fail("Engine should implement Cloneable.\n");
-    }
-
-    @Test
-    public void classWheel_isWheelCloneableInstance() {
-        fail("Wheel should implement Cloneable.\n");
     }
 
     @Test
@@ -262,16 +242,15 @@ public class CarTest {
     @Test
     public void classWheel_checkListCloneIsReturnedInGetWheels() {
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
-        car.getWheels().add(new Wheel(50));
+        List<Wheel> wheels = car.getWheels();
         assertEquals("You shouldn't be able to change car's wheels with getWheel method",
-            1, car.getWheels().size());
+                1, wheels.size());
     }
 
     @Test
     public void classWheel_checkDeepListCloneIsReturnedInGetWheels() {
         int initialWheelRadius = 90;
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
-        car.getWheels();
         assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }

@@ -13,7 +13,7 @@ public final class Wheel implements Cloneable {
         return radius;
     }
 
-    public Wheel clone() {
+    protected Wheel clone() {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {

@@ -19,7 +19,7 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
-    public Engine clone() {
+    protected Engine clone() {
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {

@@ -15,6 +15,10 @@ public final class Car {
     private final Engine engine;
 
     public Car(Integer year, String color, List<Wheel> wheels, Engine engine) {
+        if (year == null || color == null || wheels == null || engine == null) {
+            throw new IllegalArgumentException("Arguments cannot be null");
+        }
+
         this.year = year;
         this.color = color;
         this.wheels = deepCopyWheels(wheels);
@@ -50,6 +54,9 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
+        if (newColor == null) {
+            throw new IllegalArgumentException("Color cannot be null");
+        }
         return new Car(this.year, newColor, this.wheels, this.engine);
     }
 
