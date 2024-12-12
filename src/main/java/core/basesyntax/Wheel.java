@@ -12,6 +12,7 @@ public final class Wheel implements Cloneable {
     public int getRadius() {
         return radius;
     }
+
     public Wheel clone() {
         try {
             return (Wheel) super.clone();

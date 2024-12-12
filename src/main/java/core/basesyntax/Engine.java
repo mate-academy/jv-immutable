@@ -18,6 +18,7 @@ public final class Engine implements Cloneable {
     public String getManufacturer() {
         return manufacturer;
     }
+
     public Engine clone() {
         try {
             return (Engine) super.clone();
@@ -35,6 +36,7 @@ public final class Engine implements Cloneable {
             return false;
         }
         Engine engine = (Engine) o;
+
         return  Objects.equals(horsePower, engine.horsePower)
                 && manufacturer.equals(engine.manufacturer);
     }
@@ -56,5 +58,6 @@ public final class Engine implements Cloneable {
     }
 
     public void setHorsePower() {
+        
     }
 }
