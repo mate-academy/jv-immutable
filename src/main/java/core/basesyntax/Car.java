@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public final class Car {
         for (Wheel wheel : wheels) {
             copiedWheels.add(wheel.clone());
         }
-        return copiedWheels;
+        return Collections.unmodifiableList(copiedWheels);
     }
 
     public int getYear() {
@@ -37,7 +38,7 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return deepCopyWheels(wheels);
+        return wheels;
     }
 
     public Engine getEngine() {
@@ -53,7 +54,7 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = deepCopyWheels(this.wheels);
+        List<Wheel> newWheels = new ArrayList<>(this.wheels);
         newWheels.add(newWheel.clone());
         return new Car(this.year, this.color, newWheels, this.engine);
     }

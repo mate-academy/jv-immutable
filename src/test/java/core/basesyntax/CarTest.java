@@ -30,8 +30,6 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        testEngine.setHorsePower();
-        testEngine.setManufacturer();
         Engine engine = testCar.getEngine();
         assertTrue("Horse power should not be the same after setting it on immutable object.\n", testEngine.getHorsePower() != engine.getHorsePower());
         assertNotEquals("Manufacturers should not be the same after setting it on immutable object.\n", testEngine.getManufacturer(), engine.getManufacturer());
