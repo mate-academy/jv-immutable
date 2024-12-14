@@ -10,8 +10,8 @@ public class Wheel implements Cloneable {
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 
     public int getRadius() {
@@ -23,15 +23,13 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can not clone object",e);
+            throw new AssertionError("Cloning not supported for Wheel");  // This should never happen if Wheel implements Cloneable
         }
     }
 
     @Override
     public int hashCode() {
-        int result = 17;
-        result = 31 * result + (radius);
-        return result;
+        return 31 * 17 + radius;
     }
 
     @Override
@@ -42,8 +40,8 @@ public class Wheel implements Cloneable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Wheel current = (Wheel) obj;
-        return radius == current.radius;
+        Wheel wheel = (Wheel) obj;
+        return radius == wheel.radius;
     }
 
     public void setRadius(int i) {

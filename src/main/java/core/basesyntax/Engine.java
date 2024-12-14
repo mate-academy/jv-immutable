@@ -14,9 +14,9 @@ public class Engine implements Cloneable {
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 
     public int getHorsePower() {
@@ -30,20 +30,17 @@ public class Engine implements Cloneable {
     @Override
     public Engine clone() {
         try {
-            Engine engineNew = (Engine) super.clone();
-            return engineNew;
+            return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Can not clone", e);
+            throw new RuntimeException("Cannot clone Engine", e);
         }
-
     }
 
     @Override
     public int hashCode() {
         int result = 17;
         result = 31 * result + horsePower;
-        result = 31 * result + ((manufacturer == null) ? 0
-                : manufacturer.hashCode());
+        result = 31 * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
         return result;
     }
 
@@ -52,11 +49,11 @@ public class Engine implements Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj != null && getClass() == obj.getClass()) {
-            Engine other = (Engine) obj;
-            return horsePower == other.horsePower && Objects.equals(manufacturer, other.manufacturer);
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
         }
-        return false;
+        Engine engine = (Engine) obj;
+        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     public void setHorsePower(int i) {

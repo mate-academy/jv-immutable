@@ -13,12 +13,20 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    // Implementing the constructor
+    // Constructor for initialization
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
+        // Create a deep copy of the wheels list
         this.wheels = new ArrayList<>();
-        this.engine = engine;
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
+        if (engine != null) {
+            this.engine = engine.clone();
+        } else {
+            this.engine = null;
+        }
     }
 
     public int getYear() {
@@ -30,17 +38,17 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        List<Wheel> newList = new ArrayList<>(wheels);
-        for (Wheel wheel : wheels){
-            newList.add(wheel.clone());
+        List<Wheel> clonedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(wheel.clone());  // Ensure that Wheel implements Cloneable and has a clone method
         }
-        return newList;
+        return clonedWheels;
     }
 
     public Engine getEngine() {
         if (engine != null) {
-            Engine newEng = engine.clone();
-            return new Engine(newEng.getHorsePower(), newEng.getManufacturer());
+            // Create a new Engine object to preserve immutability
+            return engine.clone();
         }
         return null;
     }
@@ -55,19 +63,19 @@ public final class Car {
                 + '}';
     }
 
-    public Car changeEngine(Engine otherMaker) {
-            return new Car(year,color,wheels,otherMaker.clone());
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine.clone());
     }
 
     public Car addWheel(Wheel wheel) {
-        List<Wheel> newWhl = new ArrayList<>(wheels);
-        newWhl.add(wheel.clone());
-        return new Car(year,color,newWhl,engine);
-
+        // Create a new list for wheels and add a clone of the new wheel
+        List<Wheel> newWheels = new ArrayList<>(wheels);
+        newWheels.add(wheel.clone());
+        return new Car(year, color, newWheels, engine);
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year,newColor,wheels,engine);
+        return new Car(year, newColor, wheels, engine);
     }
 
     @Override
@@ -85,16 +93,13 @@ public final class Car {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (obj.getClass().equals(Car.class)) {
-            Car current = (Car) obj;
-            return Objects.equals(this.color, current.color)
-                    && this.year == current.year
-                    && Objects.equals(this.wheels, current.wheels)
-                    && Objects.equals(this.engine, current.engine);
-        }
-        return false;
+        Car current = (Car) obj;
+        return year == current.year
+                && Objects.equals(color, current.color)
+                && Objects.equals(wheels, current.wheels)
+                && Objects.equals(engine, current.engine);
     }
 }
