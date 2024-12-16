@@ -40,14 +40,13 @@ public final class Car {
     public List<Wheel> getWheels() {
         List<Wheel> clonedWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            clonedWheels.add(wheel.clone());  // Ensure that Wheel implements Cloneable and has a clone method
+            clonedWheels.add(wheel.clone());
         }
         return clonedWheels;
     }
 
     public Engine getEngine() {
         if (engine != null) {
-            // Create a new Engine object to preserve immutability
             return engine.clone();
         }
         return null;
@@ -68,7 +67,6 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        // Create a new list for wheels and add a clone of the new wheel
         List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(wheel.clone());
         return new Car(year, color, newWheels, engine);
