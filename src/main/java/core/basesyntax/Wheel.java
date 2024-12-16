@@ -23,7 +23,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Cloning not supported for Wheel");  // This should never happen if Wheel implements Cloneable
+            throw new AssertionError("Cloning not supported for Wheel");
         }
     }
 
