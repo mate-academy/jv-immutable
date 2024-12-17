@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +18,7 @@ public class CarTest {
 
     @Before
     public void setUp() {
-        testWheels = List.of(new Wheel(10), new Wheel(15), new Wheel(20));
+        testWheels = Arrays.asList(new Wheel(10), new Wheel(15), new Wheel(20));
         testEngine = new Engine(100, "Some maker");
         testCar = new Car(1999, "red", testWheels, testEngine);
     }
@@ -44,7 +45,7 @@ public class CarTest {
 
     @Test
     public void carConstructor_checkWheelsAfterAddingToCar() {
-        List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
+        List<Wheel> expected = Arrays.asList(new Wheel(20), new Wheel(13));
         Car car = new Car(1999, null, expected, testEngine);
         List<Wheel> actual = car.getWheels();
         Assert.assertTrue("Lists of wheels " + expected + " and " + actual +
@@ -60,7 +61,7 @@ public class CarTest {
     @Test
     public void setRadius_isWheelsInCarChanged() {
         Wheel expected = new Wheel(12);
-        List<Wheel> wheels = List.of(expected);
+        List<Wheel> wheels = Arrays.asList(expected);
         Car car = new Car(1999, null, wheels, testEngine);
         expected.setRadius(14);
         Wheel actual = car.getWheels().get(0);
@@ -243,7 +244,7 @@ public class CarTest {
 
     @Test
     public void classCar_checkCarEqualsAndHashcode() {
-        List<Wheel> wheels = List.of(new Wheel(10),
+        List<Wheel> wheels = Arrays.asList(new Wheel(10),
                 new Wheel(20), new Wheel(30));
         Car expected = new Car(1999, "red", wheels, testEngine);
         Car actual = new Car(1999, "red", wheels, testEngine);
@@ -281,7 +282,7 @@ public class CarTest {
     @Test
     public void classEngine_checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine.clone();
-        Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
+        Car car = new Car(1995, "Blue", Arrays.asList(new Wheel(90)), testEngine);
         car.getEngine().setHorsePower(0);
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
                 originalEngine, car.getEngine());
@@ -289,7 +290,7 @@ public class CarTest {
 
     @Test
     public void classWheel_checkListCloneIsReturnedInGetWheels() {
-        Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
+        Car car = new Car(1995, "Blue", Arrays.asList(new Wheel(90)), testEngine);
         car.getWheels().add(new Wheel(50));
         Assert.assertEquals("You shouldn't be able to change car's wheels with getWheel method",
                 1, car.getWheels().size());
@@ -298,7 +299,7 @@ public class CarTest {
     @Test
     public void classWheel_checkDeepListCloneIsReturnedInGetWheels() {
         int initialWheelRadius = 90;
-        Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
+        Car car = new Car(1995, "Blue", Arrays.asList(new Wheel(initialWheelRadius)), testEngine);
         int newRadius = 1;
         car.getWheels().get(0).setRadius(newRadius);
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
