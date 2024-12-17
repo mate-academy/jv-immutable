@@ -89,8 +89,7 @@ public final class Car implements Cloneable {
     }
 
     public int getYear() {
-        int newYear = this.year;
-        return newYear;
+        return this.year;
     }
 
     public String getColor() {
