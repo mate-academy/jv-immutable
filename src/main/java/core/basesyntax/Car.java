@@ -8,21 +8,29 @@ import java.util.Objects;
  * Make this class immutable. See requirements in task description.
  */
 public final class Car implements Cloneable {
-    private int year;
-    private String color;
-    private List<Wheel> wheels;
-    private Engine engine;
+    private final int year;
+    private final String color;
+    private final List<Wheel> wheels;
+    private final Engine engine;
 
     //implement this class
-
-
-
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(getWheels());
-        this.engine = engine.clone();
+        this.wheels = deepCopyList(wheels);
+        this.engine = (engine == null ? null : engine.clone());
+    }
+    private List<Wheel> deepCopyList(List<Wheel> wheels) {
+        if (wheels == null) {
+            throw new NullPointerException("Wheels list cannot be null");
+        } else {
+            List<Wheel> newWheels = new ArrayList<>();
+            for (Wheel wheel : wheels) {
+                newWheels.add(wheel.clone());
+            }
+            return newWheels;
+        }
     }
 
     @Override
@@ -49,7 +57,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
 
     public String getColor() {
@@ -61,14 +69,8 @@ public final class Car implements Cloneable {
     }
 
 
-    public Car changeColor(String blue) {
-        try {
-            Car updatedCar = (Car) super.clone();
-            updatedCar.color = blue;
-            return updatedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+    public Car changeColor(String color) {
+        return new Car(getYear(),color,getWheels(),getEngine());
 
     }
 
@@ -80,24 +82,14 @@ public final class Car implements Cloneable {
         return copyWheels;
     }
 
-    public Car addWheel(Wheel wheel) {
-        try {
-            Car updatedCar = (Car) super.clone();
-            updatedCar.wheels.add(wheel);
-            return updatedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> result = getWheels();
+        result.add(newWheel);
+        return new Car(year,color,result,engine);
     }
 
 
     public Car changeEngine(Engine otherMaker) {
-        try {
-            Car updatedCar = (Car) super.clone();
-            updatedCar.engine = otherMaker;
-            return updatedCar;
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+        return new Car(getYear(), getColor(), getWheels(), otherMaker);
     }
 }
