@@ -21,6 +21,7 @@ public final class Car implements Cloneable {
         this.wheels = deepCopyList(wheels);
         this.engine = (engine == null ? null : engine.clone());
     }
+
     private List<Wheel> deepCopyList(List<Wheel> wheels) {
         if (wheels == null) {
             throw new NullPointerException("Wheels list cannot be null");
@@ -35,10 +36,17 @@ public final class Car implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -68,7 +76,6 @@ public final class Car implements Cloneable {
         return year;
     }
 
-
     public Car changeColor(String color) {
         return new Car(getYear(),color,getWheels(),getEngine());
 
@@ -87,7 +94,6 @@ public final class Car implements Cloneable {
         result.add(newWheel);
         return new Car(year,color,result,engine);
     }
-
 
     public Car changeEngine(Engine otherMaker) {
         return new Car(getYear(), getColor(), getWheels(), otherMaker);
