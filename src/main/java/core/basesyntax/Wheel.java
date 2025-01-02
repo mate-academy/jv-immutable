@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public class Wheel implements Cloneable {
-    private final int radius;
+    private int radius;
 
     //implement this class
 
@@ -11,28 +11,34 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     public int getRadius() {
         return radius;
     }
 
-    public Wheel setRadius(int radius) {
-        return new Wheel(radius);
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Cannot create " + "Wheel clone", e);
+        }
     }
 
     @Override
-    protected Wheel clone() {
-        return new Wheel(this.radius);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Wheel wheel = (Wheel) o;
+
+        Wheel wheel = (Wheel) obj;
         return radius == wheel.radius;
     }
 
