@@ -1,6 +1,9 @@
 package core.basesyntax;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public final class Car {
     private final int year;
@@ -8,7 +11,7 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine ) {
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         List<Wheel> copyOfWheels = new ArrayList<>();
@@ -57,8 +60,6 @@ public final class Car {
         Engine newEngine = new Engine(engine.getHorsePower(), engine.getManufacturer());
         return new Car(this.year, this.color, this.wheels, newEngine);
     }
-
-
 
     @Override
     public String toString() {

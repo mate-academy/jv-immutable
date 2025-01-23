@@ -15,7 +15,7 @@ public class Engine implements Cloneable {
         return horsePower;
     }
 
-    public void setHorsePower (int power) {
+    public void setHorsePower(int power) {
         this.horsePower = power;
     }
 

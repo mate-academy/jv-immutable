@@ -9,7 +9,7 @@ public class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public int getRadius(){
+    public int getRadius() {
         return radius;
     }
 
