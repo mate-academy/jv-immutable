@@ -2,37 +2,38 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Wheel {
-    private String material;
-    private int size;
+public final class Wheel {
+    private final int radius;
 
-    public Wheel(String material, int size) {
-        this.material = material;
-        this.size = size;
+    public Wheel(int radius) {
+        this.radius = radius;
     }
 
-    public boolean equals(Wheel wheel) {
-        if (this == wheel) {
+    public int getRadius() {
+        return radius;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-
-        if (wheel == null || getClass() != wheel.getClass()) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
-        return size == wheel.size
-                && Objects.equals(material, wheel.material);
+        Wheel wheel = (Wheel) o;
+        return radius == wheel.radius;
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(material, size);
+        return Objects.hash(radius);
     }
 
     @Override
     public String toString() {
         return "Wheel{"
-                + "material='" + material + '\''
-                + ", size=" + size
+                + "radius=" + radius
                 + '}';
     }
 }
