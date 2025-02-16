@@ -87,4 +87,4 @@ public final class Car {
                 + ", engine=" + engine
                 + '}';
     }
-} // Newline character here
+}
