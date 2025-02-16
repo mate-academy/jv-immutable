@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Wheel implements Cloneable {
-    private int radius; // radius should not be final to make setRadius work in tests
+    private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
@@ -13,7 +13,7 @@ public final class Wheel implements Cloneable {
         return radius;
     }
 
-    public void setRadius(int radius) { // added setter for tests
+    public void setRadius(int radius) {
         this.radius = radius;
     }
 

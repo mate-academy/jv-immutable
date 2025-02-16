@@ -46,7 +46,7 @@ public final class Car {
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(newWheel.clone()); // Clone the new wheel
+        newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
     }
 
@@ -69,7 +69,7 @@ public final class Car {
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
-                && Objects.deepEquals(wheels, car.wheels) // Use deepEquals for lists
+                && Objects.deepEquals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
     }
 

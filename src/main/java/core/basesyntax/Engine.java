@@ -3,8 +3,8 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Engine implements Cloneable {
-    private int horsePower; // horsePower should not be final to make setHorsePower work in tests
-    private String manufacturer; // manufacturer should not be final to make setManufacturer work in tests
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -15,7 +15,7 @@ public final class Engine implements Cloneable {
         return horsePower;
     }
 
-    public void setHorsePower(int horsePower) { // added setter for tests
+    public void setHorsePower(int horsePower) {
         this.horsePower = horsePower;
     }
 
@@ -23,10 +23,9 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
-    public void setManufacturer(String manufacturer) { // added setter for tests
+    public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
-
 
     @Override
     public Engine clone() {
