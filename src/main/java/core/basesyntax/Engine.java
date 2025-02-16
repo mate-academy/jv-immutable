@@ -57,4 +57,4 @@ public final class Engine implements Cloneable {
                 + ", manufacturer='" + manufacturer + '\''
                 + '}';
     }
-}
+} // Newline character here

@@ -45,4 +45,4 @@ public final class Wheel implements Cloneable {
                 + "radius=" + radius
                 + '}';
     }
-}
+} // Newline character here
