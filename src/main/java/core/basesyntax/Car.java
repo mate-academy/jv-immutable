@@ -2,6 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
@@ -16,7 +17,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = cloneWheels(wheels);
-        this.engine = engine.clone();
+        this.engine = engine == null ? null : new Engine(engine);
     }
 
     @Override
@@ -42,7 +43,22 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine == null ? null : engine.clone();
+    }
+
+    public Car changeEngine(Engine newEngine) {
+        return new Car(this.year, this.color, this.wheels,
+                newEngine == null ? null : new Engine(newEngine));
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(this.year, newColor, this.wheels, this.engine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>(this.getWheels());
+        newWheels.add(newWheel.clone());
+        return new Car(this.year, this.color, newWheels, this.engine);
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
@@ -51,5 +67,25 @@ public final class Car {
             copiedWheels.add(wheel.clone());
         }
         return copiedWheels;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
     }
 }

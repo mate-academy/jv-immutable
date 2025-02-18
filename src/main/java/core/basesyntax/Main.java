@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        //глибоку копію
         List<Wheel> wheels = new ArrayList<>();
         wheels.add(new Wheel(13));
 
