@@ -17,12 +17,8 @@ public class Wheel implements Cloneable {
         return radius;
     }
 
-    public void setRadius(int radius) {
-        this.radius = radius;
-    }
-
-    public Wheel withRadius(int newRadius) {
-        return new Wheel(newRadius); // Повертає новий об'єкт з новим радіусом
+    public Wheel setRadius(int radius) {
+        return new Wheel(radius);
     }
 
     @Override
@@ -34,19 +30,28 @@ public class Wheel implements Cloneable {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(radius);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Wheel wheel) {
-            return Objects.equals(radius, wheel.radius);
+        if (this == obj) {
+            return true;
         }
-        return false;
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
+        Wheel wheel = (Wheel) obj;
+        return radius == wheel.radius;
     }
 
     @Override
     protected Wheel clone() {
-        return new Wheel(this);
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create clone for Engine", e);
+        }
     }
 }

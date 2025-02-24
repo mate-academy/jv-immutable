@@ -46,7 +46,6 @@ public class Engine implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new RuntimeException("Can't create clone for Engine", e);
         }
-
     }
 
     @Override
