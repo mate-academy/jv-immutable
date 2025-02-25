@@ -20,7 +20,7 @@ public final class Car implements Cloneable {
         for (Wheel wheel : wheels) {
             this.wheels.add(wheel.clone());
         }
-        this.engine = engine.clone();
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public int getYear() {
@@ -43,7 +43,7 @@ public final class Car implements Cloneable {
         try {
             return engine.clone();
         } catch (NullPointerException e) {
-            throw new RuntimeException("Engine can not be null", e);
+            return null;
         }
     }
 
