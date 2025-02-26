@@ -17,8 +17,8 @@ public class Wheel implements Cloneable {
         return radius;
     }
 
-    public Wheel setRadius(int radius) {
-        return new Wheel(radius);
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override
@@ -44,6 +44,10 @@ public class Wheel implements Cloneable {
         }
         Wheel wheel = (Wheel) obj;
         return radius == wheel.radius;
+    }
+
+    public Wheel copy() {
+        return new Wheel(this.radius);
     }
 
     @Override

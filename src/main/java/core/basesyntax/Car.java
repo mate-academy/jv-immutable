@@ -13,7 +13,7 @@ final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
+        this.wheels = getWheelsCopy(wheels);
         if (engine != null) {
             this.engine = engine.clone();
         } else {
@@ -77,7 +77,13 @@ final class Car {
         return false;
     }
 
-
+    public List<Wheel> getWheelsCopy(List<Wheel> wheels) {
+        List<Wheel> deepCopy = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            deepCopy.add(wheel.copy());
+        }
+        return deepCopy;
+    }
 
     public List<Wheel> getWheels() {
         List<Wheel> copiedWheels = new ArrayList<>();
