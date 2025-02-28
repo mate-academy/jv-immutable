@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = copyWheels(wheels);
-        this.engine = engine == null ? null : new Engine(engine);
+        this.engine = (engine == null) ? null : new Engine(engine);
     }
 
     public int getYear() {
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : new Engine(engine);
+        return (engine == null) ? null : new Engine(engine);
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -50,15 +50,21 @@ public final class Car {
     private List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(new Wheel(wheel));
+            if (wheel != null) {  // Додано `{}` для Checkstyle
+                newWheels.add(new Wheel(wheel));
+            }
         }
         return newWheels;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
