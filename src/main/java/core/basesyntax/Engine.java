@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine implements Cloneable {
+public final class Engine {
     private final int horsePower;
     private final String manufacturer;
 
@@ -12,8 +12,7 @@ public final class Engine implements Cloneable {
     }
 
     public Engine(Engine engine) {
-        this.horsePower = engine.horsePower;
-        this.manufacturer = engine.manufacturer;
+        this(engine.horsePower, engine.manufacturer);
     }
 
     public int getHorsePower() {
@@ -25,22 +24,9 @@ public final class Engine implements Cloneable {
     }
 
     @Override
-    public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Не повинно траплятися, оскільки ми реалізуємо Cloneable
-        }
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Engine engine = (Engine) o;
         return horsePower == engine.horsePower
                 && Objects.equals(manufacturer, engine.manufacturer);

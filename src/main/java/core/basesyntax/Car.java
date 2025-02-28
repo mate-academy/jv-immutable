@@ -13,8 +13,8 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = cloneWheels(wheels);
-        this.engine = (engine != null) ? new Engine(engine) : null;
+        this.wheels = copyWheels(wheels);
+        this.engine = engine == null ? null : new Engine(engine);
     }
 
     public int getYear() {
@@ -26,11 +26,11 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return cloneWheels(wheels);
+        return copyWheels(wheels);
     }
 
     public Engine getEngine() {
-        return (engine != null) ? new Engine(engine) : null;
+        return engine == null ? null : new Engine(engine);
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -42,27 +42,23 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
+        List<Wheel> newWheels = copyWheels(this.wheels);
         newWheels.add(new Wheel(newWheel));
         return new Car(year, color, newWheels, engine);
     }
 
-    private List<Wheel> cloneWheels(List<Wheel> wheels) {
-        List<Wheel> cloned = new ArrayList<>();
+    private List<Wheel> copyWheels(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            cloned.add(new Wheel(wheel));
+            newWheels.add(new Wheel(wheel));
         }
-        return cloned;
+        return newWheels;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
