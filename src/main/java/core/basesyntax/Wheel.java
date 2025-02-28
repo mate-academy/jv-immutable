@@ -17,6 +17,11 @@ public final class Wheel {
         return radius;
     }
 
+    // Новий метод для підтримки тестів
+    public Wheel setRadius(int radius) {
+        return new Wheel(radius);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

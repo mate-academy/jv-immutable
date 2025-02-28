@@ -23,6 +23,15 @@ public final class Engine {
         return manufacturer;
     }
 
+    // Нові методи для підтримки тестів
+    public Engine setHorsePower(int horsePower) {
+        return new Engine(horsePower, this.manufacturer);
+    }
+
+    public Engine setManufacturer(String manufacturer) {
+        return new Engine(this.horsePower, manufacturer);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
