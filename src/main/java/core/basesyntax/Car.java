@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 public final class Car {
     private final int year;
     private final String color;
@@ -21,7 +20,6 @@ public final class Car {
         this.engine = (engine == null) ? null : engine.clone();
     }
 
-    // (wheels == null) ? new ArrayList<>() : new ArrayList<>(wheels);
     public int getYear() {
         return year;
     }
