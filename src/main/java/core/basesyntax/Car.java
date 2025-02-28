@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public final class Car { // Клас зроблений фінальним
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -13,8 +13,8 @@ public final class Car { // Клас зроблений фінальним
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = cloneWheels(wheels); // Клонуємо колеса
-        this.engine = (engine != null) ? new Engine(engine) : null; // Клонуємо двигун
+        this.wheels = cloneWheels(wheels);
+        this.engine = (engine != null) ? new Engine(engine) : null;
     }
 
     public int getYear() {
@@ -26,11 +26,11 @@ public final class Car { // Клас зроблений фінальним
     }
 
     public List<Wheel> getWheels() {
-        return cloneWheels(wheels); // Повертаємо копію списку
+        return cloneWheels(wheels);
     }
 
     public Engine getEngine() {
-        return (engine != null) ? new Engine(engine) : null; // Повертаємо копію двигуна
+        return (engine != null) ? new Engine(engine) : null;
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -43,27 +43,31 @@ public final class Car { // Клас зроблений фінальним
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(new Wheel(newWheel)); // Клонуємо нове колесо
+        newWheels.add(new Wheel(newWheel));
         return new Car(year, color, newWheels, engine);
     }
 
     private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> cloned = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            cloned.add(new Wheel(wheel)); // Клонуємо кожне колесо
+            cloned.add(new Wheel(wheel));
         }
         return cloned;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -73,11 +77,11 @@ public final class Car { // Клас зроблений фінальним
 
     @Override
     public String toString() {
-        return "Car{" +
-                "year=" + year +
-                ", color='" + color + '\'' +
-                ", wheels=" + wheels +
-                ", engine=" + engine +
-                '}';
+        return "Car{"
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }

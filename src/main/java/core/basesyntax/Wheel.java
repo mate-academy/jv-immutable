@@ -2,14 +2,14 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel { // Клас зроблений фінальним
+public final class Wheel {
     private final int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
     }
 
-    public Wheel(Wheel wheel) { // Конструктор-копіювач
+    public Wheel(Wheel wheel) {
         this.radius = wheel.radius;
     }
 
@@ -19,8 +19,12 @@ public final class Wheel { // Клас зроблений фінальним
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -32,8 +36,8 @@ public final class Wheel { // Клас зроблений фінальним
 
     @Override
     public String toString() {
-        return "Wheel{" +
-                "radius=" + radius +
-                '}';
+        return "Wheel{"
+                + "radius=" + radius
+                + '}';
     }
 }
