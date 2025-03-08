@@ -14,15 +14,15 @@ public class Main {
         Engine engine = new Engine(200, "BMW");
         Car car = new Car(2022, "Red", wheels, engine);
 
-        System.out.println("Оригінальне авто: " + car);
+        System.out.println("Original car: " + car);
 
         Car updatedCar = car.changeEngine(new Engine(300, "Audi"));
-        System.out.println("Авто після заміни двигуна: " + updatedCar);
+        System.out.println("\n" + "Car after engine replacement: " + updatedCar);
 
         Car blueCar = car.changeColor("Blue");
-        System.out.println("Авто після зміни кольору: " + blueCar);
+            System.out.println("\n" + "Car after color change: " + blueCar);
 
         Car tenWheelsCar = car.addWheel(new Wheel(18));
-        System.out.println("Авто з додатковим колесом: " + tenWheelsCar);
+        System.out.println("Cars with an additional wheel: " + tenWheelsCar);
     }
 }
