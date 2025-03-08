@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel {
+public final class Wheel implements Cloneable {
     private final int radius;
 
     public Wheel(int radius) {
@@ -17,19 +17,19 @@ public final class Wheel {
         return radius;
     }
 
-    // Новий метод для підтримки тестів
-    public Wheel setRadius(int radius) {
-        return new Wheel(radius);
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning not supported", e);
+        }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -41,8 +41,8 @@ public final class Wheel {
 
     @Override
     public String toString() {
-        return "Wheel{"
-                + "radius=" + radius
-                + '}';
+        return "Wheel{" +
+                "radius=" + radius +
+                '}';
     }
 }
