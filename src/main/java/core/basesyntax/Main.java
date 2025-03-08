@@ -17,12 +17,12 @@ public class Main {
         System.out.println("Original car: " + car);
 
         Car updatedCar = car.changeEngine(new Engine(300, "Audi"));
-        System.out.println("\n" + "Car after engine replacement: " + updatedCar);
+        System.out.println("Car after engine change: " + updatedCar);
 
         Car blueCar = car.changeColor("Blue");
-            System.out.println("\n" + "Car after color change: " + blueCar);
+        System.out.println("Car after color change: " + blueCar);
 
         Car tenWheelsCar = car.addWheel(new Wheel(18));
-        System.out.println("Cars with an additional wheel: " + tenWheelsCar);
+        System.out.println("Car with an extra wheel: " + tenWheelsCar);
     }
 }
