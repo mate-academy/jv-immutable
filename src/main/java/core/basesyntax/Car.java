@@ -5,56 +5,45 @@ import java.util.List;
 import java.util.Objects;
 
 public final class Car {
-    private final int year;
-    private final String color;
-    private final List<Wheel> wheels;
+    private final String model;
     private final Engine engine;
+    private final List<Wheel> wheels;
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
-        this.year = year;
-        this.color = color;
-        this.wheels = copyWheels(wheels);
-        this.engine = (engine == null) ? null : engine.clone();
+    public Car(String model, Engine engine, List<Wheel> wheels) {
+        this.model = model;
+        this.engine = new Engine(engine); // Глибоке копіювання двигуна
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(new Wheel(wheel)); // Глибоке копіювання коліс
+        }
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public List<Wheel> getWheels() {
-        return copyWheels(wheels);
+    public String getModel() {
+        return model;
     }
 
     public Engine getEngine() {
-        return (engine == null) ? null : engine.clone();
+        return new Engine(engine); // Повертаємо копію, щоб зберегти іммутабельність
     }
 
-    public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, newEngine);
-    }
-
-    public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
-    }
-
-    public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = copyWheels(this.wheels);
-        newWheels.add(newWheel.clone());
-        return new Car(year, color, newWheels, engine);
-    }
-
-    private List<Wheel> copyWheels(List<Wheel> wheels) {
-        List<Wheel> newWheels = new ArrayList<>();
+    public List<Wheel> getWheels() {
+        List<Wheel> copy = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            if (wheel != null) {
-                newWheels.add(wheel.clone());
-            }
+            copy.add(new Wheel(wheel)); // Повертаємо копію списку коліс
         }
-        return newWheels;
+        return copy;
+    }
+
+    public Car setModel(String model) {
+        return new Car(model, this.engine, this.wheels);
+    }
+
+    public Car setEngine(Engine engine) {
+        return new Car(this.model, engine, this.wheels);
+    }
+
+    public Car setWheels(List<Wheel> wheels) {
+        return new Car(this.model, this.engine, wheels);
     }
 
     @Override
@@ -66,24 +55,22 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        return Objects.equals(model, car.model)
+                && Objects.equals(engine, car.engine)
+                && Objects.equals(wheels, car.wheels);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+        return Objects.hash(model, engine, wheels);
     }
 
     @Override
     public String toString() {
         return "Car{"
-                + "year=" + year
-                + ", color='" + color + "'"
-                + ", wheels=" + wheels
+                + "model='" + model + '\''
                 + ", engine=" + engine
+                + ", wheels=" + wheels
                 + '}';
     }
 }
