@@ -41,8 +41,6 @@ public final class Wheel implements Cloneable {
 
     @Override
     public String toString() {
-        return "Wheel{" +
-                "radius=" + radius +
-                '}';
+        return "Wheel{" + "radius=" + radius + '}';
     }
 }

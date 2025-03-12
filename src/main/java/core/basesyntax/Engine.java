@@ -52,9 +52,6 @@ public final class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "horsePower=" + horsePower +
-                ", manufacturer='" + manufacturer + '\'' +
-                '}';
+        return "Engine{" + "horsePower=" + horsePower + ", manufacturer='" + manufacturer + '\'' + '}';
     }
 }
