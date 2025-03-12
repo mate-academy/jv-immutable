@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel implements Cloneable {
+public final class Wheel {
     private final int radius;
 
     public Wheel(int radius) {
@@ -13,13 +13,10 @@ public final class Wheel implements Cloneable {
         return radius;
     }
 
+    // Повертає новий Wheel із іншим значенням радіусу,
+    // не змінюючи поточний об'єкт
     public Wheel setRadius(int radius) {
         return new Wheel(radius);
-    }
-
-    @Override
-    public Wheel clone() {
-        return new Wheel(this.radius);
     }
 
     @Override
@@ -41,6 +38,8 @@ public final class Wheel implements Cloneable {
 
     @Override
     public String toString() {
-        return "Wheel{" + "radius=" + radius + '}';
+        return "Wheel{" +
+                "radius=" + radius +
+                '}';
     }
 }

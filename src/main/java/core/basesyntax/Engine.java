@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Engine implements Cloneable {
+public final class Engine {
     private final int horsePower;
     private final String manufacturer;
 
@@ -19,17 +19,14 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
+    // Повертає новий Engine із зміненою потужністю,
+    // не змінюючи поточний об'єкт
     public Engine setHorsePower(int horsePower) {
         return new Engine(horsePower, this.manufacturer);
     }
 
     public Engine setManufacturer(String manufacturer) {
         return new Engine(this.horsePower, manufacturer);
-    }
-
-    @Override
-    public Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
     }
 
     @Override
@@ -52,9 +49,9 @@ public final class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        return "Engine{"
-                + "horsePower=" + horsePower
-                + ", manufacturer='" + manufacturer + '\''
-                + '}';
+        return "Engine{" +
+                "horsePower=" + horsePower +
+                ", manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }
