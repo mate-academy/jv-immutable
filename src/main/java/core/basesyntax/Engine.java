@@ -50,7 +50,6 @@ public final class Engine {
     @Override
     public String toString() {
         return "Engine{" + "horsePower=" +
-                horsePower + ", manufacturer='" +
-                manufacturer + '\'' + '}';
+                + horsePower + ", manufacturer='" + manufacturer + '\'' + '}';
     }
 }

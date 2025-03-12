@@ -38,7 +38,6 @@ public final class Wheel {
 
     @Override
     public String toString() {
-        return "Wheel{" + "radius=" +
-                radius + '}';
+        return "Wheel{" + "radius=" + radius + '}';
     }
 }
