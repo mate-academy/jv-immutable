@@ -34,7 +34,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, (newEngine == null) ? null : newEngine.clone());
+        return new Car(year, color, wheels, newEngine);
     }
 
     public Car changeColor(String newColor) {
@@ -50,7 +50,9 @@ public final class Car {
     private List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
-            newWheels.add(wheel.clone());
+            if (wheel != null) {
+                newWheels.add(wheel.clone());
+            }
         }
         return newWheels;
     }
@@ -77,11 +79,11 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "year=" + year +
-                ", color='" + color + '\'' +
-                ", wheels=" + wheels +
-                ", engine=" + engine +
-                '}';
+        return "Car{"
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }
