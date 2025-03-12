@@ -49,7 +49,11 @@ public final class Engine {
 
     @Override
     public String toString() {
-        return "Engine{" + "horsePower=" +
-                + horsePower + ", manufacturer='" + manufacturer + '\'' + '}';
+        StringBuilder sb = new StringBuilder("Engine{");
+        sb.append("horsePower=").append(horsePower)
+                .append(", manufacturer='").append(manufacturer).append('\'')
+                .append('}');
+        return sb.toString();
     }
+
 }
