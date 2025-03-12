@@ -1,7 +1,6 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,9 +13,8 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        // Робимо захисну копію вхідного списку
-        this.wheels = new ArrayList<>(wheels);
-        this.engine = engine;
+        this.wheels = copyWheels(wheels);
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
@@ -27,14 +25,12 @@ public final class Car {
         return color;
     }
 
-    // Повертаємо незмінний список, щоб зовнішній код не зміг змінити внутрішній стан
     public List<Wheel> getWheels() {
-        return Collections.unmodifiableList(wheels);
+        return copyWheels(wheels);
     }
 
-    // Engine сам по собі незмінний, тому без клонування
     public Engine getEngine() {
-        return engine;
+        return (engine == null) ? null : engine.clone();
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -46,24 +42,30 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(newWheel);
+        List<Wheel> newWheels = copyWheels(wheels);
+        newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
+    }
+
+    private List<Wheel> copyWheels(List<Wheel> wheels) {
+        List<Wheel> newWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            if (wheel != null) {
+                newWheels.add(wheel.clone());
+            }
+        }
+        return newWheels;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Car)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        return year == car.year &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(wheels, car.wheels) &&
+                Objects.equals(engine, car.engine);
     }
 
     @Override
