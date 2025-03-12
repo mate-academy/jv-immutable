@@ -9,10 +9,6 @@ public final class Wheel implements Cloneable {
         this.radius = radius;
     }
 
-    public Wheel(Wheel wheel) {
-        this(wheel.radius);
-    }
-
     public int getRadius() {
         return radius;
     }
@@ -23,11 +19,7 @@ public final class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        try {
-            return (Wheel) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Clone not supported", e);
-        }
+        return new Wheel(this.radius);
     }
 
     @Override
@@ -35,7 +27,7 @@ public final class Wheel implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Wheel)) {
             return false;
         }
         Wheel wheel = (Wheel) o;
@@ -49,9 +41,8 @@ public final class Wheel implements Cloneable {
 
     @Override
     public String toString() {
-        return "Wheel{"
-                + "radius="
-                + radius
-                + "}";
+        return "Wheel{" +
+                "radius=" + radius +
+                '}';
     }
 }

@@ -11,10 +11,6 @@ public final class Engine implements Cloneable {
         this.manufacturer = manufacturer;
     }
 
-    public Engine(Engine engine) {
-        this(engine.horsePower, engine.manufacturer);
-    }
-
     public int getHorsePower() {
         return horsePower;
     }
@@ -33,11 +29,7 @@ public final class Engine implements Cloneable {
 
     @Override
     public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError("Clone not supported", e);
-        }
+        return new Engine(this.horsePower, this.manufacturer);
     }
 
     @Override
@@ -45,7 +37,7 @@ public final class Engine implements Cloneable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Engine)) {
             return false;
         }
         Engine engine = (Engine) o;
@@ -60,11 +52,9 @@ public final class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        return "Engine{"
-                + "horsePower="
-                + horsePower
-                + ", manufacturer='"
-                + manufacturer
-                + "'}";
+        return "Engine{" +
+                "horsePower=" + horsePower +
+                ", manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }
