@@ -79,6 +79,7 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{" + "year=" + year + ", color='" + color + '\'' + ", wheels=" + wheels + ", engine=" + engine + '}';
+        return "Car{" + "year=" + year + ", color='" + color + '\''
+                + ", wheels=" + wheels + ", engine=" + engine + '}';
     }
 }
