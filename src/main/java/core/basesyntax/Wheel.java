@@ -2,19 +2,20 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Wheel {
-    private final String material;
+class Wheel implements Cloneable {
+    private final int radius;
 
-    public Wheel(String material) {
-        this.material = material;
+    public Wheel(int radius) {
+        this.radius = radius;
     }
 
-    public String getMaterial() {
-        return material;
+    public int getRadius() {
+        return radius;
     }
 
+    @Override
     public Wheel clone() {
-        return new Wheel(this.material);
+        return new Wheel(this.radius);
     }
 
     @Override
@@ -26,18 +27,11 @@ public class Wheel {
             return false;
         }
         Wheel wheel = (Wheel) o;
-        return Objects.equals(material, wheel.material);
+        return radius == wheel.radius;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(material);
-    }
-
-    @Override
-    public String toString() {
-        return "Wheel{"
-                + "material='" + material + '\''
-                + '}';
+        return Objects.hash(radius);
     }
 }

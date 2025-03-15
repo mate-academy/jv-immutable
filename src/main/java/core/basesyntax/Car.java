@@ -3,6 +3,7 @@ package core.basesyntax;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class Car {
     private final int year;
@@ -11,10 +12,13 @@ public final class Car {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        if (wheels == null) {
+            throw new NullPointerException("Wheels list cannot be null");
+        }
         this.year = year;
         this.color = color;
-        this.wheels = deepCopyWheels(wheels);
-        this.engine = (engine != null) ? engine.clone() : null;
+        this.wheels = wheels.stream().map(Wheel::clone).collect(Collectors.toList());
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
@@ -26,34 +30,25 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return deepCopyWheels(wheels);
+        return new ArrayList<>(wheels);
     }
 
     public Engine getEngine() {
-        return (engine != null) ? engine.clone() : null;
-    }
-
-    public Car changeEngine(Engine engine) {
-        return new Car(this.year, this.color, this.wheels,
-                (engine != null) ? engine.clone() : null);
+        return (engine == null) ? null : engine.clone();
     }
 
     public Car changeColor(String newColor) {
-        return new Car(this.year, newColor, this.wheels, this.engine);
+        return new Car(year, newColor, wheels, engine);
+    }
+
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine);
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = deepCopyWheels(this.wheels);
-        newWheels.add(newWheel.clone());
-        return new Car(this.year, this.color, newWheels, this.engine);
-    }
-
-    private List<Wheel> deepCopyWheels(List<Wheel> wheels) {
-        List<Wheel> copiedWheels = new ArrayList<>();
-        for (Wheel wheel : wheels) {
-            copiedWheels.add(wheel.clone());
-        }
-        return copiedWheels;
+        List<Wheel> newWheels = wheels.stream().map(Wheel::clone).collect(Collectors.toList());
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
     }
 
     @Override
@@ -65,24 +60,12 @@ public final class Car {
             return false;
         }
         Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
-    }
-
-    @Override
-    public String toString() {
-        return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
     }
 }
