@@ -19,7 +19,6 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
 
-    // Методи "setter" повертають новий екземпляр із оновленим значенням
     public Engine setHorsePower(int horsePower) {
         return new Engine(horsePower, this.manufacturer);
     }
@@ -28,7 +27,6 @@ public final class Engine implements Cloneable {
         return new Engine(this.horsePower, manufacturer);
     }
 
-    // Глибоке копіювання: повертаємо новий екземпляр
     @Override
     public Engine clone() {
         return new Engine(this.horsePower, this.manufacturer);
@@ -36,11 +34,15 @@ public final class Engine implements Cloneable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Engine)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Engine)) {
+            return false;
+        }
         Engine engine = (Engine) o;
-        return horsePower == engine.horsePower &&
-                Objects.equals(manufacturer, engine.manufacturer);
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -50,9 +52,9 @@ public final class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "horsePower=" + horsePower +
-                ", manufacturer='" + manufacturer + '\'' +
-                '}';
+        return "Engine{"
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 }
