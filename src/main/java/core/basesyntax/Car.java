@@ -13,6 +13,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
+        // Виконуємо глибоке копіювання списку коліс у конструкторі
         this.wheels = copyWheels(wheels);
         this.engine = (engine == null) ? null : engine.clone();
     }
@@ -25,10 +26,12 @@ public final class Car {
         return color;
     }
 
+    // Повертаємо глибоку копію списку коліс
     public List<Wheel> getWheels() {
         return copyWheels(wheels);
     }
 
+    // Повертаємо клон двигуна, щоб зміни зовні не впливали на внутрішній стан
     public Engine getEngine() {
         return (engine == null) ? null : engine.clone();
     }
@@ -49,6 +52,7 @@ public final class Car {
         return new Car(year, color, newWheels, engine);
     }
 
+    // Допоміжний метод для створення глибокої копії списку коліс
     private List<Wheel> copyWheels(List<Wheel> wheels) {
         List<Wheel> newWheels = new ArrayList<>();
         for (Wheel wheel : wheels) {
@@ -61,17 +65,13 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Car)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return year == car.year
-                && Objects.equals(color, car.color)
-                && Objects.equals(wheels, car.wheels)
-                && Objects.equals(engine, car.engine);
+        return year == car.year &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(wheels, car.wheels) &&
+                Objects.equals(engine, car.engine);
     }
 
     @Override
@@ -81,11 +81,11 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
+        return "Car{" +
+                "year=" + year +
+                ", color='" + color + '\'' +
+                ", wheels=" + wheels +
+                ", engine=" + engine +
+                '}';
     }
 }
