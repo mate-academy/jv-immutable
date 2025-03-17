@@ -29,16 +29,24 @@ public final class Engine implements Cloneable {
 
     @Override
     public Engine clone() {
-        return new Engine(this.horsePower, this.manufacturer);
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning failed", e);
+        }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Engine)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Engine)) {
+            return false;
+        }
         Engine engine = (Engine) o;
-        return horsePower == engine.horsePower &&
-                Objects.equals(manufacturer, engine.manufacturer);
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -48,10 +56,9 @@ public final class Engine implements Cloneable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Engine{");
-        sb.append("horsePower=").append(horsePower)
-                .append(", manufacturer='").append(manufacturer).append('\'')
-                .append('}');
-        return sb.toString();
+        return "Engine{"
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 }

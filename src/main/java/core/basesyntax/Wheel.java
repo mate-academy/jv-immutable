@@ -19,13 +19,21 @@ public final class Wheel implements Cloneable {
 
     @Override
     public Wheel clone() {
-        return new Wheel(this.radius);
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError("Cloning failed", e);
+        }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Wheel)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Wheel)) {
+            return false;
+        }
         Wheel wheel = (Wheel) o;
         return radius == wheel.radius;
     }
@@ -37,9 +45,8 @@ public final class Wheel implements Cloneable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Wheel{");
-        sb.append("radius=").append(radius)
-                .append('}');
-        return sb.toString();
+        return "Wheel{"
+                + "radius=" + radius
+                + '}';
     }
 }
