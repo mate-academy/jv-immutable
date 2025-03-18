@@ -36,8 +36,9 @@ public final class Wheel {
 
     @Override
     public String toString() {
-        return "Wheel{" +
-                "radius=" + radius +
-                '}';
+        return new StringBuilder("Wheel{")
+                .append("radius=").append(radius)
+                .append("}")
+                .toString();
     }
 }

@@ -77,11 +77,12 @@ public final class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "year=" + year +
-                ", color='" + color + "'" +
-                ", wheels=" + wheels +
-                ", engine=" + engine +
-                '}';
+        return new StringBuilder("Car{")
+                .append("year=").append(year)
+                .append(", color='").append(color).append('\'')
+                .append(", wheels=").append(wheels)
+                .append(", engine=").append(engine)
+                .append("}")
+                .toString();
     }
 }

@@ -1,4 +1,3 @@
-
 package core.basesyntax;
 
 import java.util.Objects;
@@ -44,9 +43,10 @@ public final class Engine {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "horsePower=" + horsePower +
-                ", manufacturer='" + manufacturer + "'" +
-                '}';
+        return new StringBuilder("Engine{")
+                .append("horsePower=").append(horsePower)
+                .append(", manufacturer='").append(manufacturer).append('\'')
+                .append("}")
+                .toString();
     }
 }
