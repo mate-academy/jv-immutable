@@ -14,7 +14,7 @@ public final class Car {
         this.year = year;
         this.color = color;
         this.wheels = copyWheels(wheels);
-        this.engine = engine == null ? null : new Engine(engine);
+        this.engine = (engine == null) ? null : new Engine(engine);
     }
 
     public int getYear() {
@@ -30,7 +30,7 @@ public final class Car {
     }
 
     public Engine getEngine() {
-        return engine == null ? null : new Engine(engine);
+        return (engine == null) ? null : new Engine(engine);
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -57,10 +57,15 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color)
+        return year == car.year
+                && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
     }
@@ -74,7 +79,7 @@ public final class Car {
     public String toString() {
         return "Car{" +
                 "year=" + year +
-                ", color='" + color + '\'' +
+                ", color='" + color + "'" +
                 ", wheels=" + wheels +
                 ", engine=" + engine +
                 '}';
