@@ -1,20 +1,21 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 final class Car {
     private final int year;
     private final String color;
-    private final List<Wheel> wheels;
+    private final ArrayList<Object> wheels;
     private final Engine engine;
 
-    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+    public Car(int year, String color, List<Object> wheels, Engine engine) {
         this.year = year;
         this.color = color;
         this.wheels = (wheels != null) ? new ArrayList<>(wheels.size()) : new ArrayList<>();
         if (wheels != null) {
-            for (Wheel wheel : wheels) {
+            for (Object wheel : wheels) {
                 this.wheels.add(wheel.clone());
             }
         }
@@ -31,9 +32,9 @@ final class Car {
 
     }
 
-    public List<Wheel> getWheels() {
-        List<Wheel> wheelsCopy = new ArrayList<>();
-        for (Wheel wheel : wheels) {
+    public List<Object> getWheels() {
+        List<Object> wheelsCopy = new ArrayList<>();
+        for (Object wheel : wheels) {
             wheelsCopy.add(wheel.clone());
         }
         return wheelsCopy;
@@ -52,7 +53,7 @@ final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = getWheels();
+        List<Object> newWheels = getWheels();
         newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
     }
