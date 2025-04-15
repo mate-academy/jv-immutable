@@ -52,7 +52,7 @@ public class Engine implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(horsePower, manufacturer);
+        return Objects.hash(horsePower, manufacturer);//
     }
 
     @Override
