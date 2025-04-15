@@ -90,7 +90,7 @@ public final class Car {
         for (Wheel wheel : wheels) {
             copiedWheels.add(wheel.clone());
         }
-        copiedWheels.add(newWheel.clone());//
+        copiedWheels.add(newWheel.clone());
         return new Car(year, color, copiedWheels, engine.clone());
     }
 
