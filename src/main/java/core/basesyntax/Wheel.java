@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Wheel {
+public class Wheel implements Cloneable {
     private final int radius;
 
     public Wheel(int radius) {
@@ -14,11 +14,19 @@ public class Wheel {
     }
 
     @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Clone not supported", e);
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Wheel)) return false;
-        Wheel wheel = (Wheel) o;
-        return radius == wheel.radius;
+        if (!(o instanceof Wheel wheel)) return false;
+        return this.radius == wheel.radius;
     }
 
     @Override
