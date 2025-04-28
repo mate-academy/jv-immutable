@@ -7,8 +7,9 @@ public class Engine implements Cloneable {
     private final int horsePower;
 
     public Engine(String manufacturer, int horsePower) {
-        this.horsePower = horsePower;
         this.manufacturer = manufacturer;
+        this.horsePower = horsePower;
+
     }
 
     public String getManufacturer() {
