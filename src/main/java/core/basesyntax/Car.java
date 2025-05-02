@@ -7,12 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car {
-    private final Engine engine;
-    private final String color;
-    private final List<Wheel> wheels;
-    private final int year;
-
+public record Car(Engine engine,String color, List<Wheel> wheels, int year) {
     public Car(Engine engine, String color, List<Wheel> wheels, int year) {
         this.engine = engine;
         this.color = color;
@@ -52,12 +47,16 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car car)) return false;
-        return year == car.year &&
-                Objects.equals(engine, car.engine) &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels);
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car car)) {
+            return false;
+        }
+        return year == car.year
+                && Objects.equals(engine, car.engine)
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels);
     }
 
     @Override

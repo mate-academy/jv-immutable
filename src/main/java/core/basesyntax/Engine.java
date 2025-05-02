@@ -2,14 +2,14 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine implements Cloneable {
-    private final String manufacturer;
-    private final int horsePower;
-
-    public Engine(String manufacturer, int horsePower) {
-        this.manufacturer = manufacturer;
-        this.horsePower = horsePower;
-
+public record Engine(String manufacturer, int horsePower) {
+    public Engine {
+       if (manufacturer == null || manufacturer.isBlank()) {
+           throw new IllegalArgumentException("manufacturer can't be empty");
+       }
+       if (horsePower <= 0) {
+           throw new IllegalArgumentException("horsePower must be greater than 0");
+       }
     }
 
     public String getManufacturer() {
@@ -21,19 +21,15 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    public Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Engine engine)) return false;
-        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Engine engine)) {
+            return false;
+        }
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override

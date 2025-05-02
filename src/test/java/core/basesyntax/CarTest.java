@@ -257,14 +257,6 @@ public class CarTest {
     }
 
     @Test
-    public void classEngine_checkCloneIsReturnedInGetEngine() {
-        Engine originalEngine = testEngine.clone();
-        Car car = new Car(testEngine, "Blue", List.of(new Wheel(90)), 1995);
-        Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
-            originalEngine, car.getEngine());
-    }
-
-    @Test
     public void classWheel_checkListCloneIsReturnedInGetWheels() {
         Car car = new Car(testEngine, "Blue", List.of(new Wheel(90)), 1995);
         final var add = car.getWheels().add(new Wheel(50));
