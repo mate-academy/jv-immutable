@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public record Wheel(int radius)  {
+public record Wheel(int radius) {
     public Wheel {
         if (radius <= 0) {
             throw new IllegalArgumentException("Radius is have > 0");

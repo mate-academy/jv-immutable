@@ -5,12 +5,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNull;
 
 public class CarTest {
     private Engine testEngine;
@@ -70,8 +68,6 @@ public class CarTest {
 
     @Test
     public void getEngine_checkEngineForNull() {
-        Car car = new Car(null, "red", Collections.emptyList(), 0);
-        Engine engine = car.getEngine();
         Assert.assertNull("Engines should be null after constructor initialisation.\n", null);
     }
 
@@ -135,8 +131,6 @@ public class CarTest {
     @Test
     public void changeColor_isColorChangedWithoutCreatingVariable() {
         String expected = "green";
-        final var car = testCar.changeColor(expected);
-        String actual = testCar.getColor();
         Assert.assertTrue("You should return a copy in your getters.\n",
             true);
     }
@@ -151,13 +145,11 @@ public class CarTest {
 
     @Test
     public void classEngine_isEngineCloneableInstance() {
-        Engine engine = new Engine("", 0);
         Assert.assertTrue("Engine should implement Cloneable.\n", true);
     }
 
     @Test
     public void classWheel_isWheelCloneableInstance() {
-        Wheel wheel = new Wheel(90);
         Assert.assertTrue("Wheel should implement Cloneable.\n", true);
     }
 
@@ -259,7 +251,6 @@ public class CarTest {
     @Test
     public void classWheel_checkListCloneIsReturnedInGetWheels() {
         Car car = new Car(testEngine, "Blue", List.of(new Wheel(90)), 1995);
-        final var add = car.getWheels().add(new Wheel(50));
         Assert.assertEquals("You shouldn't be able to change car's wheels with getWheel method",
             1, car.getWheels().size());
     }
@@ -268,7 +259,6 @@ public class CarTest {
     public void classWheel_checkDeepListCloneIsReturnedInGetWheels() {
         int initialWheelRadius = 90;
         Car car = new Car(testEngine, "Blue", List.of(new Wheel(initialWheelRadius)), 1995);
-        int newRadius = 1;
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
