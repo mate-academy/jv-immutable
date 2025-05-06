@@ -4,12 +4,13 @@ import java.util.Objects;
 
 public record Engine(String manufacturer, int horsePower) {
     public Engine {
-       if (manufacturer == null || manufacturer.isBlank()) {
-           throw new IllegalArgumentException("manufacturer can't be empty");
-       }
-       if (horsePower <= 0) {
-           throw new IllegalArgumentException("horsePower must be greater than 0");
-       }
+        if (manufacturer == null || manufacturer.isBlank()) {
+            throw new IllegalArgumentException("manufacturer can't be empty");
+        }
+        if (horsePower <= 0) {
+            throw new IllegalArgumentException("horsePower must be greater than 0");
+        }
+
     }
 
     public String getManufacturer() {

@@ -5,7 +5,7 @@ import java.util.Objects;
 public record Wheel(int radius)  {
     public Wheel {
         if (radius <= 0) {
-            throw new IllegalArgumentException("Radius is have >0");
+            throw new IllegalArgumentException("Radius is have > 0");
         }
     }
 
@@ -18,7 +18,7 @@ public record Wheel(int radius)  {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Wheel wheel)) {
+        if (! (o instanceof Wheel wheel)) {
             return false;
         }
         return this.radius == wheel.radius;
