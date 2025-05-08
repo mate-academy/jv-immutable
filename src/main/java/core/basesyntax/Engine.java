@@ -2,35 +2,39 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public record Engine(String manufacturer, int horsePower) {
-    public Engine {
-        if (manufacturer == null || manufacturer.isBlank()) {
-            throw new IllegalArgumentException("manufacturer can't be empty");
-        }
-        if (horsePower <= 0) {
-            throw new IllegalArgumentException("horsePower must be greater than 0");
-        }
+public class Engine implements Cloneable {
+    private final int horsePower;
+    private final String manufacturer;
 
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
     }
 
     public int getHorsePower() {
         return horsePower;
     }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Clone not supported", e);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Engine engine)) {
-            return false;
-        }
-        return horsePower == engine.horsePower
-                && Objects.equals(manufacturer, engine.manufacturer);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Engine engine = (Engine) o;
+        return horsePower == engine.horsePower &&
+                Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -41,8 +45,8 @@ public record Engine(String manufacturer, int horsePower) {
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 }

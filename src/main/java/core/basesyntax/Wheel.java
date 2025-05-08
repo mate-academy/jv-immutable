@@ -2,11 +2,11 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public record Wheel(int radius) {
-    public Wheel {
-        if (radius <= 0) {
-            throw new IllegalArgumentException("Radius is have > 0");
-        }
+public class Wheel implements Cloneable {
+    private final int radius;
+
+    public Wheel(int radius) {
+        this.radius = radius;
     }
 
     public int getRadius() {
@@ -14,14 +14,20 @@ public record Wheel(int radius) {
     }
 
     @Override
+    public Wheel clone(){
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Clone not supported", e);
+        }
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (! (o instanceof Wheel wheel)) {
-            return false;
-        }
-        return this.radius == wheel.radius;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wheel wheel = (Wheel) o;
+        return radius == wheel.radius;
     }
 
     @Override
@@ -32,7 +38,7 @@ public record Wheel(int radius) {
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 }
