@@ -31,13 +31,13 @@ public class CarTest {
     @Test
     public void carConstructor_checkWheelsAfterAddingToCar() {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
-        Car car = new Car(1999, null, expected, testEngine);
+        Car car = new Car(1999, "black", expected, testEngine);
         List<Wheel> actual = car.getWheels();
         Assert.assertEquals("Lists of wheels " + expected + " and " + actual +
                 " should be equal after constructor initialisation.\n", expected, actual);
         Assert.assertNotSame("Lists of wheels should not refer to the same object after " +
                 "constructor initialisation.\n", actual, expected);
-        Assert.assertTrue("You should perform a deep copy of collections.\n", actual.get(0) != expected.get(0));
+        Assert.assertNotSame("You should perform a deep copy of collections.\n", actual.get(0), expected.get(0));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class CarTest {
         String actual = car.getColor();
         Assert.assertEquals("Colors should be the same after constructor initialisation.\n", expected, actual);
         expected = "blue";
-        Assert.assertTrue("Colors should not refer to the same object.\n", !expected.equals(actual));
+        Assert.assertNotEquals("Colors should not refer to the same object.\n", expected, actual);
     }
 
     @Test

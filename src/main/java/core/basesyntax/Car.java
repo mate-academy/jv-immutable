@@ -14,6 +14,16 @@ public final class Car {
     private final Engine engine;
 
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        if (color == null) {
+            throw new IllegalArgumentException("Color must not be null");
+        }
+        if (wheels == null) {
+            throw new IllegalArgumentException("Wheels list must not be null");
+        }
+        if (engine == null){
+            throw new IllegalArgumentException("Engine must not be null");
+        }
+
         this.year = year;
         this.color = color;
         this.engine = engine.clone();
@@ -37,22 +47,22 @@ public final class Car {
     }
 
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
+        return new Car(year, newColor, cloneWheels(wheels), engine.clone());
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, newEngine);
+        return new Car(year, color, cloneWheels(wheels), newEngine.clone());
     }
 
     public Car addWheel(Wheel newWheel) {
         List<Wheel> newWheels = cloneWheels(wheels);
         newWheels.add(newWheel.clone());
-        return new Car(year, color, newWheels, engine);
+        return new Car(year, color, newWheels, engine.clone());
     }
 
-    private List<Wheel> cloneWheels(List<Wheel> original) {
+    private List<Wheel> cloneWheels(List<Wheel> wheels) {
         List<Wheel> cloned = new ArrayList<>();
-        for (Wheel wheel : original) {
+        for (Wheel wheel : wheels) {
             cloned.add(wheel.clone());
         }
         return cloned;

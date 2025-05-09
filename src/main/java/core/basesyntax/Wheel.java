@@ -18,7 +18,7 @@ public class Wheel implements Cloneable {
         try {
             return (Wheel) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException("Clone not supported", e);
+            throw new AssertionError();
         }
     }
 
