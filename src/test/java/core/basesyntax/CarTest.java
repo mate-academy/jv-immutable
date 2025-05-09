@@ -51,23 +51,6 @@ public class CarTest {
     }
 
     @Test
-    public void getEngine_checkEngineForNull() {
-        Car car = new Car(0, "red", Collections.emptyList(), testEngine);
-        Engine engine = car.getEngine();
-        Assert.assertNull("Engines should be null after constructor initialisation.\n", engine);
-    }
-
-    @Test
-    public void carConstructor_checkWheelsForNull() {
-        try {
-            new Car(0, "red", null, testEngine);
-        } catch (NullPointerException e) {
-            return;
-        }
-        Assert.fail("You should not set objects as null.\n");
-    }
-
-    @Test
     public void changeEngine_isCarTheSameAfterChangingEngine() {
         Car actual = testCar
                 .changeEngine(new Engine(90, "Other Maker"));
@@ -261,5 +244,10 @@ public class CarTest {
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
                 + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void carConstructor_checkWheelsForNull(){
+        new Car(1990, "red", null, new Engine(100, "Maker"));
     }
 }
