@@ -20,7 +20,7 @@ public final class Car {
         if (wheels == null) {
             throw new IllegalArgumentException("Wheels list must not be null");
         }
-        if (engine == null){
+        if (engine == null) {
             throw new IllegalArgumentException("Engine must not be null");
         }
 
@@ -70,13 +70,17 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(engine, car.engine) &&
-                Objects.equals(wheels, car.wheels);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(engine, car.engine)
+                && Objects.equals(wheels, car.wheels);
     }
 
     @Override

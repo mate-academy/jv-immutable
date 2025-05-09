@@ -52,7 +52,7 @@ public class CarTest {
 
     @Test
     public void getEngine_checkEngineForNull() {
-        Car car = new Car(0, "red", Collections.emptyList(), null);
+        Car car = new Car(0, "red", Collections.emptyList(), testEngine);
         Engine engine = car.getEngine();
         Assert.assertNull("Engines should be null after constructor initialisation.\n", engine);
     }
@@ -240,6 +240,7 @@ public class CarTest {
 
     @Test
     public void classEngine_checkCloneIsReturnedInGetEngine() {
+        Engine testEngine = new Engine(100, "BMW");
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
