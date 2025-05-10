@@ -1,16 +1,66 @@
 package core.basesyntax;
 
-public class Engine {
+public final class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Engine engine = (Engine) obj;
+        return horsePower == engine.horsePower
+                && (engine.manufacturer != null && engine.manufacturer.equals(manufacturer));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hash = 17;
+        hash = hash * prime + horsePower;
+        hash = hash * prime + (manufacturer == null ? 0 : manufacturer.hashCode());
+        return hash;
+    }
+
+    @Override
+    protected Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can't create the clone of Engine object " + e);
+        }
+    }
 
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 }
