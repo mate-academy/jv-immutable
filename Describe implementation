@@ -1,10 +1,3 @@
-package core.basesyntax;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-
 /**
  * Make this class immutable. See requirements in task description.
  */
@@ -15,6 +8,12 @@ public final class Car {
     private final Engine engine;
 
     //implement this class
+
+    @Override
+    public String toString() {
+        return "Car{" + "year=" + year + ", color='" + color + '\'' + ", wheels=" + wheels + ", engine=" + engine + '}';
+    }
+
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
@@ -24,21 +23,7 @@ public final class Car {
         }
         this.wheels = Collections.unmodifiableList(deepCopy);
         this.engine = engine != null ? engine.clone() : null;
-    }
 
-    @Override
-    public String toString() {
-        return "Car{"
-                + "year="
-                + year
-                + ", color='"
-                + color
-                + '\''
-                + ", wheels="
-                + wheels
-                + ", engine="
-                + engine
-                + '}';
     }
 
     Car changeEngine(Engine engine) {
@@ -60,7 +45,7 @@ public final class Car {
     }
 
     public String getColor() {
-        return color;
+        return color; //todo: no need do immutable because String is immutable
     }
 
     public List<Wheel> getWheels() {
@@ -68,32 +53,27 @@ public final class Car {
         for (Wheel wheel : wheels) {
             deepCopy.add(wheel.clone());
         }
-        return deepCopy;
+        return deepCopy; //todo: deep copy?
     }
 
     public Engine getEngine() {
         if (engine == null) {
-            return null;
+            return null; // Handle null appropriately
         }
         return engine.clone();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return getYear() == car.getYear() && Objects.equals(getColor(), car.getColor())
-                && Objects.equals(getWheels(), car.getWheels())
-                && Objects.equals(getEngine(), car.getEngine());
+        return getYear() == car.getYear() && Objects.equals(getColor(), car.getColor()) && Objects.equals(getWheels(), car.getWheels()) && Objects.equals(getEngine(), car.getEngine());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getYear(), getColor(), getWheels(), getEngine());
     }
-}
+
+
