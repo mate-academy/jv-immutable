@@ -15,8 +15,10 @@ public final class Wheel {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Wheel wheel)) return false;
-        return radius == wheel.radius;
+        {
+            if (!(o instanceof Wheel wheel)) return false;
+            return radius == wheel.radius;
+        }
     }
 
     @Override
