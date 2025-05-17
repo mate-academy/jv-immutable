@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Wheel {
+public final class Wheel {
     private int radius;
 
     //implement this class

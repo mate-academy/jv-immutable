@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Engine {
+public final class Engine {
     private int horsePower;
     private String manufacturer;
 
