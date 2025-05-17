@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Make this class immutable. See requirements in task description.
@@ -14,7 +14,8 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels;
+        this.wheels = wheels == null ? List.of() :
+                Collections.unmodifiableList(new ArrayList<>(wheels));
         this.engine = engine;
     }
 
@@ -27,21 +28,39 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+        return new ArrayList<>(wheels);
     }
 
     public Engine getEngine() {
         return engine;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>(this.wheels);
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(year, color, wheels, engine);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Car car)) return false;
+        return year == car.year &&
+                Objects.equals(color, car.color) &&
+                Objects.equals(wheels, car.wheels) &&
+                Objects.equals(engine, car.engine);
     }
 
     @Override

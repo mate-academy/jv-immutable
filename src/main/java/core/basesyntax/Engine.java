@@ -1,10 +1,34 @@
 package core.basesyntax;
 
-public final class Engine {
-    private int horsePower;
-    private String manufacturer;
+import java.util.Objects;
 
-    //implement this class
+public final class Engine {
+    private final int horsePower;
+    private final String manufacturer;
+
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Engine engine)) return false;
+        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(horsePower, manufacturer);
+    }
 
     @Override
     public String toString() {
