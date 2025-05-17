@@ -59,7 +59,9 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Car car)) return false;
+        if (!(o instanceof Car car)) {
+            return false;
+        }
         return year == car.year && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
@@ -68,10 +70,10 @@ public final class Car {
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }

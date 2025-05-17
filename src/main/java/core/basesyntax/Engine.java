@@ -21,10 +21,11 @@ public final class Engine {
 
     @Override
     public boolean equals(Object o) {
-        {
-            if (!(o instanceof Engine engine)) return false;
-            return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
+        if (!(o instanceof Engine engine)) {
+            return false;
         }
+        return horsePower == engine.horsePower
+                && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -35,9 +36,9 @@ public final class Engine {
     @Override
     public String toString() {
         return "Engine{"
-            + "horsePower=" + horsePower
-            + ", manufacturer='" + manufacturer + '\''
-            + '}';
+                + "horsePower=" + horsePower
+                + ", manufacturer='" + manufacturer + '\''
+                + '}';
     }
 
 }

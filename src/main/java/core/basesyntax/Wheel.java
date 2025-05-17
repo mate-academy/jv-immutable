@@ -16,7 +16,9 @@ public final class Wheel {
     @Override
     public boolean equals(Object o) {
         {
-            if (!(o instanceof Wheel wheel)) return false;
+            if (!(o instanceof Wheel wheel)) {
+                return false;
+            }
             return radius == wheel.radius;
         }
     }
@@ -29,7 +31,7 @@ public final class Wheel {
     @Override
     public String toString() {
         return "Wheel{"
-            + "radius=" + radius
-            + '}';
+                + "radius=" + radius
+                + '}';
     }
 }
