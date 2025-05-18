@@ -1,14 +1,10 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
-public final class Car {
+public final class Car implements Cloneable {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -17,8 +13,7 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels == null ? List.of() :
-                Collections.unmodifiableList(new ArrayList<>(wheels));
+        this.wheels = wheels == null ? List.of() : List.copyOf(wheels);
         this.engine = engine;
     }
 
@@ -31,11 +26,16 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        // Defensive copy
+        List<Wheel> copy = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            copy.add(wheel.clone());
+        }
+        return copy;
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine newEngine) {
@@ -47,14 +47,19 @@ public final class Car {
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(this.wheels);
+        List<Wheel> newWheels = new ArrayList<>(wheels);
         newWheels.add(newWheel);
         return new Car(year, color, newWheels, engine);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+    public Car clone() {
+        List<Wheel> clonedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(wheel.clone());
+        }
+        Engine clonedEngine = engine == null ? null : engine.clone();
+        return new Car(year, color, clonedWheels, clonedEngine);
     }
 
     @Override
@@ -68,6 +73,11 @@ public final class Car {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
+    }
+
+    @Override
     public String toString() {
         return "Car{"
                 + "year=" + year
@@ -77,3 +87,4 @@ public final class Car {
                 + '}';
     }
 }
+
