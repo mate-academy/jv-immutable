@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,8 +14,15 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels == null ? List.of() : List.copyOf(wheels);
-        this.engine = engine;
+        if (wheels == null) {
+            throw new NullPointerException("Wheels list can't be null");
+        }
+        List<Wheel> clonedWheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            clonedWheels.add(wheel.clone());
+        }
+        this.wheels = Collections.unmodifiableList(clonedWheels);
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public int getYear() {

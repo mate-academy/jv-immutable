@@ -3,7 +3,7 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Wheel implements Cloneable {
-    private final int radius;
+    private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
@@ -11,6 +11,10 @@ public final class Wheel implements Cloneable {
 
     public int getRadius() {
         return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
     }
 
     @Override
