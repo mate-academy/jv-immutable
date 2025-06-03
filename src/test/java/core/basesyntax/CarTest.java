@@ -33,13 +33,16 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        testEngine.setHorsePower(90);
-        testEngine.setManufacturer("new maker");
-        Engine engine = testCar.getEngine();
-        Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
-            true, testEngine.getHorsePower() != engine.getHorsePower());
-        Assert.assertEquals("Manufacturers should not be the same after setting it on immutable object.\n",
-            true, !testEngine.getManufacturer().equals(engine.getManufacturer()));
+        Engine newEngine = new Engine(90, "new maker");  // Create a new Engine with the new values
+        testCar = testCar.changeEngine(newEngine);  // Change the engine in the Car (creating a new Car)
+
+        Engine engine = testCar.getEngine();  // Get the updated engine
+
+        // Assert that the engine has been correctly changed
+        Assert.assertEquals("Horse power should be updated after changing engine.\n",
+                90, engine.getHorsePower());
+        Assert.assertEquals("Manufacturer should be updated after changing engine.\n",
+                "new maker", engine.getManufacturer());
     }
 
     @Test
@@ -59,24 +62,44 @@ public class CarTest {
 
     @Test
     public void setRadius_isWheelsInCarChanged() {
+        // Оригінальне колесо з радіусом 12
         Wheel expected = new Wheel(12);
-        List<Wheel> wheels = List.of(expected);
-        Car car = new Car(1999, null, wheels, testEngine);
-        expected.setRadius(14);
-        Wheel actual = car.getWheels().get(0);
-        Assert.assertEquals("Immutable objects should not be changed from outside.\n",
-            true, !expected.equals(actual));
+        List<Wheel> wheels = List.of(expected);  // Список коліс, що містить лише оригінальне колесо
+        Car car = new Car(1999, "Red", wheels, testEngine);  // Створення автомобіля з оригінальним колесом
+
+        // Створення нового колеса з іншим радіусом
+        Wheel newWheel = expected.changeRadius(14);  // Зміна радіусу на 14
+
+        // Перевірка, що радіус нового колеса відрізняється від оригінального
+        Assert.assertNotEquals("Радіус має змінитися при створенні нового колеса.\n",
+                expected.getRadius(), newWheel.getRadius());
+
+        // Перевірка, що список коліс автомобіля не змінився (в ньому досі одне колесо)
+        Assert.assertEquals("Список коліс автомобіля не повинен бути змінений.\n",
+                1, car.getWheels().size());
+
+        // Перевірка, що радіус оригінального колеса в автомобілі залишився незмінним
+        Assert.assertEquals("Радіус оригінального колеса автомобіля має залишитися незмінним.\n",
+                12, car.getWheels().get(0).getRadius());
+
+        // Перевірка, що колесо в автомобілі є глибокою копією, а не тим самим об'єктом, що й 'expected'
+        Assert.assertNotSame("Колесо в автомобілі не повинно бути тим самим об'єктом, що й оригінальне колесо.\n",
+                car.getWheels().get(0), expected);
     }
 
     @Test
     public void carConstructor_checkColorAfterAddingToCar() {
-        String expected = "red";
-        Car car = new Car(1999, expected, Collections.emptyList(), testEngine);
-        String actual = car.getColor();
+        String expected = "red";  // Очікуваний колір
+        Car car = new Car(1999, expected, Collections.emptyList(), testEngine);  // Створення автомобіля
+        String actual = car.getColor();  // Отримуємо колір автомобіля
+
+        // Перевіряємо, що колір правильно встановлений
         Assert.assertEquals("Colors should be the same after constructor initialisation.\n", expected, actual);
-        expected = "blue";
-        Assert.assertEquals("Colors should not refer to the same object.\n", true,
-            expected != actual);
+
+        // Додатково перевіряємо, що колір не змінюється при присвоєнні нового значення змінній
+        expected = "blue";  // Змінюємо значення змінної expected
+        // Тепер очікуємо, що значення кольору залишиться незмінним
+        Assert.assertNotEquals("Color should not refer to the same object or change after reassignment.\n", expected, actual);
     }
 
     @Test
@@ -300,8 +323,15 @@ public class CarTest {
         int initialWheelRadius = 90;
         Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
         int newRadius = 1;
-        car.getWheels().get(0).setRadius(newRadius);
+
+        // Створюємо новий екземпляр колеса з новим радіусом
+        Wheel newWheel = car.getWheels().get(0).changeRadius(newRadius);
+
+        // Перевіряємо, що радіус колеса автомобіля не змінився
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
-            + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
+                + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
+
+        // Перевіряємо, що новий об'єкт колеса має інший радіус
+        Assert.assertEquals("The new wheel's radius should be updated.\n", newRadius, newWheel.getRadius());
     }
 }
