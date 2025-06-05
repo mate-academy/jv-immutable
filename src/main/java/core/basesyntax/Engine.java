@@ -2,9 +2,9 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine {
-    private final int horsePower;
-    private final String manufacturer;
+public class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -21,6 +21,23 @@ public class Engine {
 
     public String getManufacturer() {
         return manufacturer; // alr immutable
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 
     @Override
