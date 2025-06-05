@@ -11,8 +11,8 @@ public class Engine {
         this.manufacturer = manufacturer;
     }
 
-    public Engine(Engine other) {
-        this(other.horsePower, other.manufacturer);
+    public Engine(Engine engine) {
+        this(engine.horsePower, engine.manufacturer); // copied
     }
 
     public int getHorsePower() {
@@ -20,7 +20,7 @@ public class Engine {
     }
 
     public String getManufacturer() {
-        return manufacturer;
+        return manufacturer; // alr immutable
     }
 
     @Override

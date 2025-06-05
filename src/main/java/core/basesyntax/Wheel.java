@@ -9,12 +9,19 @@ public class Wheel {
         this.radius = radius;
     }
 
-    public Wheel(Wheel other) {
-        this(other.radius);
+    public Wheel(Wheel wheel) { // copied
+        this(wheel.radius);
     }
 
     public int getRadius() {
         return radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Wheel{"
+                + "radius=" + radius
+                + '}';
     }
 
     @Override
@@ -34,10 +41,4 @@ public class Wheel {
         return Objects.hash(radius);
     }
 
-    @Override
-    public String toString() {
-        return "Wheel{"
-                + "radius=" + radius
-                + '}';
-    }
 }
