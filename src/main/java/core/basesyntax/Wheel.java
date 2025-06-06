@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Wheel implements Cloneable {
+public class Wheel implements Cloneable { // minor comment
     private int radius;
 
     public Wheel(int radius) {

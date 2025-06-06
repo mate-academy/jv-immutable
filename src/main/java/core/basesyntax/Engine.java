@@ -32,7 +32,7 @@ public class Engine implements Cloneable {
     }
 
     @Override
-    public Engine clone() {
+    public Engine clone() { // minor comment
         try {
             return (Engine) super.clone();
         } catch (CloneNotSupportedException e) {

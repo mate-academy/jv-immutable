@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car { // All checks have passed
+public final class Car { // minor comment
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
