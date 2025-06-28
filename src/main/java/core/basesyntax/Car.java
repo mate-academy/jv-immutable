@@ -9,6 +9,7 @@ import java.util.Objects;
  * Make this class immutable. See requirements in task description.
  */
 public final class Car {
+    
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -17,8 +18,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = Collections.unmodifiableList(new ArrayList<>(wheels));
-        this.engine = engine;
+        List<Wheel> wheelCopies = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            wheelCopies.add(wheel.clone());
+        }
+        this.wheels = Collections.unmodifiableList(wheelCopies);
+        this.engine = engine == null ? null : engine.clone();
     }
     
     public int getYear() {
@@ -30,50 +35,59 @@ public final class Car {
     }
     
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        List<Wheel> cloneList = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            cloneList.add(wheel.clone());
+        }
+        return cloneList;
     }
     
     public Engine getEngine() {
-        return engine.clone();
+        return engine == null ? null : engine.clone();
     }
     
     public Car changeEngine(Engine newEngine) {
-        return new Car(year, color, wheels, newEngine);
+        return new Car(year, color, getWheels(), newEngine);
     }
     
     public Car changeColor(String newColor) {
-        return new Car(year, newColor, wheels, engine);
+        return new Car(year, newColor, getWheels(), engine);
     }
     
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(newWheel);
+        List<Wheel> newWheels = getWheels();
+        newWheels.add(newWheel.clone());
         return new Car(year, color, newWheels, engine);
     }
     
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car)) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && color.equals(car.color)
+                && wheels.equals(car.wheels)
+                && Objects.equals(engine, car.engine);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(year, color, wheels, engine);
     }
-
+    
     @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }
+

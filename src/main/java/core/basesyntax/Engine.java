@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public final class Engine implements Cloneable {
     
-    private final int horsePower;
-    private final String manufacturer;
+    private int horsePower;
+    private String manufacturer;
     
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -20,12 +20,12 @@ public final class Engine implements Cloneable {
         return manufacturer;
     }
     
-    public Engine setHorsePower(final int horsePower) {
-        return new Engine(horsePower, manufacturer);
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
     }
     
-    public Engine setManufacturer(final String manufacturer) {
-        return new Engine(horsePower, manufacturer);
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
     
     @Override
@@ -42,8 +42,8 @@ public final class Engine implements Cloneable {
             return false;
         }
         Engine other = (Engine) obj;
-        return horsePower == other.horsePower &&
-                Objects.equals(manufacturer, other.manufacturer);
+        return horsePower == other.horsePower
+                && Objects.equals(manufacturer, other.manufacturer);
     }
     
     @Override
