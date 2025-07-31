@@ -2,42 +2,47 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    public Car(CarBuilder carBuilder) {
-        year = carBuilder.year;
-        color = carBuilder.color;
-        wheels = carBuilder.wheels;
-        engine = carBuilder.engine;
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
+        this.year = year;
+        this.color = color;
+        this.wheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
+        this.engine = engine == null ? null : engine.clone();
     }
 
-    public static class CarBuilder {
-        private final int year;
-        private final String color;
-        private final List<Wheel> wheels;
-        private final Engine engine;
-
-        public CarBuilder(int year, String color, List<Wheel> wheels, Engine engine) {
-            this.year = year;
-            this.color = color;
-            this.wheels = new ArrayList<>(wheels.size());
-            for (Wheel wheel : wheels) {
-                this.wheels.add(wheel.clone());
-            }
-            this.engine = engine.clone();
-        }
-        public Car build() {
-            return new Car(this);
-        }
-    }
+    //    public static class CarBuilder {
+    //        private final int year;
+    //        private final String color;
+    //        private final List<Wheel> wheels;
+    //        private final Engine engine;
+    //
+    //        public CarBuilder(int year, String color, List<Wheel> wheels, Engine engine) {
+    //            this.year = year;
+    //            this.color = color;
+    //            this.wheels = new ArrayList<>(wheels.size());
+    //            for (Wheel wheel : wheels) {
+    //                this.wheels.add(wheel.clone());
+    //            }
+    //            this.engine = engine.clone();
+    //        }
+    //
+    //        public Car build() {
+    //            return new Car(this);
+    //        }
+    //    }
 
     public int getYear() {
         return year;
@@ -56,7 +61,24 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return engine == null ? null : engine.clone();
+    }
+
+    public Car changeEngine(Engine otherEngine) {
+        return new Car(year, color, wheels, otherEngine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>(wheels.size() + 1);
+        for (Wheel wheel : wheels) {
+            newWheels.add(wheel.clone());
+        }
+        newWheels.add(newWheel.clone());
+        return new Car(year, color, newWheels, engine);
     }
 
     @Override
@@ -67,5 +89,25 @@ public final class Car implements Cloneable {
             + ", wheels=" + wheels
             + ", engine=" + engine
             + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
     }
 }
