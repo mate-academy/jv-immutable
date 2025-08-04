@@ -2,7 +2,7 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine implements Cloneable {
+public final class Engine implements Cloneable {
     private final int horsePower;
     private final String manufacturer;
 
@@ -21,16 +21,29 @@ public class Engine implements Cloneable {
 
     @Override
     public Engine clone() {
-        return new Engine(horsePower, manufacturer);
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // не должно случиться, тк мы Cloneable
+        }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Engine)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || o.getClass() != Engine.class) {
+            return false;
+        }
         Engine engine = (Engine) o;
-        return horsePower == engine.horsePower
-                && Objects.equals(manufacturer, engine.manufacturer);
+        if (horsePower != engine.horsePower) {
+            return false;
+        }
+        if (!Objects.equals(manufacturer, engine.manufacturer)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -46,3 +59,4 @@ public class Engine implements Cloneable {
                 + '}';
     }
 }
+
