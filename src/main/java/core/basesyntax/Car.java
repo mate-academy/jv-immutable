@@ -84,7 +84,7 @@ public final class Car {
             newWheels.add(wheel.clone());
         }
         newWheels.add(newWheel);
-        return new Car(year, color, newWheels , engine);
+        return new Car(year, color, newWheels, engine);
     }
 
     public Car changeColor(String newColor) {
