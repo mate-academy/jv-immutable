@@ -13,90 +13,81 @@ public final class Car {
     private final List<Wheel> wheels;
     private final Engine engine;
 
-    // implement this class
-    public Car(Engine engine, List<Wheel> wheels, int year, String color) {
+    //implement this class
+
+    public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
-        this.engine = engine;
+        if (wheels == null) {
+            throw new NullPointerException("Wheels cannot be null");
+        }
+        this.wheels = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            this.wheels.add(wheel.clone());
+        }
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public int getYear() {
-        return this.year;
+        return year;
     }
 
     public String getColor() {
-        return this.color;
+        return color;
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        List<Wheel> result = new ArrayList<>(wheels.size());
+        for (Wheel wheel : wheels) {
+            result.add(wheel.clone());
+        }
+        return result;
     }
 
     public Engine getEngine() {
-        return this.engine;
-    }
-
-    public Car changeEngine(Engine engine) {
-        return new Car(engine, wheels, year, color);
-    }
-
-    public Car changeColor(String color) {
-        return new Car(engine, wheels, year, color);
-    }
-
-    public Car changeWheel(Wheel wheel) {
-        List<Wheel> wheelsCollection = new ArrayList<>();
-        wheelsCollection.add(wheel);
-        return new Car(engine, wheelsCollection, year, color);
+        return engine == null ? null : engine.clone();
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // 1. Self-check: Is it the same object?
-        if (this == obj) {
-            return true;
-        }
-
-        // 2. Null-check: Is the other object null?
-        if (obj == null) {
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-
-        // 3. Type-check: Is the other object of the same class?
-        // Using getClass() ensures strict class equality, while instanceof allows
-        // subclasses.
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        // 4. Cast: Cast the object to the correct type
-        Car other = (Car) obj;
-
-        // 5. Field comparison: Compare significant fields
-        // For primitive types, use ==.
-        // For object types, use Objects.equals() to handle nulls gracefully.
-        return this.year == other.year
-                &&
-                Objects.equals(this.color, other.color)
-                && Objects.equals(this.wheels, other.wheels)
-                && Objects.equals(this.engine, other.engine);
+        Car car = (Car) o;
+        return getYear() == car.getYear() && Objects.equals(getColor(), car.getColor())
+                && Objects.equals(getWheels(), car.getWheels())
+                && Objects.equals(getEngine(), car.getEngine());
     }
 
-    // 6. Override hashCode: Always override hashCode when overriding equals.
-    // Ensure that equal objects have equal hash codes.
     @Override
     public int hashCode() {
-        return Objects.hash(year, color, wheels, engine);
+        return Objects.hash(getYear(), getColor(), getWheels(), getEngine());
     }
 
     @Override
     public String toString() {
         return "Car{"
-                + "year=" + year
-                + ", color='" + color + '\''
-                + ", wheels=" + wheels
-                + ", engine=" + engine
-                + '}';
+            + "year=" + year
+            + ", color='" + color + '\''
+            + ", wheels=" + wheels
+            + ", engine=" + engine
+            + '}';
+    }
+
+    public Car changeEngine(Engine newEngine) {
+        return new Car(year, color, wheels, newEngine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> newWheels = new ArrayList<>(wheels.size() + 1);
+        for (Wheel wheel : wheels) {
+            newWheels.add(wheel.clone());
+        }
+        newWheels.add(newWheel);
+        return new Car(year, color, newWheels, engine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(year, newColor, wheels, engine);
     }
 }
