@@ -24,6 +24,7 @@ public final class Car {
     public int getYear() {
         return this.year;
     }
+
     public String getColor() {
         return this.color;
     }
@@ -75,7 +76,8 @@ public final class Car {
         // 5. Field comparison: Compare significant fields
         // For primitive types, use ==.
         // For object types, use Objects.equals() to handle nulls gracefully.
-        return this.year == other.year &&
+        return this.year == other.year
+                &&
                 Objects.equals(this.color, other.color)
                 && Objects.equals(this.wheels, other.wheels)
                 && Objects.equals(this.engine, other.engine);

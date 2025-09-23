@@ -13,7 +13,7 @@ public final class Engine {
         this.manufacturer = manufacturer;
     }
 
-     @Override
+    @Override
     public boolean equals(Object obj) {
         // 1. Self-check: Is it the same object?
         if (this == obj) {
@@ -38,10 +38,12 @@ public final class Engine {
         // 5. Field comparison: Compare significant fields
         // For primitive types, use ==.
         // For object types, use Objects.equals() to handle nulls gracefully.
-        return this.horsePower == other.horsePower &&
+        return this.horsePower == other.horsePower
+                &&
                 Objects.equals(this.manufacturer, other.manufacturer);
-               
+
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(horsePower, manufacturer);
