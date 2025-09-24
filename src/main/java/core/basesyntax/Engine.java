@@ -9,6 +9,14 @@ public class Engine {
         this.manufacturer = manufacturer;
     }
 
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     public int getHorsePower() {
         return horsePower;
     }

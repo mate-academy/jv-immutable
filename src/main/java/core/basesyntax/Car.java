@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Make this class immutable. See requirements in task description.
  */
-public final class Car implements Cloneable {
+public final class Car {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -16,7 +16,7 @@ public final class Car implements Cloneable {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(getWheels());
+        this.wheels = new ArrayList<>(wheels);
         this.engine = engine;
     }
 
@@ -36,16 +36,18 @@ public final class Car implements Cloneable {
         return engine;
     }
 
+    public Car addWheel(List<Wheel> newWheels) {
+        List<Wheel> newWheelsList = new ArrayList<>(wheels);
+        newWheelsList.addAll(newWheels);
+        return new Car(this.year, this.color, newWheelsList, this.engine);
+    }
+
     public Car changeEngine(Engine newEngine) {
         return new Car(this.year, this.color, this.wheels, newEngine);
     }
 
     public Car changeColor(String newColor) {
         return new Car(this.year, newColor, this.wheels, this.engine);
-    }
-
-    public Car addWheel(Wheel newWheel) {
-        return new Car(this.year, this.color, new ArrayList<>(newWheel), this.engine);
     }
 
     @Override
