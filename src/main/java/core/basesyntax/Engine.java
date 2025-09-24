@@ -4,7 +4,18 @@ public class Engine {
     private int horsePower;
     private String manufacturer;
 
-    //implement this class
+    public Engine(int horsePower, String manufacturer) {
+        this.horsePower = horsePower;
+        this.manufacturer = manufacturer;
+    }
+
+    public int getHorsePower() {
+        return horsePower;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
 
     @Override
     public String toString() {
