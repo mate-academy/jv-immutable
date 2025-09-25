@@ -16,8 +16,11 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
-        this.engine = engine;
+        if (wheels == null) {
+            throw new NullPointerException("There is no wheel");
+        }
+        this.wheels = copyWheels(wheels);
+        this.engine = (engine == null) ? null : engine.clone();
     }
 
     public int getYear() {
@@ -29,21 +32,39 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return copyWheels(this.wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        if (engine == null) {
+            return null;
+        }
+        return engine.clone();
     }
 
-    public Car addWheel(List<Wheel> newWheels) {
-        List<Wheel> newWheelsList = new ArrayList<>(wheels);
-        newWheelsList.addAll(newWheels);
-        return new Car(this.year, this.color, newWheelsList, this.engine);
+    public Car addWheel(Wheel newWheel) {
+        if (newWheel == null) {
+            throw new NullPointerException("There are no wheels");
+        }
+        List<Wheel> newWheels = new ArrayList<>(this.wheels);
+        newWheels.add(newWheel);
+        return new Car(this.year, this.color, newWheels, this.engine);
+    }
+
+    public List<Wheel> copyWheels(List<Wheel> wheels) {
+        List<Wheel> newWheelsList = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            newWheelsList.add(wheel.clone());
+        }
+        return newWheelsList;
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new Car(this.year, this.color, this.wheels, newEngine);
+        if (engine == null) {
+            throw new NullPointerException("There is no engine");
+        }
+        return new Car(this.year, this.color, this.wheels,
+                newEngine == null ? null : newEngine.clone());
     }
 
     public Car changeColor(String newColor) {
