@@ -2,11 +2,7 @@ package core.basesyntax;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -71,9 +67,15 @@ public final class Car {
 
         Car current = (Car) o;
 
-        if (color != null ? !color.equals(current.color) : current.color != null) return false;
-        if (engine != null ? !engine.equals(current.engine) : current.engine != null) return false;
-        if (wheels != null ? !wheels.equals(current.wheels) : current.wheels != null) return false;
+        if (color != null ? !color.equals(current.color) : current.color != null) {
+            return false;
+        }
+        if (engine != null ? !engine.equals(current.engine) : current.engine != null) {
+            return false;
+        }
+        if (wheels != null ? !wheels.equals(current.wheels) : current.wheels != null) {
+            return false;
+        }
         return true;
     }
 

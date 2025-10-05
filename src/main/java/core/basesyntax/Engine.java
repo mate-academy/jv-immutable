@@ -18,7 +18,6 @@ public class Engine implements Cloneable {
         }
     }
 
-
     public int getHorsePower() {
         return horsePower;
     }
@@ -46,8 +45,12 @@ public class Engine implements Cloneable {
 
         Engine current = (Engine) o;
 
-        if (horsePower != current.horsePower) return false;
-        if (manufacturer != current.manufacturer) return false;
+        if (horsePower != current.horsePower) {
+            return false;
+        }
+        if (manufacturer != current.manufacturer) {
+            return false;
+        }
         return true;
     }
 
