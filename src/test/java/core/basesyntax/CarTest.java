@@ -279,7 +279,7 @@ public class CarTest {
     }
 
     @Test
-    public void classEngine_checkCloneIsReturnedInGetEngine() {
+    public void classEngine_checkCloneIsReturnedInGetEngine() throws CloneNotSupportedException {
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
         car.getEngine().setHorsePower(0);
