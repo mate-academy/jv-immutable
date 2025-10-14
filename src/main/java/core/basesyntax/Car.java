@@ -13,7 +13,8 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         if (wheels == null) {
             throw new NullPointerException("Wheels list cannot be null");
-        }this.year = year;
+        }
+        this.year = year;
         this.color = color;
         this.wheels = new ArrayList<>();
         for (Wheel w : wheels) {
@@ -60,13 +61,17 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car)) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
