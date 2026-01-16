@@ -47,7 +47,7 @@ public final class Car {
     }
 
     public Car changeEngine(Engine otherMaker) {
-        if(otherMaker != null) {
+        if (otherMaker != null) {
             return new Car(getYear(), getColor(), getWheels(), otherMaker);
         } else {
             throw new RuntimeException("The engine value could not be null");
@@ -55,12 +55,12 @@ public final class Car {
     }
 
     public Car addWheel(Wheel wheel) {
-        if(wheel != null) {
+        if (wheel != null) {
             List<Wheel> carWheels = getWheels();
             carWheels.add(wheel);
             return new Car(getYear(), getColor(), carWheels, getEngine());
         } else {
-            throw  new RuntimeException("The wheel value could not be null");
+            throw new RuntimeException("The wheel value could not be null");
         }
     }
 
@@ -70,10 +70,16 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
-        return year == car.year && Objects.equals(color, car.color) && Objects.equals(wheels, car.wheels) && Objects.equals(engine, car.engine);
+        return year == car.year && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
