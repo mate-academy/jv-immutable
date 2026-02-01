@@ -16,7 +16,8 @@ public final class Car {
         // Глибоке копіювання списку коліс
         this.wheels = getCopyOfWheels(wheels);
         // Глибоке копіювання двигуна (перевірка на null)
-        this.engine = (engine == null) ? null : new Engine(engine.getHorsePower(), engine.getManufacturer());
+        this.engine = (engine == null) ? null : new Engine(engine.getHorsePower(),
+                engine.getManufacturer());
     }
 
     public int getYear() {
@@ -27,14 +28,16 @@ public final class Car {
         return color;
     }
 
-    // Повертаємо копію списку, щоб ніхто не міг додати колесо в оригінал через геттер
+    // Повертаємо копію списку, щоб ніхто не міг додати
+    // колесо в оригінал через геттер
     public List<Wheel> getWheels() {
         return getCopyOfWheels(wheels);
     }
 
     // Повертаємо копію двигуна
     public Engine getEngine() {
-        return (engine == null) ? null : new Engine(engine.getHorsePower(), engine.getManufacturer());
+        return (engine == null) ? null : new Engine(engine.getHorsePower(),
+                engine.getManufacturer());
     }
 
     public Car changeEngine(Engine engine) {
@@ -61,8 +64,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Car car = (Car) o;
         return year == car.year
                 && Objects.equals(color, car.color)
