@@ -40,9 +40,22 @@ public final class Car {
         return engine.clone();
     }
 
+    public Car changeEngine(Engine engine) {
+        return new Car(this.year, this.color, this.wheels, engine);
+    }
+
+    public Car changeColor(String color) {
+        return new Car(this.year, color, this.wheels, this.engine);
+    }
+
+    public Car addWheel(Wheel wheel) {
+        wheels.add(wheel);
+        return new Car(this.year, this.color, wheels, this.engine);
+    }
+
     @Override
     public boolean equals(Object object) {
-        if (this ==  object) {
+        if (this == object) {
             return true;
         }
 
@@ -51,10 +64,10 @@ public final class Car {
         }
 
         Car car = (Car) object;
-        return year == car.year &&
-                Objects.equals(color, car.color) &&
-                Objects.equals(wheels, car.wheels) &&
-                Objects.equals(engine, car.engine);
+        return year == car.year
+                && Objects.equals(color, car.color)
+                && Objects.equals(wheels, car.wheels)
+                && Objects.equals(engine, car.engine);
     }
 
     @Override
