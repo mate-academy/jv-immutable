@@ -50,7 +50,7 @@ public final class Car {
 
     public Car addWheel(Wheel wheel) {
         wheels.add(wheel);
-        return new Car(this.year, this.color, wheels, this.engine);
+        return new Car(this.year, this.color, new ArrayList<>(wheels), this.engine);
     }
 
     @Override
