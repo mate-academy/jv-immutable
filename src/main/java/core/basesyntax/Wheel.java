@@ -1,14 +1,21 @@
 package core.basesyntax;
 
-public class Wheel {
+public class Wheel implements Cloneable {
     private int radius;
-
-    //implement this class
 
     @Override
     public String toString() {
         return "Wheel{"
             + "radius=" + radius
             + '}';
+    }
+
+    @Override
+    public Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
