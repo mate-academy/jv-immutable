@@ -33,8 +33,8 @@ public class CarTest {
 
     @Test
     public void set_isEngineInCarChanged() {
-        testEngine.withHorsePower(90);
-        testEngine.withManufacturer("new maker");
+        testEngine.setHorsePower(90);
+        testEngine.setManufacturer("new maker");
         Engine engine = testCar.getEngine();
         Assert.assertEquals("Horse power should not be the same after setting it on immutable object.\n",
             true, testEngine.getHorsePower() != engine.getHorsePower());
@@ -282,7 +282,7 @@ public class CarTest {
     public void classEngine_checkCloneIsReturnedInGetEngine() {
         Engine originalEngine = testEngine.clone();
         Car car = new Car(1995, "Blue", List.of(new Wheel(90)), testEngine);
-        car.getEngine().withHorsePower(0);
+        car.getEngine().setHorsePower(0);
         Assert.assertEquals("You shouldn't be able to change car's engine with getEngine() method",
             originalEngine, car.getEngine());
     }

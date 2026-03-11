@@ -3,8 +3,8 @@ package core.basesyntax;
 import java.util.Objects;
 
 public final class Engine implements Cloneable{
-    private final int horsePower;
-    private final String manufacturer;
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -16,12 +16,19 @@ public final class Engine implements Cloneable{
         this.manufacturer = engine.manufacturer;
     }
 
-    public Engine withHorsePower(int horsePower) {
-        return new Engine(horsePower, manufacturer);
-    }
+//    public Engine withHorsePower(int horsePower) {
+//        return new Engine(horsePower, manufacturer);
+//    }
+//
+//    public Engine withManufacturer(String manufacturer) {
+//        return new Engine(horsePower, manufacturer);
+//    }
 
-    public Engine withManufacturer(String manufacturer) {
-        return new Engine(horsePower, manufacturer);
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public int getHorsePower() {
@@ -34,15 +41,9 @@ public final class Engine implements Cloneable{
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Engine other = (Engine) obj;
-        return horsePower == other.horsePower
-                && Objects.equals(manufacturer, other.manufacturer);
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Engine engine = (Engine) obj;
+        return horsePower == engine.horsePower && Objects.equals(manufacturer, engine.manufacturer);
     }
 
     @Override
@@ -52,11 +53,7 @@ public final class Engine implements Cloneable{
 
     @Override
     protected Engine clone() {
-        try {
-            return (Engine) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
-        }
+        return new Engine(horsePower, manufacturer);
     }
 
     @Override
