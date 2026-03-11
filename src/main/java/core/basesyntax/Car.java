@@ -24,7 +24,7 @@ public final class Car {
         }
 
         this.engine = engine == null ? null : engine.clone();
-        //this.engine = engine == null ? null : new Engine(engine);
+
     }
 
     public int getYear() {
@@ -46,7 +46,6 @@ public final class Car {
     public Engine getEngine() {
         return engine == null ? null : engine.clone();
     }
-
 
     public Car addWheel(Wheel wheel) {
         List<Wheel> wheelsCopy = new ArrayList<>(wheels);

@@ -2,12 +2,13 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public final class Wheel implements Cloneable{
+public final class Wheel implements Cloneable {
     private int radius;
 
     public Wheel(int radius) {
         this.radius = radius;
     }
+
     public int getRadius() {
         return radius;
     }
