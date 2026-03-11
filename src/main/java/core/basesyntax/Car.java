@@ -24,6 +24,7 @@ public final class Car {
         }
 
         this.engine = engine == null ? null : engine.clone();
+        //this.engine = engine == null ? null : new Engine(engine);
     }
 
     public int getYear() {
@@ -46,6 +47,7 @@ public final class Car {
         return engine == null ? null : engine.clone();
     }
 
+
     public Car addWheel(Wheel wheel) {
         List<Wheel> wheelsCopy = new ArrayList<>(wheels);
         wheelsCopy.add(wheel.clone());
@@ -53,11 +55,11 @@ public final class Car {
     }
 
     public Car changeEngine(Engine engine) {
-        return new Car(year, color, wheels, engine);
+        return new Car(year, color, getWheels(), engine == null ? null : new Engine(engine));
     }
 
     public Car changeColor(String color) {
-        return new Car(year, color, wheels, engine);
+        return new Car(year, color, getWheels(), engine);
     }
 
     @Override
