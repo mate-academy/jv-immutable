@@ -1,12 +1,9 @@
 package core.basesyntax;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
-/**
- * Make this class immutable. See requirements in task description.
- */
 public final class Car {
     private final int year;
     private final String color;
@@ -16,8 +13,12 @@ public final class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = wheels;
-        this.engine = engine;
+        this.wheels = getCopyOfWheels(wheels);
+        if (engine == null) {
+            this.engine = null;
+        } else {
+            this.engine = new Engine(engine.getHorsePower(), engine.getManufacturer());
+        }
     }
 
     public int getYear() {
@@ -27,36 +28,71 @@ public final class Car {
     public String getColor() {
         return color;
     }
+
     public List<Wheel> getWheels() {
-        return wheels;
+        return getCopyOfWheels(wheels);
     }
 
     public Engine getEngine() {
-        return engine;
+        if (engine == null) {
+            return null;
+        }
+        return new Engine(engine.getHorsePower(), engine.getManufacturer());
+    }
+
+    public Car changeEngine(Engine engine) {
+        return new Car(this.year, this.color, this.wheels, engine);
+    }
+
+    public Car changeColor(String newColor) {
+        return new Car(this.year, newColor, this.wheels, this.engine);
+    }
+
+    public Car addWheel(Wheel newWheel) {
+        List<Wheel> updatedWheels = getCopyOfWheels(this.wheels);
+        updatedWheels.add(newWheel);
+        return new Car(this.year, this.color, updatedWheels, this.engine);
+    }
+
+    private List<Wheel> getCopyOfWheels(List<Wheel> originalWheels) {
+        List<Wheel> copy = new ArrayList<>();
+        if (originalWheels != null) {
+            for (Wheel wheel : originalWheels) {
+                if (wheel != null) {
+                    copy.add(new Wheel(wheel.getRadius()));
+                }
+            }
+        }
+        return copy;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(year, color, wheels,engine);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Car car = (Car) obj;
-        return year == car.year && Objects.equals(color, car.color)
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Car car = (Car) o;
+        return year == car.year
+                && Objects.equals(color, car.color)
                 && Objects.equals(wheels, car.wheels)
                 && Objects.equals(engine, car.engine);
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(year, color, wheels, engine);
+    }
+
+    @Override
     public String toString() {
         return "Car{"
-            + "year=" + year
-            + ", color='" + color + '\''
-            + ", wheels=" + wheels
-            + ", engine=" + engine
-            + '}';
+                + "year=" + year
+                + ", color='" + color + '\''
+                + ", wheels=" + wheels
+                + ", engine=" + engine
+                + '}';
     }
 }
