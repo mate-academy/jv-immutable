@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CarTest {
+public final class CarTest {
     private Engine testEngine;
     private Car testCar;
     private List<Wheel> testWheels;
