@@ -107,7 +107,7 @@ public class CarTest {
 
     @Test
     public void addWheel_isCarTheSameAfterAddingWheel() {
-        Car actualCar = testCar.addWheel(new Wheel(90));
+        Car actualCar = testCar.addWheelToCar(new Wheel(90));
         int actualSizeDelta = actualCar.getWheels().size() - testCar.getWheels().size();
         Assert.assertEquals("After calling method addWheel returned car wheels'"
             + " size should be increased by 1.\n", 1, actualSizeDelta);
@@ -119,7 +119,7 @@ public class CarTest {
     public void addWheel_isEmptyWheelsList() {
         List<Wheel> wheels = Collections.emptyList();
         Car car = new Car(1999, "red", wheels, testEngine);
-        Car changedCar = car.addWheel(new Wheel(90));
+        Car changedCar = car.addWheelToCar(new Wheel(90));
         Assert.assertEquals("New car's wheels quantity should be 1 after adding a new wheel.\n",
             1, changedCar.getWheels().size());
         Assert.assertEquals("Initial wheels list's size should remain the same.\n", 0, wheels.size());
@@ -127,7 +127,7 @@ public class CarTest {
 
     @Test
     public void addWheel_isWheelAddedWithoutCreatingVariable() {
-        testCar.addWheel(new Wheel(90));
+        testCar.addWheelToCar(new Wheel(90));
         Assert.assertEquals("Wheels quantity should change after adding a new wheel.\n",
             true, testCar.getWheels().size() != 1);
     }
