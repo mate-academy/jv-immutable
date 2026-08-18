@@ -17,17 +17,21 @@ public final class Car implements Cloneable {
         this.wheels = new ArrayList<>(wheels.stream()
                 .map(Wheel::clone)
                 .collect(Collectors.toList()));
-        this.engine = engine.clone();
+        this.engine = engine != null ? engine.clone() : null;
     }
 
     public List<Wheel> getWheels() {
-        return new ArrayList<>(wheels);
+        return new ArrayList<>(wheels.stream()
+                .map(Wheel::clone)
+                .collect(Collectors.toList()));
     }
 
     public Car addWheel(Wheel newWheel) {
-        List<Wheel> newWheels = new ArrayList<>(wheels);
-        newWheels.add(new Wheel(newWheel.getRadius()));
-        return new Car(year, color, newWheels, engine);
+        List<Wheel> newWheels = new ArrayList<>(wheels.stream()
+                .map(Wheel::clone)
+                .collect(Collectors.toList()));
+        newWheels.add(newWheel.clone());
+        return new Car(year, color, newWheels, engine.clone());
     }
 
     public Car changeColor(String newColor) {
