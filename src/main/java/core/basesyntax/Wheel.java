@@ -1,9 +1,17 @@
 package core.basesyntax;
 
-public class Wheel {
-    private int radius;
+import java.util.Objects;
 
-    //implement this class
+public class Wheel {
+    private final int radius;
+
+    public Wheel(int radius) {
+        this.radius = radius;
+    }
+
+    public int getRadius() {
+        return  radius;
+    }
 
     @Override
     public String toString() {
@@ -11,4 +19,22 @@ public class Wheel {
             + "radius=" + radius
             + '}';
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(radius);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Wheel other = (Wheel) obj;
+        return radius == other.radius;
+    }
+
 }
