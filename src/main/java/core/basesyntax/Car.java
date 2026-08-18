@@ -43,7 +43,7 @@ public final class Car implements Cloneable {
     }
 
     public Engine getEngine() {
-        return engine.clone();
+        return engine != null ? engine.clone() : null;
     }
 
     public String getManufacturer() {
