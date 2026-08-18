@@ -3,8 +3,9 @@ package core.basesyntax;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class Car {
+public final class Car implements Cloneable {
     private final int year;
     private final String color;
     private final List<Wheel> wheels;
@@ -13,8 +14,10 @@ public class Car {
     public Car(int year, String color, List<Wheel> wheels, Engine engine) {
         this.year = year;
         this.color = color;
-        this.wheels = new  ArrayList<>(wheels);
-        this.engine = engine;
+        this.wheels = new ArrayList<>(wheels.stream()
+                .map(Wheel::clone)
+                .collect(Collectors.toList()));
+        this.engine = engine.clone();
     }
 
     public List<Wheel> getWheels() {
@@ -32,11 +35,23 @@ public class Car {
     }
 
     public Car changeEngine(Engine newEngine) {
-        return new  Car(year, color, wheels, newEngine);
+        return new Car(year, color, new ArrayList<>(wheels), newEngine);
+    }
+
+    public Engine getEngine() {
+        return engine.clone();
     }
 
     public String getManufacturer() {
         return engine.getManufacturer();
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public int getYear() {
+        return year;
     }
 
     public int getHorsePower() {

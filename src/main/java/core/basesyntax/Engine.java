@@ -2,9 +2,9 @@ package core.basesyntax;
 
 import java.util.Objects;
 
-public class Engine {
-    private final int horsePower;
-    private final String manufacturer;
+public final class Engine implements Cloneable {
+    private int horsePower;
+    private String manufacturer;
 
     public Engine(int horsePower, String manufacturer) {
         this.horsePower = horsePower;
@@ -15,8 +15,21 @@ public class Engine {
         return horsePower;
     }
 
+    @Override
+    public Engine clone() {
+        return new Engine(horsePower, manufacturer);
+    }
+
     public String getManufacturer() {
         return manufacturer;
+    }
+
+    public void setHorsePower(int horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Override
@@ -34,12 +47,15 @@ public class Engine {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Engine other = (Engine) obj;
         return horsePower == other.horsePower && Objects.equals(manufacturer, other.manufacturer);
     }
