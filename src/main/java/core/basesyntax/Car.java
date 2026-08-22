@@ -60,30 +60,40 @@ public final class Car {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Car other = (Car) obj;
-        if (year != other.year)
+        if (year != other.year) {
             return false;
+        }
         if (color == null) {
-            if (other.color != null)
+            if (other.color != null) {
                 return false;
-        } else if (!color.equals(other.color))
+            }
+        } else if (!color.equals(other.color)) {
             return false;
+        }
         if (wheels == null) {
-            if (other.wheels != null)
+            if (other.wheels != null) {
                 return false;
-        } else if (!wheels.equals(other.wheels))
+            }
+        } else if (!wheels.equals(other.wheels)) {
             return false;
+        }
         if (engine == null) {
-            if (other.engine != null)
+            if (other.engine != null) {
                 return false;
-        } else if (!engine.equals(other.engine))
+            }
+        } else if (!engine.equals(other.engine)) {
             return false;
+        }
         return true;
     }
 
