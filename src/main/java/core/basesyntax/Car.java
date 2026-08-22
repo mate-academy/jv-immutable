@@ -13,9 +13,16 @@ public final class Car {
 
         this.year = year;
         this.color = color;
-        this.wheels = new ArrayList<>(wheels);
-        this.engine = new Engine(engine);
 
+        List<Wheel> copiedWheels = new ArrayList<>();
+
+        for (Wheel wheel : wheels) {
+            copiedWheels.add(wheel.clone());
+        }
+
+        this.wheels = copiedWheels;
+
+        this.engine = engine == null ? null : engine.clone();
     }
 
     public Car changeEngine(Engine engine) {
@@ -106,11 +113,21 @@ public final class Car {
     }
 
     public List<Wheel> getWheels() {
-        return wheels;
+
+        if (wheels == null) {
+            return new ArrayList<>(wheels);
+        }
+
+        List<Wheel> copiedWheels = new ArrayList<>();
+
+        for (Wheel wheel : wheels) {
+            copiedWheels.add(new Wheel(wheel));
+        }
+        return copiedWheels;
     }
 
     public Engine getEngine() {
-        return engine;
+        return engine == null ? null : engine.clone();
     }
 
 }

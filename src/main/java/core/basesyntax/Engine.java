@@ -1,6 +1,6 @@
 package core.basesyntax;
 
-public class Engine {
+public class Engine implements Cloneable {
     private int horsePower;
     private String manufacturer;
 
@@ -32,10 +32,52 @@ public class Engine {
     }
 
     @Override
+    public Engine clone() {
+        try {
+            return (Engine) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    @Override
     public String toString() {
         return "Engine{"
                 + "horsePower=" + horsePower
                 + ", manufacturer='" + manufacturer + '\''
                 + '}';
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + horsePower;
+        result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Engine other = (Engine) obj;
+
+        if (horsePower != other.horsePower) {
+            return false;
+        }
+
+        if (manufacturer == null) {
+            return other.manufacturer == null;
+        }
+
+        return manufacturer.equals(other.manufacturer);
+    }
+
 }
