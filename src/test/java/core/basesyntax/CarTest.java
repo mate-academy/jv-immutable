@@ -304,4 +304,13 @@ public class CarTest {
         Assert.assertEquals("You shouldn't be able to change car's wheels parameters with "
             + "getWheels method", initialWheelRadius, car.getWheels().get(0).getRadius());
     }
+
+    public static void main(String[] args) {
+        Engine testEngine = new Engine(100, "Some maker");
+        int initialWheelRadius = 90;
+        Car car = new Car(1995, "Blue", List.of(new Wheel(initialWheelRadius)), testEngine);
+        int newRadius = 1;
+        car.getWheels().get(0).setRadius(newRadius);
+        int i = car.getWheels().get(0).getRadius();
+    }
 }
