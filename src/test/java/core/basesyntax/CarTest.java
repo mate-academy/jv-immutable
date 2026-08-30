@@ -43,7 +43,7 @@ public class CarTest {
     }
 
     @Test
-    public void carConstructor_checkWheelsAfterAddingToCar() {
+    public void carConstructor_AftecheckWheelsrAddingToCar() {
         List<Wheel> expected = List.of(new Wheel(20), new Wheel(13));
         Car car = new Car(1999, null, expected, testEngine);
         List<Wheel> actual = car.getWheels();
