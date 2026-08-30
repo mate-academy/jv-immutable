@@ -1,7 +1,13 @@
 package core.basesyntax;
 
-public class Wheel {
-    private int radius;
+import java.util.Objects;
+
+public class Wheel implements Cloneable {
+    private Integer radius;
+
+    public Wheel(int radius) {
+        this.radius = radius;
+    }
 
     //implement this class
 
@@ -10,5 +16,36 @@ public class Wheel {
         return "Wheel{"
             + "radius=" + radius
             + '}';
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Wheel wheel = (Wheel) o;
+        return Objects.equals(radius, wheel.radius);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(radius);
+    }
+
+    @Override
+    protected Wheel clone() {
+        try {
+            return (Wheel) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Can`t create clone of wheel object", e);
+        }
     }
 }
