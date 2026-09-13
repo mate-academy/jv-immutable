@@ -60,8 +60,12 @@ public final class Car {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Car)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Car)) {
+            return false;
+        }
         Car car = (Car) o;
         List<Wheel> w1 = wheels == null ? List.of() : wheels;
         List<Wheel> w2 = car.wheels == null ? List.of() : car.wheels;
