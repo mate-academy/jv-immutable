@@ -65,7 +65,6 @@ public final class Car {
         return new Car(year, color, wheels, engine);
     }
 
-
     @Override
     public String toString() {
         return "Car{"
